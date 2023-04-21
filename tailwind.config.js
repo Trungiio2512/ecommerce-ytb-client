@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     fontFamily: { main: ["Poppins", "sans-serif"] },
     extend: {
-      width: {
+      maxWidth: {
         main: "1220px",
       },
       backgroundColor: {
@@ -13,6 +13,14 @@ module.exports = {
       },
       colors: {
         main: "#ee3131",
+        second: "#505050",
+        third: "#1c1d1d",
+      },
+      borderColor: {
+        main: "ebebeb",
+      },
+      borderWidth: {
+        1: "1px",
       },
     },
   },

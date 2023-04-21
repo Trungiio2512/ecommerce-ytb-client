@@ -2,3 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.main-width {
+  @apply max-w-main w-full px-4;
+}
+
+.header-wishlist,
+.header-item {
+  @apply h-full min-h-[40px];
+}
+
+.header-wishlist--cart ~ .header-wishlist--cart,
+.header-item ~ .header-item {
+  @apply border-l border-gray-200;
+}
+.header-item {
+  @apply hidden px-5  lg:block;
+}
+
+.header-wishlist {
+  @apply flex;
+}
+
+.header-wishlist--cart {
+  @apply flex items-center text-2xl gap-2;
+}
+
+.header-wishlist--cart:first-child {
+  @apply pr-6;
+}
+.header-wishlist--cart:last-child {
+  @apply pl-6;
+}
