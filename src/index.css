@@ -3,6 +3,10 @@
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+html,
+* {
+}
+
 .main-width {
   @apply max-w-main w-full px-4;
 }
@@ -12,12 +16,13 @@
   @apply h-full min-h-[40px];
 }
 
+.header-wishlist--cart:first-child,
 .header-wishlist--cart ~ .header-wishlist--cart,
 .header-item ~ .header-item {
   @apply border-l border-gray-200;
 }
 .header-item {
-  @apply hidden px-5  lg:block;
+  @apply hidden  lg:block px-5;
 }
 
 .header-wishlist {
@@ -25,7 +30,7 @@
 }
 
 .header-wishlist--cart {
-  @apply flex items-center text-2xl gap-2;
+  @apply flex items-center text-2xl px-5 gap-2 cursor-pointer;
 }
 
 .header-wishlist--cart:first-child {

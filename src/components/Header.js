@@ -86,7 +86,7 @@ const Header = (props) => {
         </div>
       </div>
       <div className="main-width m-auto lg:h-[110px] h-[80px]  flex items-center justify-between ">
-        <button className="hidden md:block lg:hidden text-2xl">
+        <button className="md:hidden text-2xl">
           <span>
             <AiOutlineMenu />
           </span>
@@ -136,7 +136,7 @@ const Header = (props) => {
             </div>
           </div>
         </div>
-        <button className="text-4xl hover:text-main">
+        <button className="text-4xl hover:text-main md:hidden ">
           <span>
             <HiShoppingCart />
           </span>

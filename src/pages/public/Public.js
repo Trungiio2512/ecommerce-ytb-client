@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 
 const Public = (props) => {
   return (
-    <div className="w-full ">
+    <div className="w-full h-full">
       <Header />
       <Navigation />
-      <div className="m-auto w-main">
+      <div className="m-auto main-width h-full mt-5">
         {" "}
         <Outlet />
       </div>
