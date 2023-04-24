@@ -5,6 +5,9 @@ module.exports = {
   theme: {
     fontFamily: { main: ["Poppins", "sans-serif"] },
     extend: {
+      height: {
+        450: "450px",
+      },
       maxWidth: {
         main: "1220px",
       },

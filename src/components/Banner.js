@@ -1,10 +1,20 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
-
+import { useSelector } from "react-redux";
 const Banner = (props) => {
-  return <nav>Banner</nav>;
+  const { banners } = useSelector((state) => state.app);
+  console.log(banners);
+  return (
+    <div className="h-450">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLQgAH898kfLohq9kxjsGwPOvfvrDj3DE6kg&usqp=CAU"
+        alt="banner"
+        className="h-full w-full object-cover"
+      />
+    </div>
+  );
 };
 
 Banner.propTypes = {};
 
-export default Banner;
+export default memo(Banner);

@@ -17,12 +17,11 @@ const Sidebar = (props) => {
   //   };
   //   api();
   // }, []);
-  const { isLoading, categories, banners } = useSelector((state) => state.app);
-  console.log(banners);
+  const { isLoading, categories } = useSelector((state) => state.app);
   return (
     <div className="w-full ">
       <aside className="border-1 border-main border-solid rounded-sm bg-white">
-        <div className="bg-main text-white px-5 py-2 flex items-center gap-3">
+        <div className="bg-main text-white px-5 py-4 flex items-center gap-3">
           <span className="text-base">
             <FaList />
           </span>
@@ -30,7 +29,7 @@ const Sidebar = (props) => {
         </div>
         <ul>
           {categories.map((category) => (
-            <li className="px-5 py-2" key={category?._id}>
+            <li className="px-5 py-3" key={category?._id}>
               <Link to={category?.slug} className="flex items-center gap-2 hover:text-main">
                 <span className="">icon</span>
                 <span className="text-sm text-second">{category?.title}</span>

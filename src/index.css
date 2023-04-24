@@ -39,3 +39,33 @@ html,
 .header-wishlist--cart:last-child {
   @apply pl-6;
 }
+
+button.slick-next {
+  right: 60px;
+  z-index: 1;
+}
+
+button.slick-prev {
+  right: 0;
+  z-index: 1;
+}
+button.slick-next::before {
+  content: "\276F";
+}
+button.slick-prev::before,
+button.slick-next::before {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: gray;
+  border: 1px solid #ccc;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  /* padding: 20px; */
+}
+
+button.slick-prev::before {
+  content: "\276E";
+}
