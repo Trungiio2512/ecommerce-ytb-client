@@ -34,7 +34,10 @@ const TabProduct = ({ categories }) => {
       const fetchApi = async () => {
         const res = await product.getAll({
           news: true,
+          fields: "thumb title slug price totalRatings news",
+          limit: 20,
         });
+        // console.log(res.data);
         if (res?.success) {
           const idSmartphone = categories.find((el) => el?.title === "Smartphone")?._id;
           const idLaptop = categories.find((el) => el?.title === "Laptop")?._id;
@@ -44,15 +47,16 @@ const TabProduct = ({ categories }) => {
           const productLaptop = res?.data.filter((el) => el?.category?._id === idLaptop);
           const productTablet = res?.data.filter((el) => el?.category?._id === idTablet);
           //   console.log(productLaptop, productPhone, productTablet);
-          setBestSeller(productPhone);
-          setnewarrivals(productLaptop);
-          settablet(productTablet);
+          productPhone.length > 0 && setBestSeller(productPhone);
+          productLaptop.length > 0 && setnewarrivals(productLaptop);
+          productTablet.length > 0 && settablet(productTablet);
         }
       };
 
       fetchApi();
     }
   }, [categories]);
+  // console.log(bestSeller);
   return (
     <div className="mt-5">
       <ul className="mb-5 divide-x border-b-2 border-red-500 pb-4">
@@ -71,9 +75,23 @@ const TabProduct = ({ categories }) => {
           );
         })}
       </ul>
-      <div>
+      <div className={`${tabActive === 0 ? "block" : "hidden"}`}>
         <Slider {...settings}>
           {bestSeller.map((el) => {
+            return <ProductT1 key={el?._id} data={el} />;
+          })}
+        </Slider>
+      </div>{" "}
+      <div className={`${tabActive === 1 ? "block" : "hidden"}`}>
+        <Slider {...settings}>
+          {newarrivals.map((el) => {
+            return <ProductT1 key={el?._id} data={el} />;
+          })}
+        </Slider>
+      </div>{" "}
+      <div className={`${tabActive === 2 ? "block" : "hidden"}`}>
+        <Slider {...settings}>
+          {tablet.map((el) => {
             return <ProductT1 key={el?._id} data={el} />;
           })}
         </Slider>

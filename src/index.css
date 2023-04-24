@@ -63,9 +63,15 @@ button.slick-next::before {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+  position: absolute;
+  transform: translateY(-50%);
   /* padding: 20px; */
 }
 
 button.slick-prev::before {
   content: "\276E";
+}
+
+img {
+  @apply w-full h-full object-cover;
 }

@@ -30,9 +30,12 @@ const Sidebar = (props) => {
         <ul>
           {categories.map((category) => (
             <li className="px-5 py-3" key={category?._id}>
-              <Link to={category?.slug} className="flex items-center gap-2 hover:text-main">
+              <Link
+                to={category?.slug}
+                className="flex items-center gap-2 hover:text-main text-second"
+              >
                 <span className="">icon</span>
-                <span className="text-sm text-second">{category?.title}</span>
+                <span className="text-sm ">{category?.title}</span>
               </Link>
             </li>
           ))}
