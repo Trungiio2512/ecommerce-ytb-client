@@ -67,6 +67,34 @@ button.slick-next::before {
   transform: translateY(-50%);
   /* padding: 20px; */
 }
+.shadow-box {
+  position: relative;
+  display: block;
+}
+
+.shadow-box:hover::after,
+.shadow-box:hover::before {
+  width: 100% !important;
+  height: 100% !important;
+}
+.shadow-box::before,
+.shadow-box::after {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+  content: "";
+  width: 0;
+  height: 0;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+}
+.shadow-box::after {
+  bottom: 0;
+  right: 0;
+}
+.shadow-box::before {
+  top: 0;
+  left: 0;
+}
 
 button.slick-prev::before {
   content: "\276E";

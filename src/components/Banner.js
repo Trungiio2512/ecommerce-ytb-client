@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 const Banner = (props) => {
   const { banners } = useSelector((state) => state.app);
-  console.log(banners);
   return (
     <div className="h-450">
       <img
