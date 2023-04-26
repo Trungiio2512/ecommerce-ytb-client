@@ -41,16 +41,25 @@ html,
 }
 
 button.slick-next {
-  right: 60px;
+  /* right: 60px; */
+  right: 0;
   z-index: 1;
 }
 
 button.slick-prev {
-  right: 0;
+  /* right: -60px; */
+  left: 0;
   z-index: 1;
+}
+button.slick-prev::before {
+  content: "\276F";
+  /* transform: translateX(50%); */
+  left: 0;
 }
 button.slick-next::before {
   content: "\276F";
+  /* transform: translateX(50%); */
+  right: 0;
 }
 button.slick-prev::before,
 button.slick-next::before {
@@ -65,7 +74,6 @@ button.slick-next::before {
   font-size: 2rem;
   position: absolute;
   transform: translateY(-50%);
-  /* padding: 20px; */
 }
 .shadow-box {
   position: relative;

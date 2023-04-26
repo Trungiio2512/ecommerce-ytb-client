@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Banner, Banner2, Sidebar, TabProduct } from "../../components";
+import { Banner, Banner2, ProductDeal, Sidebar, TabProduct } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 // import { getAll } from "../../app/actions/category";
 const Home = (props) => {
@@ -10,10 +10,11 @@ const Home = (props) => {
     <main>
       <div className="flex ">
         {" "}
-        <div className="w-4/12">
+        <div className="w-3/12">
           <Sidebar />
+          <ProductDeal />
         </div>
-        <div className="w-8/12 pl-5">
+        <div className="w-9/12 pl-5">
           <Banner />
           <TabProduct categories={categories} />
           <Banner2 />

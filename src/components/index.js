@@ -5,3 +5,5 @@ export { default as Sidebar } from "./Sidebar";
 export { default as TabProduct } from "./TabProduct";
 export { default as ProductT1 } from "./ProductT1";
 export { default as Banner2 } from "./Banner2";
+export { default as ProductDeal } from "./ProductDeal";
+export { default as Countdown } from "./Countdown";

@@ -18,7 +18,7 @@ const ProductT1 = ({ data }) => {
       onMouseOver={(e) => setIsShowOption(true)}
       onMouseLeave={(e) => setIsShowOption(false)}
     >
-      <Link to={`/${data?.category?.slug}/${data?.slug}`} className="relative">
+      <Link to={`/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`} className="relative">
         <div
           className={`absolute left-0  w-full flex justify-evenly items-center  duration-500 transition-all ${
             isShowOption ? "bottom-0 visible opacity-[1]" : "bottom-[-40px] invisible opacity-0"
@@ -44,7 +44,7 @@ const ProductT1 = ({ data }) => {
         </div>
       </Link>
       <div className="mt-4">
-        <Link to={`/${data?.brand?.slug}/${data?.slug}`}>
+        <Link to={`/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`}>
           <h3 className="text-[#2b3743] line-clamp-1 cursor-pointer hover:text-main">
             {data?.title}
           </h3>

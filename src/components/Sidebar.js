@@ -19,7 +19,7 @@ const Sidebar = (props) => {
   // }, []);
   const { isLoading, categories } = useSelector((state) => state.app);
   return (
-    <div className="w-full ">
+    <div className="w-full hidden lg:block">
       <aside className="border-1 border-main border-solid rounded-sm bg-white">
         <div className="bg-main text-white px-5 py-4 flex items-center gap-3">
           <span className="text-base">

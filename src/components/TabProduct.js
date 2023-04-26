@@ -58,7 +58,7 @@ const TabProduct = ({ categories }) => {
   }, [categories]);
   // console.log(bestSeller);
   return (
-    <div className="mt-5">
+    <div className="mt-8">
       <ul className="mb-5 divide-x border-b-2 border-red-500 pb-4">
         {tabs.map((tab) => {
           return (
