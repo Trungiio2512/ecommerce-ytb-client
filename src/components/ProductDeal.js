@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -20,7 +20,6 @@ const ProductDeal = (props) => {
         deal: true,
         fields: "title slug deal thumb totalRatings price",
       });
-      console.log(res);
       if (res?.success) {
         setproduct(res?.data[0]);
       }
@@ -63,4 +62,4 @@ const ProductDeal = (props) => {
 
 ProductDeal.propTypes = {};
 
-export default ProductDeal;
+export default memo(ProductDeal);

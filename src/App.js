@@ -11,6 +11,7 @@ function App() {
   useEffect(() => {
     dispatch(actions.getAllCategories());
     dispatch(actions.getBanner());
+    dispatch(actions.getNewProducts());
   }, []);
 
   // console.log(isLoading);

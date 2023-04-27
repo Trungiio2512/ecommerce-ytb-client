@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import * as product from "../apis/product";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 import ProductT1 from "./ProductT1";
+import { useSelector } from "react-redux";
 const tabs = [
   {
     id: 0,
@@ -24,38 +25,29 @@ const settings = {
   slidesToShow: 3,
   slidesToScroll: 1,
 };
-const TabProduct = ({ categories }) => {
+const TabProduct = () => {
+  const { categories, newProducts } = useSelector((state) => state.app);
+
   const [bestSeller, setBestSeller] = useState([]);
   const [newarrivals, setnewarrivals] = useState([]);
   const [tablet, settablet] = useState([]);
   const [tabActive, settabActive] = useState(0);
+
   useEffect(() => {
-    if (categories.length > 0) {
-      const fetchApi = async () => {
-        const res = await product.getAll({
-          news: true,
-          fields: "thumb title slug price totalRatings news",
-          limit: 20,
-        });
-        // console.log(res.data);
-        if (res?.success) {
-          const idSmartphone = categories.find((el) => el?.title === "Smartphone")?._id;
-          const idLaptop = categories.find((el) => el?.title === "Laptop")?._id;
-          const idTablet = categories.find((el) => el?.title === "Tablet")?._id;
+    if (categories.length > 0 && newProducts.length > 0) {
+      const idSmartphone = categories.find((el) => el?.title === "Smartphone")?._id;
+      const idLaptop = categories.find((el) => el?.title === "Laptop")?._id;
+      const idTablet = categories.find((el) => el?.title === "Tablet")?._id;
 
-          const productPhone = res?.data.filter((el) => el?.category?._id === idSmartphone);
-          const productLaptop = res?.data.filter((el) => el?.category?._id === idLaptop);
-          const productTablet = res?.data.filter((el) => el?.category?._id === idTablet);
-          //   console.log(productLaptop, productPhone, productTablet);
-          productPhone.length > 0 && setBestSeller(productPhone);
-          productLaptop.length > 0 && setnewarrivals(productLaptop);
-          productTablet.length > 0 && settablet(productTablet);
-        }
-      };
-
-      fetchApi();
+      const productPhone = newProducts.filter((el) => el?.category?._id === idSmartphone);
+      const productLaptop = newProducts.filter((el) => el?.category?._id === idLaptop);
+      const productTablet = newProducts.filter((el) => el?.category?._id === idTablet);
+      //   console.log(productLaptop, productPhone, productTablet);
+      productPhone.length > 0 && setBestSeller(productPhone);
+      productLaptop.length > 0 && setnewarrivals(productLaptop);
+      productTablet.length > 0 && settablet(productTablet);
     }
-  }, [categories]);
+  }, [categories, newProducts]);
   // console.log(bestSeller);
   return (
     <div className="mt-8">
@@ -102,4 +94,4 @@ const TabProduct = ({ categories }) => {
 
 TabProduct.propTypes = {};
 
-export default TabProduct;
+export default memo(TabProduct);

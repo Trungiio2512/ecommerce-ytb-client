@@ -110,4 +110,6 @@ button.slick-prev::before {
 
 img {
   @apply w-full h-full object-cover;
+  overflow-clip-margin: content-box;
+  overflow: clip;
 }

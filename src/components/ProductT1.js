@@ -53,7 +53,8 @@ const ProductT1 = ({ data }) => {
           {getStars(data?.totalRatings)}
           {/* {data?.totalRatings} */}
         </div>
-        <span className="text-[#333]">{formatVND(data?.price)}</span>
+        <span className="text-gray-500 text-sm line-through mr-2">{formatVND(data?.price)}</span>
+        <span className="text-black text-base">{formatVND(data?.priceSale)}</span>
       </div>
     </div>
   );

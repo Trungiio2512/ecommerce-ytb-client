@@ -9,7 +9,7 @@ module.exports = {
         450: "450px",
       },
       maxWidth: {
-        main: "1220px",
+        main: "1260px",
       },
       backgroundColor: {
         main: "#ee3131",

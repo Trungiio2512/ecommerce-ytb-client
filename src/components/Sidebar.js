@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import icons from "../until/icon";
 import * as category from "../apis/category";
@@ -47,4 +47,4 @@ const Sidebar = (props) => {
 
 Sidebar.propTypes = {};
 
-export default Sidebar;
+export default memo(Sidebar);

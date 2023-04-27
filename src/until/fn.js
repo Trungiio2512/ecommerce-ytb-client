@@ -9,13 +9,15 @@ export function getStars(rating) {
   let output = [];
 
   // Append all the filled whole stars
-  for (var i = rating; i >= 1; i--) output.push(<BsStarFill key={i} className="text-yellow-500" />);
+  for (var i = rating; i >= 1; i--)
+    output.push(<BsStarFill key={Math.random() * i} className="text-yellow-500" />);
 
   // If there is a half a star, append it
-  if (i === 0.5) output.push(<BsStarHalf className="text-gray-400" key={i} />);
+  if (i === 0.5) output.push(<BsStarHalf className="text-gray-400" key={Math.random() * i} />);
 
   // Fill the empty stars
-  for (let i = 5 - rating; i >= 1; i--) output.push(<BsStarFill className="text-gray-400" />);
+  for (let i = 5 - rating; i >= 1; i--)
+    output.push(<BsStarFill className="text-gray-400" key={Math.random() * i} />);
   // console.log(output);
   return output;
 }
