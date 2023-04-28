@@ -5,6 +5,8 @@ import {
   Banner2,
   Banner3,
   Featured,
+  HotColection,
+  NewArrivals,
   ProductDeal,
   Sidebar,
   TabProduct,
@@ -14,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Home = (props) => {
   return (
     <main>
-      <div className="flex ">
+      <div className="flex">
         {" "}
         <div className="w-3/12">
           <Sidebar />
@@ -28,7 +30,9 @@ const Home = (props) => {
       </div>
       <Featured />
       <Banner3 />
-      <div> daily</div>
+      <NewArrivals />
+      <HotColection />
+      {/* <div> daily</div> */}
     </main>
   );
 };

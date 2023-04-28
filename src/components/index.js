@@ -8,4 +8,6 @@ export { default as Banner2 } from "./Banner2";
 export { default as ProductDeal } from "./ProductDeal";
 export { default as Countdown } from "./Countdown";
 export { default as Featured } from "./Featured";
+export { default as NewArrivals } from "./NewArrivals";
 export { default as Banner3 } from "./Banner3";
+export { default as HotColection } from "./HotColection";

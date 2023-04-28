@@ -35,22 +35,23 @@ const TabProduct = () => {
 
   useEffect(() => {
     if (categories.length > 0 && newProducts.length > 0) {
-      const idSmartphone = categories.find((el) => el?.title === "Smartphone")?._id;
-      const idLaptop = categories.find((el) => el?.title === "Laptop")?._id;
-      const idTablet = categories.find((el) => el?.title === "Tablet")?._id;
+      const data = categories.map((el) => ({
+        [el?.title]: newProducts?.filter((pd) => pd?.category?._id === el?._id),
+      }));
 
-      const productPhone = newProducts.filter((el) => el?.category?._id === idSmartphone);
-      const productLaptop = newProducts.filter((el) => el?.category?._id === idLaptop);
-      const productTablet = newProducts.filter((el) => el?.category?._id === idTablet);
+      const productPhone = data.find((el) => el["Smartphone"])?.Smartphone;
+      const productLaptop = data.find((el) => el["Laptop"])?.Laptop;
+      const productTablet = data.find((el) => el["Tablet"])?.Tablet;
       //   console.log(productLaptop, productPhone, productTablet);
       productPhone.length > 0 && setBestSeller(productPhone);
       productLaptop.length > 0 && setnewarrivals(productLaptop);
       productTablet.length > 0 && settablet(productTablet);
+      // console.log(productPhone);
     }
   }, [categories, newProducts]);
   // console.log(bestSeller);
   return (
-    <div className="mt-8">
+    <div className="mt-8 mb-4">
       <ul className="mb-5 divide-x border-b-2 border-red-500 pb-4">
         {tabs.map((tab) => {
           return (

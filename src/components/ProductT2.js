@@ -4,6 +4,7 @@ import { formatVND, getStars } from "../until/fn";
 import { Link } from "react-router-dom";
 
 const ProductT2 = ({ product }) => {
+  // console.log(product);
   return (
     <div className="w-full flex items-center gap-4 py-5 border border-transparent hover:border-red-400 transition-all">
       <Link

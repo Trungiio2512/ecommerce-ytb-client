@@ -13,6 +13,8 @@ module.exports = {
       },
       backgroundColor: {
         main: "#ee3131",
+        "black-05": "rgba(0,0,0,0.5)",
+        "white-02": "rgba(255, 255, 255, 0.2)",
       },
       colors: {
         main: "#ee3131",

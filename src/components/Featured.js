@@ -14,7 +14,7 @@ const Featured = (props) => {
   useEffect(() => {
     const fetchApi = async () => {
       const res = await apiProduct.getAll({
-        fields: "thumb title price priceSale totalRatings",
+        fields: "thumb title price priceSale totalRatings slug",
         features: true,
       });
       // console.log(res);

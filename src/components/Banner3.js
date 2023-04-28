@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Banner3 = (props) => {
   return (
-    <div className="mt-5 flex items-center h-[655px] gap-4 overflow-hidden">
+    <section className="mt-5 flex items-center h-[655px] gap-4 overflow-hidden">
       <div className="flex-1">
         <Link
           to={""}
@@ -63,7 +63,7 @@ const Banner3 = (props) => {
           />
         </Link>
       </div>
-    </div>
+    </section>
   );
 };
 
