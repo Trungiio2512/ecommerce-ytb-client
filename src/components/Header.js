@@ -23,12 +23,6 @@ const {
 const Header = (props) => {
   const linkRight = [
     {
-      i: 4,
-      // icon: <FaFacebookF />,
-      content: "Sign In or Create Account",
-      path: "",
-    },
-    {
       i: 0,
       icon: <FaFacebookF />,
       path: "",
@@ -68,6 +62,9 @@ const Header = (props) => {
           </div>
           <div className="float-right">
             <ul className="divide-x divide-red-300 flex items-center">
+              <li className="px-2 hover:text-black">
+                <Link to={`${path.LOGIN}`}>Sign in or create a new account</Link>
+              </li>
               {linkRight.map((el, index) => {
                 return (
                   <li

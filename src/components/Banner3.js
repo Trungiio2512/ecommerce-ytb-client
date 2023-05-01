@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Banner3 = (props) => {
   return (
     <section className="mt-5 flex items-center h-[655px] gap-4 overflow-hidden">
-      <div className="flex-1">
+      <div className="flex-1 h-full">
         <Link
           to={""}
           className="shadow-box"
@@ -20,7 +20,7 @@ const Banner3 = (props) => {
           />
         </Link>
       </div>{" "}
-      <div className="flex-1 grid grid-cols-2 gap-4">
+      <div className="flex-1 h-full grid grid-cols-2 gap-4">
         <div className="grid grid-rows-2 gap-4">
           <Link
             to={""}

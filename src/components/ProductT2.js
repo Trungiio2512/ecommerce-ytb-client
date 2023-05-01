@@ -2,14 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { formatVND, getStars } from "../until/fn";
 import { Link } from "react-router-dom";
+import path from "../until/path";
 
 const ProductT2 = ({ product }) => {
   // console.log(product);
   return (
     <div className="w-full flex items-center gap-4 py-5 border border-transparent hover:border-red-400 transition-all">
       <Link
-        to={`/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}
-        className="w-[30%] p-2"
+        to={`/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}
+        state={{ id: product?._id }}
+        className="w-[85px] h-[85px] p-2"
       >
         <figure className="w-full h-full">
           <img
@@ -22,7 +24,10 @@ const ProductT2 = ({ product }) => {
         </figure>
       </Link>
       <div>
-        <Link to={`/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}>
+        <Link
+          to={`/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}
+          state={{ id: product?._id }}
+        >
           <h3 className="text-[#2b3743] line-clamp-1 cursor-pointer hover:text-main">
             {product?.title}
           </h3>

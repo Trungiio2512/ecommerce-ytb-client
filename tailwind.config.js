@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       height: {
         450: "450px",
+        "screen-75": "90vh",
+        "screen-50": "50vh",
       },
       maxWidth: {
         main: "1260px",
@@ -20,6 +22,9 @@ module.exports = {
         main: "#ee3131",
         second: "#505050",
         third: "#1c1d1d",
+        "theme-yellow": "#ffc727",
+        "theme-yellow-dark": "#e6b323",
+        "theme-dark": "#37474f",
       },
       borderColor: {
         main: "ebebeb",
@@ -27,6 +32,11 @@ module.exports = {
       borderWidth: {
         1: "1px",
       },
+    },
+  },
+  variants: {
+    extend: {
+      scale: ["active", "group-hover"],
     },
   },
   plugins: [],

@@ -5,6 +5,7 @@ import {
   Banner2,
   Banner3,
   Featured,
+  Footer,
   HotColection,
   NewArrivals,
   ProductDeal,

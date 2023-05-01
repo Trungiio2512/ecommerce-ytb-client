@@ -5,10 +5,10 @@ import { formatVND, getStars } from "../until/fn";
 import icons from "../until/icon";
 import newpng from "../assets/new.png";
 import Button from "./Button";
+import path from "../until/path";
 
 const { BsStarHalf, BsStarFill, AiOutlineMenu, AiOutlineEye, AiOutlineHeart } = icons;
 const ProductT1 = ({ data, isShowDesModal = false }) => {
-  console.log(data);
   // const getStars = (rating) => {};
   const [isShowModal, setShowModal] = useState(false);
 
@@ -46,7 +46,14 @@ const ProductT1 = ({ data, isShowDesModal = false }) => {
           <Button circle>{<AiOutlineHeart />}</Button>
         </div>
 
-        <Link to={`/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`}>
+        <Link
+          to={`/${path.DETAIL_PRODUCT}/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`}
+          state={{
+            categoty_id: data?.category?._id,
+            brand_id: data?.brand?._id,
+            id: data?.categoty_id,
+          }}
+        >
           <figure className="h-[243px] w-full">
             <img
               src={
@@ -59,7 +66,14 @@ const ProductT1 = ({ data, isShowDesModal = false }) => {
         </Link>
       </div>
       <div className="mt-4">
-        <Link to={`/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`}>
+        <Link
+          to={`/${path.DETAIL_PRODUCT}/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`}
+          state={{
+            categoty_id: data?.category?._id,
+            brand_id: data?.brand?._id,
+            id: data?.categoty_id,
+          }}
+        >
           <h3 className="text-[#2b3743] line-clamp-1 cursor-pointer hover:text-main">
             {data?.title}
           </h3>

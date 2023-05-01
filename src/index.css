@@ -8,7 +8,7 @@ html,
 }
 
 .main-width {
-  @apply max-w-main w-full px-4;
+  @apply max-w-main w-full px-4 m-auto;
 }
 
 .header-wishlist,
@@ -78,6 +78,8 @@ button.slick-next::before {
 .shadow-box {
   position: relative;
   display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .shadow-box:hover::after,

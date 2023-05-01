@@ -9,6 +9,7 @@ import {
   AiOutlineMenuUnfold,
   AiFillHeart,
 } from "react-icons/ai";
+import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
 const icons = {
   AiOutlineMenuUnfold,
@@ -28,6 +29,7 @@ const icons = {
   HiMail,
   HiShoppingCart,
   FaList,
+  IoIosMail,
 };
 
 export default icons;
