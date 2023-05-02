@@ -19,7 +19,8 @@
     "react-toastify": "^9.1.2",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
-    "slick-carox`usel": "^1.8.1",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.7.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

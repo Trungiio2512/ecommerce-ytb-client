@@ -8,6 +8,7 @@ import {
   Product,
   ProductDetail,
   Public,
+  Register,
   Services,
 } from "./pages/public";
 import path from "./until/path";
@@ -41,6 +42,7 @@ function App() {
           <Route path={path.ABOUT_US} element={<AS />}></Route>
         </Route>
         <Route path={path.LOGIN} element={<Login />}></Route>
+        <Route path={path.REGISTER} element={<Register />}></Route>
       </Routes>
     </div>
   );

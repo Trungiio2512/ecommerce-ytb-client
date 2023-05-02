@@ -8,7 +8,7 @@ html,
 }
 
 .main-width {
-  @apply max-w-main w-full px-4 m-auto;
+  @apply max-w-main w-full px-4 lg:px-0 mx-auto;
 }
 
 .header-wishlist,
@@ -38,6 +38,9 @@ html,
 }
 .header-wishlist--cart:last-child {
   @apply pl-6;
+}
+input:invalid[focused="true"] {
+  border: 1px solid red;
 }
 
 button.slick-next {

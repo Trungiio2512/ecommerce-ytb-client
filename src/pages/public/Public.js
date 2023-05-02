@@ -12,7 +12,7 @@ const Public = (props) => {
     <div className="w-full h-full">
       <Header />
       <Navigation />
-      <div className="main-width h-auto mt-5">
+      <div className="main-width h-auto ">
         {" "}
         <Outlet />
       </div>{" "}

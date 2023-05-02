@@ -6,7 +6,7 @@ import icons from "../until/icon";
 const { AiOutlineMenu } = icons;
 const Navigation = (props) => {
   return (
-    <div className="main-width py-2 h-[48px] m-auto border-y border-gray-300  md:items-center md:justify-between hidden md:flex">
+    <div className="main-width py-2 h-[48px] mx-auto mb-5 border-y border-gray-300  md:items-center md:justify-between hidden md:flex">
       <nav className="bg-white items-center gap-8 w-full h-full hidden lg:flex">
         {menuHome.map((menu) => {
           return (

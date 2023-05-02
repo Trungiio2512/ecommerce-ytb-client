@@ -18,6 +18,7 @@ const Sidebar = (props) => {
   //   api();
   // }, []);
   const { isLoading, categories } = useSelector((state) => state.app);
+  // console.log(categories);
   return (
     <div className="w-full hidden lg:block">
       <aside className="border-1 border-main border-solid rounded-sm bg-white">

@@ -1,19 +1,25 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+
 import path from "../../until/path";
 import FormInput from "../../components/FormInput";
 import * as apiUser from "../../apis/user";
-import { useDispatch } from "react-redux";
 import { setUser } from "../../app/slices/user";
+// import {} from '../../app/slices/user'
 
-const Login = (props) => {
+const Regiter = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [values, setValues] = useState({
     email: "",
     password: "",
+    mobile: "",
+    firstName: "",
+    lastName: "",
   });
 
   const inputs = [
@@ -38,22 +44,51 @@ const Login = (props) => {
       // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
+    {
+      id: 5,
+      name: "firstName",
+      type: "text",
+      placeholder: "First Name",
+      // errorMessage:
+      //   "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      label: "First Name",
+      required: true,
+    },
+    {
+      id: 6,
+      name: "lastName",
+      type: "text",
+      placeholder: "Last Name",
+      // errorMessage:
+      //   "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      label: "Last Name",
+      required: true,
+    },
+    {
+      id: 7,
+      name: "mobile",
+      type: "text",
+      placeholder: "Mobile",
+      // errorMessage:
+      //   "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      label: "Mobile",
+      required: true,
+    },
   ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const rs = await apiUser.login(values);
-    // console.log(rs);
+    const rs = await apiUser.register(values);
     if (rs?.sucess) {
-      Swal.fire("Login Success", rs?.msg, "success")
+      Swal.fire("Register Success", rs?.msg, "success")
         .then(() => {
-          dispatch(setUser({token: rs?.token, data: rs.data}));
+          dispatch(setUser(rs?.data));
         })
         .then(() => {
           navigate(`/${path.HOME}`);
         });
     } else {
-      Swal.fire("Login Fail", rs?.msg, "error");
+      Swal.fire("Register Fail", rs?.msg, "error");
     }
   };
 
@@ -64,7 +99,7 @@ const Login = (props) => {
   return (
     <div className="bg-yellow-100 flex items-center justify-center h-full">
       <div className="w-full lg:w-2/5 md:w-3/5 lg:bg-white lg:h-screen-75 lg:border border-gray-300 rounded-lg">
-        <div className="flex items-center lg:h-full px-10 py-4 ">
+        <div className="flex items-center lg:h-full px-10 pt-16 lg:pt-0">
           <form onSubmit={handleSubmit} className="w-full space-y-8 relative">
             <div className="absolute top-0 left-0">
               <Link
@@ -75,7 +110,7 @@ const Login = (props) => {
               </Link>
             </div>
             <div className="flex items-center justify-center text-center space-x-3 mb-20">
-              <span className="text-3xl font-semibold text-gray-700">Login</span>
+              <span className="text-3xl font-semibold text-gray-700">Regiter</span>
               <span className="text-base text-gray-800 ">Form</span>
             </div>
             {inputs.map((input) => (
@@ -96,10 +131,10 @@ const Login = (props) => {
                 <span className="block text-gray-800 tracking-wide">Remember me</span>
               </label>
               <Link
-                to={`/${path.REGISTER}`}
+                to={`/${path.LOGIN}`}
                 className="text-gray-800 tracking-wide inline-block border-b border-gray-300"
               >
-                You dont have account
+                You have account
               </Link>
             </div>
             <button className="outline-none w-full active:bg-red-400 active:text-white hover:bg-red-100 hover:text-gray-400 text-lg py-2 px-4 rounded-2xl border border-gray-400 transition-all duration-500">
@@ -111,62 +146,6 @@ const Login = (props) => {
     </div>
   );
 };
-Login.propTypes = {};
+Regiter.propTypes = {};
 
-export default Login;
-// return (
-//   <div className="bg-yellow-100 flex items-center justify-center lg:h-screen">
-//     <div className="login-container container w-full lg:w-2/5 lg:bg-white h-screen lg:h-screen-75 lg:border border-gray-300 rounded-lg flex flex-wrap lg:flex-nowrap flex-col lg:flex-row justify-between group">
-//       {/* <Link to={`${path.HOME}`} className="text-lg capitalize text-gray-500  font-medium text-l">Trở về trang chủ</Link> */}
-//       <div className="w-full">
-//         <div className="flex items-center lg:h-full px-10 pt-16 lg:pt-0">
-//           <div className="w-full space-y-5">
-
-//             {/* <!-- form caption --> */}
-
-//             <div className="form-element">
-//               <label className="space-y-2 w-full lg:w-4/5 mx-auto">
-//                 <span className="block text-lg text-gray-800 tracking-wide">Email</span>
-//                 <span className="block">
-//                   <input
-//                     type="text"
-//                     className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
-//                   />
-//                 </span>
-//               </label>
-//             </div>
-//             {/* <!-- form element --> */}
-
-//             <div className="form-element">
-//               <label className="space-y-2 w-full lg:w-4/5 mx-auto">
-//                 <span className="block text-lg text-gray-800 tracking-wide">Password</span>
-//                 <span className="block">
-//                   <input
-//                     type="password"
-//                     className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
-//                   />
-//                 </span>
-//               </label>
-//             </div>
-//             {/* <!-- form element --> */}
-
-//             {/* <!-- form element --> */}
-
-//             <div className="form-element">
-//               <span className="w-full lg:w-4/5 mx-auto ">
-//                 <input
-//                   type="submit"
-//                   className="cursor-pointer border-2 border-yellow-200 w-full p-3 bg-yellow-200 focus:outline-none active:outline-none focus:bg-theme-yellow active:bg-theme-yellow hover:bg-theme-yellow transition-all"
-//                 />
-//               </span>
-//             </div>
-//             {/* <!-- form element --> */}
-//           </div>
-//         </div>
-//         {/* <!-- form wrapper --> */}
-//       </div>
-//       {/* <!-- Login Form End--> */}
-//     </div>
-//   </div>
-// );
-// };
+export default Regiter;

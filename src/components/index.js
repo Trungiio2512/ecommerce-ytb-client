@@ -12,3 +12,4 @@ export { default as NewArrivals } from "./NewArrivals";
 export { default as Banner3 } from "./Banner3";
 export { default as HotColection } from "./HotColection";
 export { default as Footer } from "./Footer";
+export { default as FormInput } from "./FormInput";

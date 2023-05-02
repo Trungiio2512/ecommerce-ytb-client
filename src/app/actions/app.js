@@ -8,7 +8,7 @@ export const getAllCategories = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     const res = await apiCategories.getAll();
     //   console.log(res);
-    if (!res?.success) {
+    if (!res?.sucess) {
       return rejectWithValue(res);
     }
     return res?.data;
@@ -17,7 +17,7 @@ export const getAllCategories = createAsyncThunk(
 export const getBanner = createAsyncThunk("app/getBanner", async (data, { rejectWithValue }) => {
   const res = await apiBanner.get();
   //   console.log(res);
-  if (!res?.success) {
+  if (!res?.sucess) {
     return rejectWithValue(res);
   }
   return res?.data;
@@ -32,7 +32,7 @@ export const getNewProducts = createAsyncThunk(
       limit: 50,
     });
     // console.log(res);
-    if (!res?.success) {
+    if (!res?.sucss) {
       return rejectWithValue(res);
     }
     return res?.data;
