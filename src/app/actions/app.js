@@ -32,7 +32,7 @@ export const getNewProducts = createAsyncThunk(
       limit: 50,
     });
     // console.log(res);
-    if (!res?.sucss) {
+    if (!res?.sucess) {
       return rejectWithValue(res);
     }
     return res?.data;

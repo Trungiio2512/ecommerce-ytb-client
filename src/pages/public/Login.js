@@ -47,7 +47,7 @@ const Login = (props) => {
     if (rs?.sucess) {
       Swal.fire("Login Success", rs?.msg, "success")
         .then(() => {
-          dispatch(setUser({token: rs?.token, data: rs.data}));
+          dispatch(setUser({ token: rs?.token, data: rs.data }));
         })
         .then(() => {
           navigate(`/${path.HOME}`);
@@ -91,10 +91,12 @@ const Login = (props) => {
               />
             ))}
             <div className="w-full lg:w-4/5 mx-auto flex items-center justify-between">
-              <label className="text-gray-800 tracking-wide flex items-center space-x-2 select-none">
-                <input type="checkbox" name="" id="" />
-                <span className="block text-gray-800 tracking-wide">Remember me</span>
-              </label>
+              <Link
+                to={`/${path.FORGOT_PASS}`}
+                className="text-gray-800 tracking-wide inline-block border-b border-gray-300"
+              >
+                Forgot Password
+              </Link>
               <Link
                 to={`/${path.REGISTER}`}
                 className="text-gray-800 tracking-wide inline-block border-b border-gray-300"

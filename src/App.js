@@ -3,6 +3,8 @@ import {
   AS,
   Blog,
   FAQ,
+  ForgotPass,
+  ForgotPassword,
   Home,
   Login,
   Product,
@@ -10,6 +12,7 @@ import {
   Public,
   Register,
   Services,
+  VerifyEmail,
 } from "./pages/public";
 import path from "./until/path";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +30,7 @@ function App() {
 
   // console.log(isLoading);
   return (
-    <div className="font-main h-screen">
+    <div className="font-main h-auto">
       <Routes>
         <Route path={path.PUBLIC} element={<Public />}>
           <Route path={path.HOME} element={<Home />}></Route>
@@ -41,8 +44,10 @@ function App() {
           <Route path={path.BLOGS} element={<Blog />}></Route>
           <Route path={path.ABOUT_US} element={<AS />}></Route>
         </Route>
-        <Route path={path.LOGIN} element={<Login />}></Route>
-        <Route path={path.REGISTER} element={<Register />}></Route>
+        <Route path={path.FORGOT_PASS} element={<ForgotPassword />} />
+        <Route path={path.VERIFY_EMAIL} element={<VerifyEmail />} />
+        <Route path={path.LOGIN} element={<Login />} />
+        <Route path={path.REGISTER} element={<Register />} />
       </Routes>
     </div>
   );

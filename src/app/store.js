@@ -22,9 +22,3 @@ export const store = configureStore({
   middleware: [thunk],
 });
 export const persistor = persistStore(store);
-// export const store = configureStore({
-//   reducer: {
-//     app,
-//     user,
-//   },
-// });

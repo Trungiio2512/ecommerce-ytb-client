@@ -31,7 +31,7 @@ const NewArrivals = (props) => {
   const [cams, setCams] = useState([]);
   const [speaker, setSpeaker] = useState([]);
   const [tabActive, settabActive] = useState(0);
-
+  // console.log(newProducts);
   useEffect(() => {
     if (categories.length > 0 && newProducts.length > 0) {
       const data = categories.map((el) => ({

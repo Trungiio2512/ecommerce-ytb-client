@@ -80,13 +80,9 @@ const Regiter = (props) => {
     e.preventDefault();
     const rs = await apiUser.register(values);
     if (rs?.sucess) {
-      Swal.fire("Register Success", rs?.msg, "success")
-        .then(() => {
-          dispatch(setUser(rs?.data));
-        })
-        .then(() => {
-          navigate(`/${path.HOME}`);
-        });
+      Swal.fire("Register Success", rs?.msg, "success").then(() => {
+        navigate(`/${path.LOGIN}`);
+      });
     } else {
       Swal.fire("Register Fail", rs?.msg, "error");
     }
