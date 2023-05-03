@@ -8,7 +8,7 @@ html,
 }
 
 .main-width {
-  @apply max-w-main w-full px-4 lg:px-0 mx-auto;
+  @apply max-w-main w-full px-4 md:px-0 mx-auto;
 }
 
 .header-wishlist,

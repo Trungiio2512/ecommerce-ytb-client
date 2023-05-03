@@ -20,7 +20,7 @@ const ProductDeal = (props) => {
         deal: true,
         fields: "title slug deal thumb totalRatings price",
       });
-      if (res?.success) {
+      if (res?.sucess) {
         setproduct(res?.data[0]);
       }
     };

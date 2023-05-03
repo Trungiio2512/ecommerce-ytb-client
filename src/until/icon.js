@@ -1,5 +1,13 @@
-import { FaFacebookF, FaInstagramSquare, FaList } from "react-icons/fa";
-import { BsTwitter, BsPinterest, BsFillBagHeartFill, BsStarHalf, BsStarFill } from "react-icons/bs";
+import { FaFacebookF, FaInstagramSquare, FaList, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
+import {
+  BsTwitter,
+  BsPinterest,
+  BsFillBagHeartFill,
+  BsStarHalf,
+  BsStarFill,
+  BsFillTelephoneFill,
+  BsDiscord,
+} from "react-icons/bs";
 import {
   AiOutlineGoogle,
   AiFillPhone,
@@ -8,9 +16,12 @@ import {
   AiOutlineEye,
   AiOutlineMenuUnfold,
   AiFillHeart,
+  AiFillMail,
+  AiFillInstagram,
 } from "react-icons/ai";
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
+import { ImLocation2, ImGooglePlus } from "react-icons/im";
 const icons = {
   AiOutlineMenuUnfold,
   AiOutlineEye,
@@ -30,6 +41,14 @@ const icons = {
   HiShoppingCart,
   FaList,
   IoIosMail,
+  ImLocation2,
+  BsFillTelephoneFill,
+  AiFillMail,
+  BsDiscord,
+  ImGooglePlus,
+  FaPinterestP,
+  FaLinkedinIn,
+  AiFillInstagram,
 };
 
 export default icons;

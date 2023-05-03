@@ -29,17 +29,18 @@ const Sidebar = (props) => {
           <span className="uppercase font-semibold">all colections</span>
         </div>
         <ul>
-          {categories.map((category) => (
-            <li className="px-5 py-3" key={category?._id}>
-              <Link
-                to={category?.slug}
-                className="flex items-center gap-2 hover:text-main text-second"
-              >
-                <span className="">icon</span>
-                <span className="text-sm ">{category?.title}</span>
-              </Link>
-            </li>
-          ))}
+          {categories.length > 0 &&
+            categories.map((category) => (
+              <li className="px-5 py-3" key={category?._id}>
+                <Link
+                  to={category?.slug}
+                  className="flex items-center gap-2 hover:text-main text-second"
+                >
+                  <span className="">icon</span>
+                  <span className="text-sm ">{category?.title}</span>
+                </Link>
+              </li>
+            ))}
         </ul>
       </aside>
     </div>

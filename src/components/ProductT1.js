@@ -14,28 +14,29 @@ const ProductT1 = ({ data, isShowDesModal = false }) => {
 
   return (
     <div
-      className="border border-gray-300 rounded-sm mx-[10px] p-4"
+      className="border border-gray-300 rounded-sm mx-[10px] p-4 relative"
       onMouseOver={(e) => setShowModal(true)}
       onMouseLeave={(e) => setShowModal(false)}
     >
+      {isShowDesModal && (
+        <div
+          className={`absolute bottom-0 left-0 right-0 bg-white  z-[5]  p-4   ease-out transition-all duration-500 ${
+            isShowModal ? "top-0 opacity-100 visible block" : "opacity-0 invisible hidden"
+          }`}
+        >
+          <p className="text-gray-800">{data?.description}</p>
+        </div>
+      )}
+
       <div className="relative">
         <div className="absolute top-[-10px] right-[-20px] z-[1]">
           <figure className="w-[80px] h-[20px]">
             <img src={data?.news && newpng} alt={"news"} />
           </figure>
         </div>
-        {isShowDesModal && (
-          <div
-            className={`absolute bottom-0 left-0 right-0 bg-black-05  z-[5]  p-4   ease-out transition-all duration-500 ${
-              isShowModal ? "top-0 opacity-100 visible block" : "opacity-0 invisible hidden"
-            }`}
-          >
-            <p className="text-white">{data?.description}</p>
-          </div>
-        )}
 
         <div
-          className={`absolute left-0  w-full flex justify-center gap-6 items-center  duration-500 transition-all z-10 ${
+          className={`absolute left-0 w-full flex justify-center gap-6 items-center transition-all duration-500 z-10 ${
             isShowModal
               ? "bottom-[-10px] visible opacity-[1]"
               : "bottom-[-40px] invisible opacity-0"
@@ -51,7 +52,7 @@ const ProductT1 = ({ data, isShowDesModal = false }) => {
           state={{
             categoty_id: data?.category?._id,
             brand_id: data?.brand?._id,
-            id: data?.categoty_id,
+            id: data?._id,
           }}
         >
           <figure className="h-[243px] w-full">
@@ -71,7 +72,7 @@ const ProductT1 = ({ data, isShowDesModal = false }) => {
           state={{
             categoty_id: data?.category?._id,
             brand_id: data?.brand?._id,
-            id: data?.categoty_id,
+            id: data?._id,
           }}
         >
           <h3 className="text-[#2b3743] line-clamp-1 cursor-pointer hover:text-main">

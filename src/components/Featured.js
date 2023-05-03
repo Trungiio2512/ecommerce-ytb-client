@@ -18,7 +18,7 @@ const Featured = (props) => {
         features: true,
       });
       // console.log(res);
-      if (res?.success) {
+      if (res?.sucess) {
         // setproducts(res?.data);
         const idSmartphone = categories.find((el) => el?.title === "Smartphone")?._id;
         const idLaptop = categories.find((el) => el?.title === "Laptop")?._id;

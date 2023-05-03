@@ -34,7 +34,7 @@ const TabProduct = () => {
   const [tabActive, settabActive] = useState(0);
 
   useEffect(() => {
-    if (categories.length > 0 && newProducts.length > 0) {
+    if (categories?.length > 0 && newProducts?.length > 0) {
       const data = categories.map((el) => ({
         [el?.title]: newProducts?.filter((pd) => pd?.category?._id === el?._id),
       }));
