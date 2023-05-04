@@ -46,6 +46,13 @@ module.exports = {
         1: "1px",
       },
     },
+    listStyleType: {
+      none: "none",
+      disc: "disc",
+      decimal: "decimal",
+      square: "square",
+      roman: "upper-roman",
+    },
   },
   variants: {
     extend: {

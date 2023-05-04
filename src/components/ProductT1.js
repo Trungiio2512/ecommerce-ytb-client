@@ -24,7 +24,11 @@ const ProductT1 = ({ data, isShowDesModal = false }) => {
             isShowModal ? "top-0 opacity-100 visible block" : "opacity-0 invisible hidden"
           }`}
         >
-          <p className="text-gray-800">{data?.description}</p>
+          <div className="flex items-center justify-between pb-4 border-b-1 border-gray-500">
+            <h4 className="text-lg text-third">{data?.title}</h4>
+            <span> {formatVND(data?.price)}</span>
+          </div>
+          <p className="text-gray-800 py-4">{data?.description}</p>
         </div>
       )}
 
