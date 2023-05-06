@@ -28,7 +28,7 @@ export const getNewProducts = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     const res = await apiProduct.getAll({
       news: true,
-      fields: "thumb title slug price totalRatings news priceSale description",
+      fields: "thumb specifications title slug price totalRatings news priceSale description",
       limit: 50,
     });
     // console.log(res);

@@ -71,21 +71,21 @@ const TabProduct = () => {
       <div className={`${tabActive === 0 ? "block" : "hidden"}`}>
         <Slider {...settings}>
           {bestSeller.map((el) => {
-            return <ProductT1 key={el?._id} data={el} />;
+            return <ProductT1 imgSmall key={el?._id} data={el} />;
           })}
         </Slider>
       </div>{" "}
       <div className={`${tabActive === 1 ? "block" : "hidden"}`}>
         <Slider {...settings}>
           {newarrivals.map((el) => {
-            return <ProductT1 key={el?._id} data={el} />;
+            return <ProductT1 imgSmall key={el?._id} data={el} />;
           })}
         </Slider>
       </div>{" "}
       <div className={`${tabActive === 2 ? "block" : "hidden"}`}>
         <Slider {...settings}>
           {tablet.map((el) => {
-            return <ProductT1 key={el?._id} data={el} />;
+            return <ProductT1 imgSmall key={el?._id} data={el} />;
           })}
         </Slider>
       </div>

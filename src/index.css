@@ -6,7 +6,31 @@
 html,
 * {
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
 
+.tabContent {
+  display: none;
+}
+
+.tabContent.active {
+  display: block;
+}
+.tabTitle.active {
+  color: #c23564;
+}
+.line {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  border-radius: 15px;
+  background-color: #c23564;
+  transition: all 0.2s ease;
+}
 .main-width {
   @apply max-w-main w-full px-4 md:px-0 mx-auto;
 }

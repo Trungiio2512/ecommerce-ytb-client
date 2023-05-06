@@ -54,7 +54,7 @@ const social = [FaFacebookF, AiFillInstagram, FaPinterestP, ImGooglePlus, FaLink
 
 const Footer = (props) => {
   return (
-    <div className="w-full">
+    <div className="w-full mt-10">
       <div className="bg-main ">
         <div className="text-white main-width py-6">
           <div className="grid-layout">
