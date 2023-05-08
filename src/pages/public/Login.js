@@ -62,9 +62,9 @@ const Login = (props) => {
   };
 
   return (
-    <div className="bg-yellow-100 flex items-center justify-center h-full">
-      <div className="w-full lg:w-2/5 md:w-3/5 lg:bg-white lg:h-screen-75 lg:border border-gray-300 rounded-lg">
-        <div className="flex items-center lg:h-full px-10 py-4 ">
+    <div className="bg-yellow-100 flex i h-screen ">
+      <div className="w-full lg:w-2/5 md:w-3/5 m-auto lg:bg-white  lg:border border-gray-300 rounded-lg ">
+        <div className="flex items-center px-10 py-4 md:h-screen-75">
           <form onSubmit={handleSubmit} className="w-full space-y-8 relative">
             <div className="absolute top-0 left-0">
               <Link

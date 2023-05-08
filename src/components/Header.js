@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 // import { FaFacebookF, FaInstagramSquare } from "react-icons/fa";
 // import { BsTwitter } from "react-icons/bs";
 // import { AiOutlineGoogle } from "react-icons/ai";
@@ -21,6 +22,8 @@ const {
   AiOutlineMenu,
 } = icons;
 const Header = (props) => {
+  const { user, token, isLoggedIn } = useSelector((state) => state.user);
+  console.log(user);
   const linkRight = [
     {
       i: 0,

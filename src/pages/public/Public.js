@@ -9,7 +9,7 @@ const fakeDelay = (promise) => {
 };
 const Public = (props) => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full min-h-screen">
       <Header />
       <Navigation />
       <div className="main-width h-auto ">
@@ -17,6 +17,7 @@ const Public = (props) => {
         <Outlet />
       </div>{" "}
       <Footer />
+      <div id="modal"></div>
     </div>
   );
 };

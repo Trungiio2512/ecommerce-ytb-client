@@ -16,8 +16,33 @@ module.exports = {
             transform: "translateY(-20px)",
           },
         },
+        "scale-up-center": {
+          "0%": {
+            "-webkit-transform": "scale(0.2)",
+            transform: "scale(0.2)",
+          },
+          "100%": {
+            "-webkit-transform": "scale(1)",
+            transform: "scale(1)",
+          },
+        },
+        "scale-down-center": {
+          "0%": {
+            "-webkit-transform": "scale(1)",
+            transform: "scale(1)",
+          },
+          "100%": {
+            "-webkit-transform": "scale(0.2)",
+            transform: "scale(0.2)",
+          },
+        },
       },
-      animation: { "slide-top": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both" },
+      animation: {
+        "slide-top": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+        "scale-up-center": "scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
+        "scale-down-center":
+          "scale-down-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
+      },
       height: {
         450: "450px",
         "screen-75": "90vh",

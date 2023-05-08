@@ -58,16 +58,23 @@ const ForgotPassword = (props) => {
   };
   const handleGetCode = async (e) => {
     e.preventDefault();
-    const rs = await forgotPass({ email: values.email });
-    console.log(rs);
-    if (rs.sucess) {
-      Swal.fire("Done", rs.msg, "success");
+    if (values.email === "") {
+      Swal.fire("Oppp.", "You must provide email address", "error").then(() => {
+        return;
+      });
     } else {
-      Swal.fire("Opps....!", rs.msg, "error");
+      const rs = await forgotPass({ email: values.email });
+      console.log(rs);
+      if (rs.sucess) {
+        Swal.fire("Done", rs.msg, "success");
+      } else {
+        Swal.fire("Opps....!", rs.msg, "error");
+      }
     }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const rs = await resetPass(values.code, { password: values.password });
     if (rs.sucess) {
       Swal.fire("Done", rs.msg, "success").then(() => {
@@ -78,8 +85,8 @@ const ForgotPassword = (props) => {
     }
   };
   return (
-    <div className="w-full h-full">
-      <section className="bg-gray-50 dark:bg-gray-900 w-full h-full">
+    <div className="w-full min-h-screen">
+      <section className="bg-gray-50 dark:bg-gray-900 ">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto  lg:py-0 w-full h-full">
           <Link
             to="/"

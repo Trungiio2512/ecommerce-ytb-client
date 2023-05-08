@@ -14,3 +14,5 @@ export { default as HotColection } from "./HotColection";
 export { default as Footer } from "./Footer";
 export { default as FormInput } from "./FormInput";
 export { default as Button } from "./Button";
+export { default as Portal } from "./Portal";
+export { default as ProductDetailContent } from "./ProductDetailContent";

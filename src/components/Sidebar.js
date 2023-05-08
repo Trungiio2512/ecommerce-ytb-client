@@ -1,9 +1,10 @@
 import React, { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import icons from "../until/icon";
-import * as category from "../apis/category";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import icons from "../until/icon";
+import path from "../until/path";
+import * as category from "../apis/category";
 
 const { FaList } = icons;
 
@@ -33,8 +34,9 @@ const Sidebar = (props) => {
             categories.map((category) => (
               <li className="px-5 py-3" key={category?._id}>
                 <Link
-                  to={category?.slug}
+                  to={`/${path.PRODUCTS}/${category?.slug}`}
                   className="flex items-center gap-2 hover:text-main text-second"
+                  state={{ id: category?._id, title: category?.title }}
                 >
                   <span className="">icon</span>
                   <span className="text-sm ">{category?.title}</span>

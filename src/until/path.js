@@ -5,6 +5,7 @@ const path = {
   HOME: "",
   ALL: "*",
   PRODUCTS: "products",
+  PRODUCTS_CATEGORY: "products/:category",
   BLOGS: "blogs",
   OUR_SERVICES: "our_services",
   FAQS: "faqs",

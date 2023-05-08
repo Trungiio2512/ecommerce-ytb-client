@@ -18,6 +18,7 @@ import {
   AiFillHeart,
   AiFillMail,
   AiFillInstagram,
+  AiOutlineClose,
 } from "react-icons/ai";
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
@@ -49,6 +50,7 @@ const icons = {
   FaPinterestP,
   FaLinkedinIn,
   AiFillInstagram,
+  AiOutlineClose,
 };
 
 export default icons;

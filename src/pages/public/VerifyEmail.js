@@ -27,7 +27,7 @@ const VerifyEmail = (props) => {
         navigate(`/${path.LOGIN}`);
       });
     }
-  }, [status]);
+  }, [navigate, status]);
   return <div className="w-screen h-screen">oppp</div>;
 };
 

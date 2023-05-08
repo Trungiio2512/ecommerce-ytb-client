@@ -1,28 +1,36 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
+
+import ProductDetailContent from "./ProductDetailContent";
 import { formatVND, getStars } from "../until/fn";
 import icons from "../until/icon";
 import newpng from "../assets/new.png";
 import Button from "./Button";
 import path from "../until/path";
+import Modal from "./Modal";
+import { getOne } from "../apis/product";
 
 const { BsStarHalf, BsStarFill, AiOutlineMenu, AiOutlineEye, AiOutlineHeart } = icons;
 const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false }) => {
   // const getStars = (rating) => {};
   const navigate = useNavigate();
   const [isShowModal, setShowModal] = useState(false);
+  const [showPortal, setShowPortal] = useState(false);
+  const [productDetail, setProductDetail] = useState({});
 
   const handleToProductDetail = () => {
-    //  to={`/${path.DETAIL_PRODUCT}/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`}
-    //       state={{
-    //         categoty_id: data?.category?._id,
-    //         brand_id: data?.brand?._id,
-    //         id: data?._id,
-    //       }}
     navigate(`/${path.DETAIL_PRODUCT}/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`, {
       state: { categoty_id: data?.category?._id, brand_id: data?.brand?._id, id: data?._id },
     });
+  };
+
+  const getDetailProduct = async (id) => {
+    setShowPortal(true);
+    const rs = await getOne(id);
+    if (rs?.sucess) {
+      setProductDetail(rs?.data);
+    }
   };
 
   return (
@@ -73,7 +81,9 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false }) => {
           <Button circle onHanldeClick={() => handleToProductDetail()}>
             {<AiOutlineMenu />}
           </Button>
-          <Button circle>{<AiOutlineEye />}</Button>
+          <Button circle onHanldeClick={() => getDetailProduct(data?._id)}>
+            {<AiOutlineEye />}{" "}
+          </Button>
           <Button circle>{<AiOutlineHeart />}</Button>
         </div>
 
@@ -116,6 +126,17 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false }) => {
         <span className="text-gray-500 text-sm line-through mr-2">{formatVND(data?.price)}</span>
         <span className="text-black text-base">{formatVND(data?.priceSale)}</span>
       </div>
+      {showPortal && (
+        <Modal
+          onRequestClose={() => setShowPortal(false)}
+          isOpen={showPortal}
+          shouldCloseOverlayClick
+        >
+          {Object.keys(productDetail).length > 0 && (
+            <ProductDetailContent product={productDetail} />
+          )}
+        </Modal>
+      )}
     </div>
   );
 };
