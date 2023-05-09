@@ -23,9 +23,10 @@ function App() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actions.getAllCategories());
-    dispatch(actions.getBanner());
-    dispatch(actions.getNewProducts());
+    // dispatch(actions.getAllCategories());
+    // dispatch(actions.getBanner());
+    // dispatch(actions.getNewProducts());
+    dispatch(actions.get());
   }, []);
 
   // console.log(isLoading);

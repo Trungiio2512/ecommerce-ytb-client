@@ -16,3 +16,4 @@ export { default as FormInput } from "./FormInput";
 export { default as Button } from "./Button";
 export { default as Portal } from "./Portal";
 export { default as ProductDetailContent } from "./ProductDetailContent";
+export { default as Pagination } from "./Pagination";

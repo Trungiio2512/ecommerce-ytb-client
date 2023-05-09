@@ -10,9 +10,10 @@ import Button from "./Button";
 import path from "../until/path";
 import Modal from "./Modal";
 import { getOne } from "../apis/product";
+import { FaSadCry } from "react-icons/fa";
 
 const { BsStarHalf, BsStarFill, AiOutlineMenu, AiOutlineEye, AiOutlineHeart } = icons;
-const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false }) => {
+const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayout = false }) => {
   // const getStars = (rating) => {};
   const navigate = useNavigate();
   const [isShowModal, setShowModal] = useState(false);
@@ -35,7 +36,9 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false }) => {
 
   return (
     <div
-      className="border border-gray-300 rounded-sm mx-[10px] p-4 relative h-auto"
+      className={`border border-gray-300 rounded-sm py-4 px-2 relative h-full ${
+        uiGridLayout ? " py-4 px-2 " : "p-4 mx-3"
+      }`}
       onMouseOver={(e) => setShowModal(true)}
       onMouseLeave={(e) => setShowModal(false)}
     >
@@ -43,14 +46,14 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false }) => {
         <div
           className={`absolute bottom-0 left-0 right-0 bg-white  z-[5]  p-4   ease-out transition-all duration-500 ${
             isShowModal ? "top-0 opacity-100 visible block" : "opacity-0 invisible hidden"
-          }`}
+          } overflow-y-auto`}
         >
           <div className="flex items-center justify-between pb-4 border-b-1 border-gray-500">
-            <h4 className="text-lg text-third">{data?.title}</h4>
-            <span> {formatVND(data?.price)}</span>
+            <h4 className={`${imgSmall ? "text-sm" : "text-lg"} text-third`}>{data?.title}</h4>
+            <span className={`${imgSmall ? "text-sm" : "text-lg"}`}> {formatVND(data?.price)}</span>
           </div>
           {/* <p className="text-gray-800 py-4">{data?.description}</p> */}
-          <ul className="list-none text-sm text-gray-500 space-y-2 mt-5">
+          <ul className="list-none text-sm text-gray-500 space-y-2 mt-5 w-full h-full ">
             {data?.specifications?.map((ele, index) => {
               return (
                 <li className="" key={index}>
@@ -95,7 +98,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false }) => {
             id: data?._id,
           }}
         >
-          <figure className={`${!imgSmall ? "h-[485px]" : "h-[243px]"} w-full`}>
+          <figure className={`${!imgSmall ? "h-[485px]" : "h-[248px]"} w-full`}>
             <img
               src={
                 data?.thumb ||
