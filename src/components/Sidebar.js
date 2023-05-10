@@ -36,7 +36,7 @@ const Sidebar = (props) => {
                 <Link
                   to={`/${path.PRODUCTS}/${category?.slug}`}
                   className="flex items-center gap-2 hover:text-main text-second"
-                  state={{ id: category?._id, title: category?.title }}
+                  state={{ idCategory: category?._id, titleCategory: category?.title }}
                 >
                   <span className="">icon</span>
                   <span className="text-sm ">{category?.title}</span>

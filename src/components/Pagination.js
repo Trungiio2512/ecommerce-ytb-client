@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { createSearchParams, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Button from "./Button";
 
 const Pagination = ({
@@ -8,14 +9,13 @@ const Pagination = ({
   pageSize,
   defaultPageSize = 10,
   hideOnSinglePage = false,
-  onNextPage = () => {},
-  onBackPage = () => {},
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const totalPage = Math.ceil(pageSize / defaultPageSize);
-  //   const pages = [...Array(totalPage + 1).keys()].slice(1);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [pages, setPages] = useState([]);
-  //   console.log(Array(totalPage + 1));
-  //   console.log(pageSize);
+
   useEffect(() => {
     const page = [];
     const pageStart = current > 3 ? current - 3 : 1;
@@ -25,12 +25,37 @@ const Pagination = ({
     }
     setPages(page);
   }, [current, pageSize]);
-  //   console.log(pages);
+
+  const handlePage = (page) => {
+    // navigate({
+    //   pathname: location.pathname,
+    //   search: createSearchParams({ page: page }).toString(),
+    // });
+  };
+  const handleNextPage = (page) => {
+    if (page >= totalPage) {
+      return;
+    }
+    onChange(page + 1);
+  };
+  const handleBackPage = (page) => {
+    console.log(page);
+    if (page <= 1) {
+      return;
+    }
+    onChange(page - 1);
+  };
+  useEffect(() => {
+    // console.log(searchParams.forEach((value, key) => console.log(value + "" + key)));
+    if (totalPage > 1) {
+      setSearchParams({ page: current });
+    }
+  }, [current, searchParams, setSearchParams, totalPage]);
   return (
     <div className="flex bg-white rounded-lg font-[Poppins]">
       {current > 3 && (
         <Button
-          onHanldeClick={onBackPage}
+          onHanldeClick={() => handleBackPage(+current)}
           className="h-12 border-2 border-r-0 border-indigo-600
                px-4 rounded-l-lg hover:bg-indigo-600 hover:text-white"
         >
@@ -56,7 +81,7 @@ const Pagination = ({
       ))}
       {totalPage - current > 3 && (
         <Button
-          onHanldeClick={onNextPage}
+          onHanldeClick={() => handleNextPage(current)}
           className="h-12 border-2  border-indigo-600
                px-4 rounded-r-lg hover:bg-indigo-600 hover:text-white"
         >
@@ -75,4 +100,4 @@ const Pagination = ({
 
 Pagination.propTypes = {};
 
-export default Pagination;
+export default memo(Pagination);

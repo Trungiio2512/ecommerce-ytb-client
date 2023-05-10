@@ -1,49 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import * as apiProduct from "../../apis/product";
 import path from "../../until/path";
 import icons from "../../until/icon";
-import { Pagination, ProductT1 } from "../../components";
+import { Button, Pagination, ProductT1 } from "../../components";
 import { useSelector } from "react-redux";
+import Tippy from "@tippyjs/react/headless";
+
 const { AiFillCaretDown } = icons;
 const Product = (props) => {
   const location = useLocation();
   const { rams, colors, internals } = useSelector((state) => state.app);
 
-  const id = location.state?.id;
-  const title = location.state?.title;
+  const idCategory = location.state?.idCategory;
+  const titleCategory = location.state?.titleCategory;
+
+  const resetRef = useRef();
 
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
   const [totalPage, settotalPage] = useState(0);
   const [values, setValues] = useState({
-    priceFrom: "",
-    priceTo: "",
+    priceFrom: 0,
+    priceTo: 0,
+    colors: [],
+    rams: [],
+    internals: [],
   });
+  const [resset, setResset] = useState(false);
 
-  const handleNextPage = () => {
-    if (page >= totalPage) {
-      return;
+  // console.log(id);
+  const handleValue = (id, name) => {
+    const isChecked = values[name].includes(id);
+    if (isChecked) {
+      setValues((prev) => ({
+        ...prev,
+        [name]: [...values[name].filter((idName) => idName !== id)],
+      }));
+    } else {
+      setValues((prev) => ({ ...prev, [name]: [...values[name], id] }));
     }
-    setPage(page + 1);
   };
-  const handleBackPage = () => {
-    if (page <= 1) {
-      return;
-    }
-    setPage(page - 1);
-  };
-
-  const handleToPage = (page) => {
-    setPage(page);
-    // console.log(page);
-  };
-
   useEffect(() => {
     let category;
-    if (id) {
-      category = id;
+    if (idCategory) {
+      category = idCategory;
     }
     const fetchApi = async () => {
       const rs = await apiProduct.getAll({ category, page, limit: 8 });
@@ -54,16 +56,31 @@ const Product = (props) => {
       }
     };
     fetchApi();
-  }, [id, page]);
+  }, [idCategory, page]);
+
+  useEffect(() => {
+    if (
+      values.colors.length > 0 ||
+      values.rams.length > 0 ||
+      values.internals.length > 0 ||
+      +values.priceFrom > 0 ||
+      +values.priceTo > 0
+    ) {
+      setResset(true);
+    } else {
+      setResset(false);
+    }
+  }, [values]);
+  console.log("render");
   return (
     <div
       className="space-y-5
     "
     >
       <div className="py-[15px]">
-        {title && (
+        {titleCategory && (
           <>
-            <h3 className="text-xl font-semibold text-black uppercase mb-2 ">{title}</h3>
+            <h3 className="text-xl font-semibold text-black uppercase mb-2 ">{titleCategory}</h3>
             <div className="flex divide-x-2 divide-gray-500">
               <Link
                 to={`/${path.HOME}`}
@@ -73,7 +90,7 @@ const Product = (props) => {
                 Home
               </Link>
               <span className="text-sm text-gray-500 px-2 ">
-                {title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()}
+                {titleCategory.charAt(0).toUpperCase() + titleCategory.slice(1).toLowerCase()}
               </span>
             </div>
           </>
@@ -83,50 +100,261 @@ const Product = (props) => {
         <div>
           <h2 className="text-base font-semibold text-third capitalize">filter by</h2>
           <div className="flex items-center gap-2 bg-">
-            <details className="relative ">
-              <summary className="px-5 py-4 border border-gray-400 text-base appearance-none">
-                <div className="flex items-center gap-2">
+            <div className="relative ">
+              <Tippy
+                placement="bottom-start"
+                // hideOnClick
+                // maxWidth={"330px"}
+                // visible
+                interactive
+                // hi
+                delay={[200, 300]}
+                render={(attrs) => (
+                  <div
+                    className="w-[330px] h-screen-50 overflow-y-auto  border-gray-300 border bg-white relative text-base text-gray-400 "
+                    tabIndex="-1"
+                    {...attrs}
+                  >
+                    {" "}
+                    <div className="fixed bg-white top-0 left-0 w-full h-[76px] border boder-gray-400  z-10 justify-center items-center flex flex-col">
+                      <span>Default price VND </span>
+                      <span>Please enter price example 1000000</span>
+                    </div>
+                    <div className="mt-[96px] space-y-5 flex flex-col justify-around items-center pl-5">
+                      <div className="relative">
+                        <input
+                          type="number"
+                          id="username"
+                          className="border border-gray-300 py-2 pl-5 pr-[40px]  transition-colors outline-none w-full focus:border-red-300  peer "
+                          onChange={(e) =>
+                            setValues((prev) => ({
+                              ...prev,
+                              priceFrom: e.target.value,
+                            }))
+                          }
+                          value={values.priceFrom}
+                        />
+                        <label
+                          htmlFor="username"
+                          className={`absolute -left-7  text-gray-600 cursor-text   ${
+                            values.priceFrom > 0
+                              ? "-top-5"
+                              : "top-[50%] -translate-y-[50%] peer-focus:-top-2 peer-focus:text-sm transition-all"
+                          }  `}
+                        >
+                          From
+                        </label>
+                        <span className="absolute right-2 top-[50%] -translate-y-[50%] text-gray-600 cursor-text ">
+                          VND
+                        </span>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="number"
+                          id="username"
+                          className="border border-gray-300 py-2 pl-5 pr-[40px]  transition-colors outline-none w-full focus:border-red-300  peer "
+                          onChange={(e) =>
+                            setValues((prev) => ({
+                              ...prev,
+                              priceTo: e.target.value,
+                            }))
+                          }
+                          value={values.priceTo}
+                        />
+                        <label
+                          htmlFor="username"
+                          className={`absolute -left-7  text-gray-600 cursor-text   ${
+                            values.priceTo > 0
+                              ? "-top-5"
+                              : "top-[50%] -translate-y-[50%] peer-focus:-top-2 peer-focus:text-sm transition-all"
+                          }  `}
+                        >
+                          To
+                        </label>
+                        <span className="absolute right-2 top-[50%] -translate-y-[50%] text-gray-600 cursor-text ">
+                          VND
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              >
+                <div className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none">
                   <span>Price</span>
                   <AiFillCaretDown />
                 </div>
-              </summary>
-              <div className="bg-white absolute top-[100% + 5px] left-0 w-[35rem] max-h-[55rem] overflow-y-auto z-10">
-                content
-              </div>
-            </details>
-            <details className="relative">
-              <summary className="px-5 py-4 border border-gray-400 text-base appearance-none">
-                <div className="flex items-center gap-2">
+              </Tippy>
+            </div>
+            <div>
+              <Tippy
+                placement="bottom-start"
+                // hideOnClick
+                // maxWidth={"330px"}
+                interactive
+                delay={[200, 300]}
+                render={(attrs) => (
+                  <div
+                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative text-base text-gray-400"
+                    tabIndex="-1"
+                    {...attrs}
+                  >
+                    <div className="fixed bg-white top-0 left-0 w-full h-[76px] border boder-gray-400 flex items-center justify-center z-10">
+                      <span>0 selected</span>
+                    </div>
+                    <ul className="space-y-2 mt-[76px] ">
+                      {colors?.map((color) => {
+                        return (
+                          <li
+                            key={color?._id}
+                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative"
+                          >
+                            <input
+                              type="checkbox"
+                              id={color?.name}
+                              className="relative h-5 w-5 shrink-0 appearance-none rounded-sm border  border-gray-300 hover:border-blue-300 checked:border-red-300 checked:text-main  focus:outline-none"
+                              checked={values.colors.includes(color?._id)}
+                              onChange={() => handleValue(color?._id, "colors")}
+                            />
+                            <label
+                              htmlFor={color?.name}
+                              className={`w-full cursor-pointer font-medium text-gray-600 ${
+                                values.colors.includes(color?._id) ? "text-main" : ""
+                              }`}
+                            >
+                              {color?.name}
+                            </label>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              >
+                <div className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none">
                   <span>Color</span>
                   <AiFillCaretDown />
                 </div>
-              </summary>
-              <div className="bg-white absolute top-[100% + 5px] left-0 w-[35rem] max-h-[55rem] overflow-y-auto z-10">
-                content
-              </div>
-            </details>
-            <details className="relative">
-              <summary className="px-5 py-4 border border-gray-400 text-base appearance-none">
-                <div className="flex items-center gap-2">
+              </Tippy>
+            </div>
+            <div>
+              <Tippy
+                placement="bottom-start"
+                // hideOnClick
+                // maxWidth={"330px"}
+                interactive
+                delay={[200, 300]}
+                render={(attrs) => (
+                  <div
+                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative text-base text-gray-400"
+                    tabIndex="-1"
+                    {...attrs}
+                  >
+                    <div className="fixed bg-white top-0 left-0 w-full h-[76px] border boder-gray-400 flex items-center justify-center z-10">
+                      <span>0 selected</span>
+                    </div>
+                    <ul className="space-y-2 mt-[76px] ">
+                      {rams?.map((ram) => {
+                        return (
+                          <li
+                            key={ram?._id}
+                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative"
+                          >
+                            <input
+                              type="checkbox"
+                              id={ram?.name}
+                              className="relative h-5 w-5 shrink-0 appearance-none rounded-sm border  border-gray-300 hover:border-blue-300 checked:border-red-300 checked:text-main  focus:outline-none"
+                              checked={values.rams.includes(ram?._id)}
+                              onChange={() => handleValue(ram?._id, "rams")}
+                            />
+                            <label
+                              htmlFor={ram?.name}
+                              className={`w-full cursor-pointer font-medium text-gray-600 ${
+                                values.rams.includes(ram?._id) ? "text-main" : ""
+                              }`}
+                            >
+                              {ram?.name}
+                            </label>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              >
+                <div className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none">
                   <span>Ram</span>
                   <AiFillCaretDown />
                 </div>
-              </summary>
-              <div className="bg-white absolute top-[100% + 5px] left-0 w-[35rem] max-h-[55rem] overflow-y-auto z-10">
-                content
-              </div>
-            </details>
-            <details className="relative">
-              <summary className="px-5 py-4 border border-gray-400 text-base appearance-none">
-                <div className="flex items-center gap-2">
-                  <span>Iternal</span>
+              </Tippy>
+            </div>
+            <div>
+              <Tippy
+                placement="bottom-start"
+                // hideOnClick
+                // maxWidth={"330px"}
+                interactive
+                delay={[200, 300]}
+                render={(attrs) => (
+                  <div
+                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative text-base text-gray-400"
+                    tabIndex="-1"
+                    {...attrs}
+                  >
+                    <div className="fixed bg-white top-0 left-0 w-full h-[76px] border boder-gray-400 flex items-center justify-center z-10">
+                      <span>0 selected</span>
+                    </div>
+                    <ul className="space-y-2 mt-[76px] ">
+                      {internals?.map((internal) => {
+                        return (
+                          <li
+                            key={internal?._id}
+                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative"
+                          >
+                            <input
+                              type="checkbox"
+                              id={internal?.name}
+                              className="relative h-5 w-5 shrink-0 appearance-none rounded-sm border  border-gray-300 hover:border-blue-300 checked:border-red-300 checked:text-main  focus:outline-none"
+                              checked={values.internals.includes(internal?._id)}
+                              onChange={() => handleValue(internal?._id, "internals")}
+                            />
+                            <label
+                              htmlFor={internal?.name}
+                              className={`w-full cursor-pointer font-medium text-gray-600 ${
+                                values.internals.includes(internal?._id) ? "text-main" : ""
+                              }`}
+                            >
+                              {internal?.name}
+                            </label>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              >
+                <div className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none">
+                  <span>Internal</span>
                   <AiFillCaretDown />
                 </div>
-              </summary>
-              <div className="bg-white absolute top-[100% + 5px] left-0 w-[35rem] max-h-[55rem] overflow-y-auto z-10">
-                content
-              </div>
-            </details>
+              </Tippy>
+            </div>
+            {resset && (
+              <Button
+                className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none hover:border-blue-300 active:border-red-300"
+                onHanldeClick={() => {
+                  setValues({
+                    priceFrom: "",
+                    priceTo: "",
+                    colors: [],
+                    rams: [],
+                    internals: [],
+                  });
+                  setResset(false);
+                }}
+              >
+                Reset
+              </Button>
+            )}
           </div>
         </div>
         <div>
@@ -148,13 +376,7 @@ const Product = (props) => {
           </div>
         </div>
       </div>
-      <Pagination
-        pageSize={totalPage}
-        current={page}
-        onChange={handleToPage}
-        onNextPage={() => handleNextPage()}
-        onBackPage={() => handleBackPage()}
-      />
+      <Pagination pageSize={totalPage} current={page} onChange={setPage} />
     </div>
   );
 };

@@ -31,10 +31,11 @@ function App() {
 
   // console.log(isLoading);
   return (
-    <div className="font-main h-auto">
+    <div className="font-main h-auto overflow-hidden">
       <Routes>
         <Route path={path.PUBLIC} element={<Public />}>
           <Route path={path.HOME} element={<Home />}></Route>
+          <Route path={path.PRODUCTS} element={<Product />}></Route>
           <Route path={path.PRODUCTS_CATEGORY} element={<Product />}></Route>
           <Route
             path={path.DETAIL_PRODUCT_CATEGORY_BRAND_TITLE}

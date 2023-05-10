@@ -8,7 +8,7 @@ export const menuHome = [
   {
     id: 2,
     title: "products",
-    path: `/${path.PRODUCTS_CATEGORY}`,
+    path: `/${path.PRODUCTS}`,
   },
   {
     id: 3,

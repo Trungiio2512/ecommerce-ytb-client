@@ -23,7 +23,7 @@ const {
 } = icons;
 const Header = (props) => {
   const { user, token, isLoggedIn } = useSelector((state) => state.user);
-  console.log(user);
+  // console.log(user);
   const linkRight = [
     {
       i: 0,
