@@ -7,8 +7,8 @@ export const menuHome = [
   },
   {
     id: 2,
-    title: "products",
-    path: `/${path.PRODUCTS}`,
+    title: "search",
+    path: `/${path.SEACH}`,
   },
   {
     id: 3,

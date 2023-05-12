@@ -34,7 +34,7 @@ const Sidebar = (props) => {
             categories.map((category) => (
               <li className="px-5 py-3" key={category?._id}>
                 <Link
-                  to={`/${path.PRODUCTS}/${category?.slug}`}
+                  to={`/products/${category?.slug}`}
                   className="flex items-center gap-2 hover:text-main text-second"
                   state={{ idCategory: category?._id, titleCategory: category?.title }}
                 >

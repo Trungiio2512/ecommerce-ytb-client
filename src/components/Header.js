@@ -122,25 +122,29 @@ const Header = (props) => {
             </div>
             <span className="text-xs text-gray-500 leading-4">Online Support 24/7</span>
           </div>
-          <div className="header-wishlist">
-            <div className="header-wishlist--cart">
-              <span className="text-main ">
-                <AiOutlineHeart />
-              </span>
+          {token && isLoggedIn && (
+            <div className="header-wishlist">
+              <div className="header-wishlist--cart">
+                <span className="text-main ">
+                  <AiOutlineHeart />
+                </span>
+              </div>
+              <div className="header-wishlist--cart">
+                <span className="text-main ">
+                  <BsFillBagHeartFill />
+                </span>
+                <span className="text-sm text-third hover:text-main">4 item</span>
+              </div>
             </div>
-            <div className="header-wishlist--cart">
-              <span className="text-main ">
-                <BsFillBagHeartFill />
-              </span>
-              <span className="text-sm text-third hover:text-main">4 item</span>
-            </div>
-          </div>
+          )}
         </div>
-        <button className="text-4xl hover:text-main md:hidden ">
-          <span>
-            <HiShoppingCart />
-          </span>
-        </button>
+        {token && isLoggedIn && (
+          <button className="text-4xl hover:text-main md:hidden ">
+            <span>
+              <HiShoppingCart />
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );

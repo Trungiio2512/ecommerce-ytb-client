@@ -25,6 +25,7 @@ const appSlice = createSlice({
       state.rams = action.payload?.rams;
       state.colors = action.payload?.colors;
       state.internals = action.payload?.internals;
+      state.brands = action.payload?.brands;
     });
     builder.addCase(actions.get.rejected, (state, action) => {
       state.isLoading = false;

@@ -36,12 +36,23 @@ module.exports = {
             transform: "scale(0.2)",
           },
         },
+        "rotate-center": {
+          "0%": {
+            "-webkit-transform": "rotate(0)",
+            transform: "rotate(1)",
+          },
+          "100%": {
+            "-webkit-transform": "rotate(360deg)",
+            transform: "rotate(360deg)",
+          },
+        },
       },
       animation: {
         "slide-top": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
         "scale-up-center": "scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
         "scale-down-center":
           "scale-down-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
+        "rotate-center": "rotate-center 0.8s ease-out infinite forwards",
       },
       height: {
         450: "450px",

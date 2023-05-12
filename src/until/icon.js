@@ -20,6 +20,7 @@ import {
   AiFillInstagram,
   AiOutlineClose,
   AiFillCaretDown,
+  AiOutlineLoading3Quarters,
 } from "react-icons/ai";
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
@@ -53,6 +54,7 @@ const icons = {
   AiFillInstagram,
   AiOutlineClose,
   AiFillCaretDown,
+  AiOutlineLoading3Quarters,
 };
 
 export default icons;

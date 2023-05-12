@@ -26,12 +26,6 @@ const Pagination = ({
     setPages(page);
   }, [current, pageSize]);
 
-  const handlePage = (page) => {
-    // navigate({
-    //   pathname: location.pathname,
-    //   search: createSearchParams({ page: page }).toString(),
-    // });
-  };
   const handleNextPage = (page) => {
     if (page >= totalPage) {
       return;
@@ -39,18 +33,42 @@ const Pagination = ({
     onChange(page + 1);
   };
   const handleBackPage = (page) => {
-    console.log(page);
+    // console.log(page);
     if (page <= 1) {
       return;
     }
     onChange(page - 1);
   };
   useEffect(() => {
-    // console.log(searchParams.forEach((value, key) => console.log(value + "" + key)));
-    if (totalPage > 1) {
-      setSearchParams({ page: current });
+    const params = [];
+    searchParams.append("page", current);
+    for (let i of searchParams.entries()) {
+      params.push(i);
     }
-  }, [current, searchParams, setSearchParams, totalPage]);
+    let finalSearchParams = {};
+    // [['p1', '1], ['p2', '2], ['m', '0], ['m', '1']] => {p1: '1', p2: '2', m:[0,1]}
+    params?.map((param) => {
+      if (Object.keys(finalSearchParams).some((key) => key === param[0] && key !== "page")) {
+        finalSearchParams[param[0]] = [...finalSearchParams[param[0]], param[1]];
+      } else {
+        finalSearchParams = { ...finalSearchParams, [param[0]]: [param[1]] };
+      }
+    });
+
+    if (totalPage >= 1) {
+      // setSearchParams({ page: current });
+      navigate(
+        {
+          pathname: location.pathname,
+          search: createSearchParams({
+            ...finalSearchParams,
+            // page: current,
+          }).toString(),
+        },
+        { state: location.state },
+      );
+    }
+  }, [current, totalPage]);
   return (
     <div className="flex bg-white rounded-lg font-[Poppins]">
       {current > 3 && (

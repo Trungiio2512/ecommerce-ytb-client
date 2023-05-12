@@ -32,12 +32,20 @@ const ProductT2 = ({ product }) => {
             {product?.title}
           </h3>
         </Link>
-        <div className="flex items-center gap-1 text-sm text-yellow-500 my-2">
-          {getStars(product?.totalRatings)}
-          {/* {product?.totalRatings} */}
-        </div>
-        <span className="text-gray-500 text-sm line-through mr-2">{formatVND(product?.price)}</span>
-        <span className="text-black text-base">{formatVND(product?.priceSale)}</span>
+        {product?.totalRatings && (
+          <div className="flex items-center gap-1 text-sm text-yellow-500 my-2">
+            {getStars(product?.totalRatings)}
+            {/* {product?.totalRatings} */}
+          </div>
+        )}
+        {product?.price && (
+          <span className="text-gray-500 text-sm line-through mr-2">
+            {formatVND(product?.price)}
+          </span>
+        )}
+        {product?.priceSale && (
+          <span className="text-black text-base">{formatVND(product?.priceSale)}</span>
+        )}
       </div>
     </div>
   );

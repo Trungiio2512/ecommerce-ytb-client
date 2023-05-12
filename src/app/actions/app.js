@@ -5,6 +5,7 @@ import * as apiProduct from "../../apis/product";
 import * as apiRam from "../../apis/ram";
 import * as apiColor from "../../apis/color";
 import * as apiInternal from "../../apis/internal";
+import * as apiBrand from "../../apis/brand";
 
 export const getAllCategories = createAsyncThunk(
   "app/getAllCategories",
@@ -43,10 +44,9 @@ export const getNewProducts = createAsyncThunk(
 );
 
 export const get = createAsyncThunk("app/get", async (data, { rejectWithValue }) => {
-  const [categories, banners, newProducts, rams, colors, internals] = await Promise.all([
+  const [categories, banners, newProducts, rams, colors, internals, brands] = await Promise.all([
     await apiCategories.getAll(),
     await apiBanner.get(),
-
     await apiProduct.getAll({
       news: true,
       fields: "thumb specifications title slug price totalRatings news priceSale description",
@@ -55,6 +55,7 @@ export const get = createAsyncThunk("app/get", async (data, { rejectWithValue })
     await apiRam.get(),
     await apiColor.get(),
     await apiInternal.get(),
+    await apiBrand.get(),
   ]);
 
   return {
@@ -64,5 +65,6 @@ export const get = createAsyncThunk("app/get", async (data, { rejectWithValue })
     rams: rams?.data,
     colors: colors?.data,
     internals: internals?.data,
+    brands: brands?.data,
   };
 });

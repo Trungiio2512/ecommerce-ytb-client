@@ -1,9 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
+import {
+  Link,
+  createSearchParams,
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+
 import * as apiProduct from "../../apis/product";
 import path from "../../until/path";
 import icons from "../../until/icon";
+import { useDebounce } from "../../until/hook";
 import { Button, Pagination, ProductT1 } from "../../components";
 import { useSelector } from "react-redux";
 import Tippy from "@tippyjs/react/headless";
@@ -12,11 +21,10 @@ const { AiFillCaretDown } = icons;
 const Product = (props) => {
   const location = useLocation();
   const { rams, colors, internals } = useSelector((state) => state.app);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const idCategory = location.state?.idCategory;
   const titleCategory = location.state?.titleCategory;
-
-  const resetRef = useRef();
 
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
@@ -30,7 +38,9 @@ const Product = (props) => {
   });
   const [resset, setResset] = useState(false);
 
-  // console.log(id);
+  // const title = searchParams.get("title");
+
+  const debounceValue = useDebounce(values, 1200);
   const handleValue = (id, name) => {
     const isChecked = values[name].includes(id);
     if (isChecked) {
@@ -47,8 +57,18 @@ const Product = (props) => {
     if (idCategory) {
       category = idCategory;
     }
+    let title;
+    if (searchParams.get("title")) {
+      title = searchParams.get("title");
+    }
     const fetchApi = async () => {
-      const rs = await apiProduct.getAll({ category, page, limit: 8 });
+      const rs = await apiProduct.getAll({
+        category,
+        limit: 8,
+        page,
+        title,
+        ...debounceValue,
+      });
       // console.log(rs);
       if (rs?.sucess) {
         setProducts(rs?.data);
@@ -56,8 +76,7 @@ const Product = (props) => {
       }
     };
     fetchApi();
-  }, [idCategory, page]);
-
+  }, [debounceValue, idCategory, page, searchParams]);
   useEffect(() => {
     if (
       values.colors.length > 0 ||
@@ -66,41 +85,41 @@ const Product = (props) => {
       +values.priceFrom > 0 ||
       +values.priceTo > 0
     ) {
+      // setSearchParams(values);
       setResset(true);
     } else {
+      // setSearchParams({});
       setResset(false);
     }
   }, [values]);
-  console.log("render");
+
   return (
     <div
       className="space-y-5
     "
     >
-      <div className="py-[15px]">
-        {titleCategory && (
-          <>
-            <h3 className="text-xl font-semibold text-black uppercase mb-2 ">{titleCategory}</h3>
-            <div className="flex divide-x-2 divide-gray-500">
-              <Link
-                to={`/${path.HOME}`}
-                className="text-sm text-gray-500 
+      {titleCategory && (
+        <div className="py-[15px]">
+          <h3 className="text-xl font-semibold text-black uppercase mb-2 ">{titleCategory}</h3>
+          <div className="flex divide-x-2 divide-gray-500">
+            <Link
+              to={`/${path.HOME}`}
+              className="text-sm text-gray-500 
               hover:text-main capitalize pr-2"
-              >
-                Home
-              </Link>
-              <span className="text-sm text-gray-500 px-2 ">
-                {titleCategory.charAt(0).toUpperCase() + titleCategory.slice(1).toLowerCase()}
-              </span>
-            </div>
-          </>
-        )}
-      </div>
+            >
+              Home
+            </Link>
+            <span className="text-sm text-gray-500 px-2 ">
+              {titleCategory.charAt(0).toUpperCase() + titleCategory.slice(1).toLowerCase()}
+            </span>
+          </div>
+        </div>
+      )}
       <div className="bg-white p-2 border flex items-center justify-between border-gray-300 space-y-2">
         <div>
           <h2 className="text-base font-semibold text-third capitalize">filter by</h2>
           <div className="flex items-center gap-2 bg-">
-            <div className="relative ">
+            <div>
               <Tippy
                 placement="bottom-start"
                 // hideOnClick
@@ -360,6 +379,20 @@ const Product = (props) => {
         <div>
           {" "}
           <h2 className="text-base font-semibold text-third capitalize">sort by</h2>
+          <select
+            onChange={(e) => {
+              setValues((prev) => ({ ...prev, sort: `${e.target.value}` }));
+            }}
+          >
+            <option defaultChecked>--Choose option to sort--</option>
+            <option value={"-features"}>Featured</option>
+            <option value={"title"}>Alphabetically, A-Z</option>
+            <option value="-title">Alphabetically, Z-A</option>
+            <option value="price">Price, low to high</option>
+            <option value="-price">Price, high to low</option>
+            <option value="created">Date, old to new</option>
+            <option value="-created">Date, new to old</option>
+          </select>
         </div>
       </div>
       <div className="mt-5">
