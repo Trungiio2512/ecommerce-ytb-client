@@ -92,6 +92,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
 
         <Link
           to={`/${path.DETAIL_PRODUCT}/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`}
+          replace
           state={{
             categoty_id: data?.category?._id,
             brand_id: data?.brand?._id,
@@ -117,6 +118,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
             brand_id: data?.brand?._id,
             id: data?._id,
           }}
+          replace
         >
           <h3 className="text-[#2b3743] line-clamp-1 cursor-pointer hover:text-main">
             {data?.title}

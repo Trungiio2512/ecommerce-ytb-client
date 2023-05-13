@@ -1,4 +1,6 @@
 import path from "./path";
+import icons from "./icon";
+const { AiOutlineUser, BsClipboardHeart, FaClipboardList } = icons;
 export const menuHome = [
   {
     id: 1,
@@ -30,4 +32,14 @@ export const menuHome = [
     title: "about us",
     path: `/${path.ABOUT_US}`,
   },
+];
+export const menuUser = [
+  { id: 0, title: "User Profile", path: `${path.USER}/${path.PROFILES}`, icon: <AiOutlineUser /> },
+  {
+    id: 1,
+    title: "My shopping cart",
+    path: `${path.USER}/${path.CART}`,
+    icon: <FaClipboardList />,
+  },
+  { id: 2, title: "Wish list", path: `${path.USER}/${path.WISH_LIST}`, icon: <BsClipboardHeart /> },
 ];

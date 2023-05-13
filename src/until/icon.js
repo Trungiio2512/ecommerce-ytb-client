@@ -1,4 +1,11 @@
-import { FaFacebookF, FaInstagramSquare, FaList, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagramSquare,
+  FaList,
+  FaPinterestP,
+  FaLinkedinIn,
+  FaClipboardList,
+} from "react-icons/fa";
 import {
   BsTwitter,
   BsPinterest,
@@ -7,6 +14,8 @@ import {
   BsStarFill,
   BsFillTelephoneFill,
   BsDiscord,
+  BsPencilSquare,
+  BsClipboardHeart,
 } from "react-icons/bs";
 import {
   AiOutlineGoogle,
@@ -21,6 +30,7 @@ import {
   AiOutlineClose,
   AiFillCaretDown,
   AiOutlineLoading3Quarters,
+  AiOutlineUser,
 } from "react-icons/ai";
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
@@ -55,6 +65,10 @@ const icons = {
   AiOutlineClose,
   AiFillCaretDown,
   AiOutlineLoading3Quarters,
+  AiOutlineUser,
+  BsPencilSquare,
+  BsClipboardHeart,
+  FaClipboardList,
 };
 
 export default icons;

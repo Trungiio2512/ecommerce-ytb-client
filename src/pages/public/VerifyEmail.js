@@ -15,7 +15,7 @@ const VerifyEmail = (props) => {
         text: "Registers failed",
         footer: '<a href="">Why do I have this issue?</a>',
       }).then(() => {
-        navigate(`/${path.LOGIN}`);
+        navigate(`/${path.REGISTER}`);
       });
     } else if (status === "sucess") {
       Swal.fire({

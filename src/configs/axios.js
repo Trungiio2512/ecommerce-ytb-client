@@ -1,4 +1,5 @@
 import axios from "axios";
+const cancelAxios = axios.CancelToken;
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
 });
@@ -6,7 +7,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-
+    config.headers["Content-Type"] = "application/json";
     return config;
   },
   function (error) {
@@ -23,9 +24,9 @@ instance.interceptors.response.use(
     return response.data;
   },
   function (error) {
-    console.log(error);
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    console.log(error);
     return error.response.data;
   },
 );

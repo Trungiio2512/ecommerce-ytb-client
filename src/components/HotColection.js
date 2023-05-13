@@ -1,7 +1,8 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, createSearchParams } from "react-router-dom";
+import path from "../until/path";
 const HotColection = (props) => {
   const { categories } = useSelector((state) => state.app);
   // console.log(categories);
@@ -33,7 +34,15 @@ const HotColection = (props) => {
                                 <Link
                                   // eslint-disable-next-line no-octal-escape
                                   className="before:content-['\276F'] before:pr-2 text-gray-400 text-sm hover:text-main"
-                                  to={`/${ele?.slug}/${brand?.slug}`}
+                                  to={{
+                                    pathname: `${path.SEACH}`,
+                                    search: `${createSearchParams({
+                                      type: ele?.slug,
+                                      q: brand?.slug,
+                                    })}`,
+                                  }}
+                                  state={{ idCategory: ele?._id, idBrand: brand?._id }}
+                                  // replace
                                 >
                                   {brand?.title}
                                 </Link>

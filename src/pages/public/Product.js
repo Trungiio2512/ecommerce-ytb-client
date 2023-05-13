@@ -20,11 +20,11 @@ import Tippy from "@tippyjs/react/headless";
 const { AiFillCaretDown } = icons;
 const Product = (props) => {
   const location = useLocation();
-  const { rams, colors, internals } = useSelector((state) => state.app);
+  const { rams, colors, internals, brands, categories } = useSelector((state) => state.app);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const idCategory = location.state?.idCategory;
-  const titleCategory = location.state?.titleCategory;
+  const idBrand = location.state?.idBrand;
 
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
@@ -36,11 +36,9 @@ const Product = (props) => {
     rams: [],
     internals: [],
   });
+  const [title, setTitle] = useState();
   const [resset, setResset] = useState(false);
 
-  // const title = searchParams.get("title");
-
-  const debounceValue = useDebounce(values, 1200);
   const handleValue = (id, name) => {
     const isChecked = values[name].includes(id);
     if (isChecked) {
@@ -52,21 +50,23 @@ const Product = (props) => {
       setValues((prev) => ({ ...prev, [name]: [...values[name], id] }));
     }
   };
+  const debounceValue = useDebounce(values, 1200);
   useEffect(() => {
-    let category;
+    let queryObj = {};
     if (idCategory) {
-      category = idCategory;
+      queryObj.category = idCategory;
     }
-    let title;
+    if (idBrand) {
+      queryObj.brand = idBrand;
+    }
     if (searchParams.get("title")) {
-      title = searchParams.get("title");
+      queryObj.title = searchParams.get("title");
     }
     const fetchApi = async () => {
       const rs = await apiProduct.getAll({
-        category,
         limit: 8,
         page,
-        title,
+        ...queryObj,
         ...debounceValue,
       });
       // console.log(rs);
@@ -76,7 +76,8 @@ const Product = (props) => {
       }
     };
     fetchApi();
-  }, [debounceValue, idCategory, page, searchParams]);
+  }, [debounceValue, idCategory, page, idBrand, searchParams]);
+
   useEffect(() => {
     if (
       values.colors.length > 0 ||
@@ -85,7 +86,7 @@ const Product = (props) => {
       +values.priceFrom > 0 ||
       +values.priceTo > 0
     ) {
-      // setSearchParams(values);
+      // setSearchParams({...values});
       setResset(true);
     } else {
       // setSearchParams({});
@@ -94,13 +95,12 @@ const Product = (props) => {
   }, [values]);
 
   return (
-    <div
-      className="space-y-5
-    "
-    >
-      {titleCategory && (
+    <div className="space-y-5 ">
+      {searchParams.get("q") && (
         <div className="py-[15px]">
-          <h3 className="text-xl font-semibold text-black uppercase mb-2 ">{titleCategory}</h3>
+          <h3 className="text-xl font-semibold text-black uppercase mb-2 ">
+            {searchParams.get("q")}
+          </h3>
           <div className="flex divide-x-2 divide-gray-500">
             <Link
               to={`/${path.HOME}`}
@@ -110,7 +110,8 @@ const Product = (props) => {
               Home
             </Link>
             <span className="text-sm text-gray-500 px-2 ">
-              {titleCategory.charAt(0).toUpperCase() + titleCategory.slice(1).toLowerCase()}
+              {searchParams.get("q").charAt(0).toUpperCase() +
+                searchParams.get("q").slice(1).toLowerCase()}
             </span>
           </div>
         </div>

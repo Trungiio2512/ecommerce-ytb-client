@@ -1,16 +1,18 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import path from "../../until/path";
 import FormInput from "../../components/FormInput";
-import * as apiUser from "../../apis/user";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../app/slices/user";
+// import * as apiUser from "../../apis/user";
+import * as userActions from "../../app/actions/user";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserMsg } from "../../app/slices/user";
 
 const Login = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isLoggedIn, loading, userInfo, token, error, msg } = useSelector((state) => state.user);
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -42,18 +44,8 @@ const Login = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const rs = await apiUser.login(values);
-    // console.log(rs);
-    if (rs?.sucess) {
-      Swal.fire("Login Success", rs?.msg, "success")
-        .then(() => {
-          dispatch(setUser({ token: rs?.token, data: rs.data }));
-        })
-        .then(() => {
-          navigate(`/${path.HOME}`);
-        });
-    } else {
-      Swal.fire("Login Fail", rs?.msg, "error");
+    if (values.email && values.password) {
+      dispatch(userActions.login(values));
     }
   };
 
@@ -61,6 +53,19 @@ const Login = (props) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    if (isLoggedIn && userInfo) {
+      Swal.fire("Login Success", msg, "success").then(() => {
+        dispatch(setUserMsg());
+
+        navigate(`/${path.HOME}`);
+      });
+    } else if (error && !isLoggedIn) {
+      Swal.fire("Login Fail", msg, "error").then(() => {
+        dispatch(setUserMsg());
+      });
+    }
+  }, [dispatch, error, isLoggedIn, navigate, userInfo]);
   return (
     <div className="bg-yellow-100 flex i h-screen ">
       <div className="w-full lg:w-2/5 md:w-3/5 m-auto lg:bg-white  lg:border border-gray-300 rounded-lg ">
@@ -116,59 +121,3 @@ const Login = (props) => {
 Login.propTypes = {};
 
 export default Login;
-// return (
-//   <div className="bg-yellow-100 flex items-center justify-center lg:h-screen">
-//     <div className="login-container container w-full lg:w-2/5 lg:bg-white h-screen lg:h-screen-75 lg:border border-gray-300 rounded-lg flex flex-wrap lg:flex-nowrap flex-col lg:flex-row justify-between group">
-//       {/* <Link to={`${path.HOME}`} className="text-lg capitalize text-gray-500  font-medium text-l">Trở về trang chủ</Link> */}
-//       <div className="w-full">
-//         <div className="flex items-center lg:h-full px-10 pt-16 lg:pt-0">
-//           <div className="w-full space-y-5">
-
-//             {/* <!-- form caption --> */}
-
-//             <div className="form-element">
-//               <label className="space-y-2 w-full lg:w-4/5 mx-auto">
-//                 <span className="block text-lg text-gray-800 tracking-wide">Email</span>
-//                 <span className="block">
-//                   <input
-//                     type="text"
-//                     className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
-//                   />
-//                 </span>
-//               </label>
-//             </div>
-//             {/* <!-- form element --> */}
-
-//             <div className="form-element">
-//               <label className="space-y-2 w-full lg:w-4/5 mx-auto">
-//                 <span className="block text-lg text-gray-800 tracking-wide">Password</span>
-//                 <span className="block">
-//                   <input
-//                     type="password"
-//                     className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
-//                   />
-//                 </span>
-//               </label>
-//             </div>
-//             {/* <!-- form element --> */}
-
-//             {/* <!-- form element --> */}
-
-//             <div className="form-element">
-//               <span className="w-full lg:w-4/5 mx-auto ">
-//                 <input
-//                   type="submit"
-//                   className="cursor-pointer border-2 border-yellow-200 w-full p-3 bg-yellow-200 focus:outline-none active:outline-none focus:bg-theme-yellow active:bg-theme-yellow hover:bg-theme-yellow transition-all"
-//                 />
-//               </span>
-//             </div>
-//             {/* <!-- form element --> */}
-//           </div>
-//         </div>
-//         {/* <!-- form wrapper --> */}
-//       </div>
-//       {/* <!-- Login Form End--> */}
-//     </div>
-//   </div>
-// );
-// };

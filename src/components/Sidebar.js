@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, createSearchParams } from "react-router-dom";
 import icons from "../until/icon";
 import path from "../until/path";
 import * as category from "../apis/category";
@@ -34,9 +34,12 @@ const Sidebar = (props) => {
             categories.map((category) => (
               <li className="px-5 py-3" key={category?._id}>
                 <Link
-                  to={`/products/${category?.slug}`}
+                  to={{
+                    pathname: `${path.SEACH}`,
+                    search: `${createSearchParams({ type: category?.slug })}`,
+                  }}
                   className="flex items-center gap-2 hover:text-main text-second"
-                  state={{ idCategory: category?._id, titleCategory: category?.title }}
+                  state={{ idCategory: category?._id }}
                 >
                   <span className="">icon</span>
                   <span className="text-sm ">{category?.title}</span>

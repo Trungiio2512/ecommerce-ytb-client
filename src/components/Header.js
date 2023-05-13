@@ -1,13 +1,13 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-// import { FaFacebookF, FaInstagramSquare } from "react-icons/fa";
-// import { BsTwitter } from "react-icons/bs";
-// import { AiOutlineGoogle } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
+import Tippy from "@tippyjs/react/headless";
 import icons from "../until/icon";
-import { Link } from "react-router-dom";
 import path from "../until/path";
+import { Button } from "../components";
+import { menuUser } from "../until/menu";
 const {
   AiOutlineGoogle,
   BsTwitter,
@@ -20,37 +20,40 @@ const {
   BsFillBagHeartFill,
   HiShoppingCart,
   AiOutlineMenu,
+  AiOutlineUser,
 } = icons;
+const linkRight = [
+  {
+    i: 0,
+    icon: <FaFacebookF />,
+    path: "",
+  },
+  {
+    i: 1,
+    icon: <AiOutlineGoogle />,
+    path: "",
+  },
+  {
+    i: 2,
+    icon: <BsTwitter />,
+    path: "",
+  },
+  {
+    i: 3,
+    icon: <FaInstagramSquare />,
+    path: "",
+  },
+  {
+    i: 5,
+    icon: <BsPinterest />,
+    path: "",
+  },
+];
 const Header = (props) => {
-  const { user, token, isLoggedIn } = useSelector((state) => state.user);
-  // console.log(user);
-  const linkRight = [
-    {
-      i: 0,
-      icon: <FaFacebookF />,
-      path: "",
-    },
-    {
-      i: 1,
-      icon: <AiOutlineGoogle />,
-      path: "",
-    },
-    {
-      i: 2,
-      icon: <BsTwitter />,
-      path: "",
-    },
-    {
-      i: 3,
-      icon: <FaInstagramSquare />,
-      path: "",
-    },
-    {
-      i: 5,
-      icon: <BsPinterest />,
-      path: "",
-    },
-  ];
+  const navigate = useNavigate();
+  const { userInfo, token, isLoggedIn } = useSelector((state) => state.user);
+
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <div className="w-full flex flex-col">
       <div className="bg-main text-white text-xs py-[10px] md:block hidden ">
@@ -65,9 +68,11 @@ const Header = (props) => {
           </div>
           <div className="float-right">
             <ul className="divide-x divide-red-300 flex items-center">
-              <li className="px-2 hover:text-black">
-                <Link to={`${path.LOGIN}`}>Sign in or create a new account</Link>
-              </li>
+              {!isLoggedIn && (
+                <li className="px-2 hover:text-black">
+                  <Link to={`${path.LOGIN}`}>Sign in or create a new account</Link>
+                </li>
+              )}
               {linkRight.map((el, index) => {
                 return (
                   <li
@@ -125,15 +130,81 @@ const Header = (props) => {
           {token && isLoggedIn && (
             <div className="header-wishlist">
               <div className="header-wishlist--cart">
-                <span className="text-main ">
+                <span
+                  className="text-main "
+                  onClick={() => {
+                    navigate(`/${path.USER}/${path.WISH_LIST}`);
+                  }}
+                >
                   <AiOutlineHeart />
                 </span>
               </div>
-              <div className="header-wishlist--cart">
-                <span className="text-main ">
+              <div className="header-wishlist--cart relative">
+                <span
+                  className="text-main"
+                  onClick={() => {
+                    navigate(`/${path.USER}/${path.CART}`);
+                  }}
+                >
                   <BsFillBagHeartFill />
                 </span>
-                <span className="text-sm text-third hover:text-main">4 item</span>
+                {userInfo?.cart?.length > 0 && (
+                  <span className="absolute -top-1 right-2 text-sm text-white rounded-full bg-red-600 px-1 py-[0.5] text-center">
+                    {userInfo?.cart?.length}
+                  </span>
+                )}
+              </div>
+              <div className="header-wishlist--cart">
+                <Tippy
+                  placement="bottom-end"
+                  delay={[200, 300]}
+                  interactive
+                  visible={showMenu}
+                  render={(attrs) => (
+                    <div
+                      className="w-[300px] border border-gray-300 shadow-md bg-white animate-scale-up-tr"
+                      {...attrs}
+                    >
+                      <div className="flex flex-col text-sm ">
+                        {menuUser.map((menu) => {
+                          return (
+                            <Link
+                              className="text-right px-5 py-2 hover:text-blue-300 active:text-main"
+                              key={menu.id}
+                              to={menu.path}
+                              onClick={() => setShowMenu(false)}
+                            >
+                              {menu.title}
+                            </Link>
+                          );
+                        })}
+                        <Button
+                          className={
+                            "w-full text-right px-5 p-2 hover:text-blue-300 active:text-main"
+                          }
+                          onHanldeClick={() => {}}
+                        >
+                          Logout
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                >
+                  <div
+                    className="rounded-full bg-white border border-gray-300 hover:border-blue-300 active:border-red-300"
+                    onClick={() => setShowMenu(!showMenu)}
+                  >
+                    <figure className="w-[30px] h-[30px]">
+                      <img
+                        src={
+                          userInfo?.avata ||
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ5R6uBDeXW4AQ_AQnhX1iC2JCWJyGfPPIyqj-gEo&s"
+                        }
+                        alt=""
+                      />
+                    </figure>
+                  </div>
+                </Tippy>
               </div>
             </div>
           )}

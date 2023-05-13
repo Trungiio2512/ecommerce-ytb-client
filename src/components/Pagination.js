@@ -65,7 +65,7 @@ const Pagination = ({
             // page: current,
           }).toString(),
         },
-        { state: location.state },
+        { state: location.state, replace: true },
       );
     }
   }, [current, totalPage]);

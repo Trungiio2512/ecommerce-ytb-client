@@ -11,6 +11,7 @@ const ProductT2 = ({ product }) => {
       <Link
         to={`/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}
         state={{ id: product?._id }}
+        replace
         className="w-[85px] h-[85px] p-2"
       >
         <figure className="w-full h-full">
@@ -27,6 +28,7 @@ const ProductT2 = ({ product }) => {
         <Link
           to={`/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}
           state={{ id: product?._id }}
+          replace
         >
           <h3 className="text-[#2b3743] line-clamp-1 cursor-pointer hover:text-main">
             {product?.title}

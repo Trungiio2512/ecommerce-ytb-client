@@ -46,6 +46,20 @@ module.exports = {
             transform: "rotate(360deg)",
           },
         },
+        "scale-up-tr": {
+          "0%": {
+            "-webkit-transform": "scale(0.5)",
+            transform: "scale(0.5)",
+            "-webkit-transform-origin": "100% 0%",
+            "transform-origin": "100% 0%",
+          },
+          "100%": {
+            "-webkit-transform": "scale(1)",
+            transform: "scale(1)",
+            "-webkit-transform-origin": "100% 0%",
+            "transform-origin": "100% 0%",
+          },
+        },
       },
       animation: {
         "slide-top": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
@@ -53,6 +67,7 @@ module.exports = {
         "scale-down-center":
           "scale-down-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
         "rotate-center": "rotate-center 0.8s ease-out infinite forwards",
+        "scale-up-tr": "scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both",
       },
       height: {
         450: "450px",
