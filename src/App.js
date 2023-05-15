@@ -27,11 +27,11 @@ function App() {
   useEffect(() => {
     dispatch(actions.get());
   }, []);
-  console.log(userInfo?.role);
+  // console.log(userInfo?.role);
   return (
     <div className="font-main h-auto overflow-hidden">
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path={path.PUBLIC} element={<Layout />}>
           <Route element={<Public />}>
             <Route path={path.HOME} element={<Home />}></Route>
             <Route path={path.SEACH} element={<Product />}></Route>
@@ -50,7 +50,7 @@ function App() {
           <Route
             element={
               <ProtectedRouter
-                isAllowed={!!userInfo && userInfo?.role?.includes("admin")}
+                isAllowed={!!userInfo && userInfo?.role?.includes("user")}
                 redirectPath={path.PUBLIC}
               />
             }

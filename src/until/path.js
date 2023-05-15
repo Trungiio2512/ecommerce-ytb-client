@@ -1,5 +1,5 @@
 const path = {
-  PUBLIC: "/home",
+  PUBLIC: "/",
   LOGIN: "login",
   REGISTER: "register",
   HOME: "",

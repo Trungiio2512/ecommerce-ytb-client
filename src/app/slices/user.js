@@ -9,6 +9,8 @@ const userSlice = createSlice({
     token: null, // for storing the JWT
     error: null,
     msg: "",
+    cart: [],
+    wishlist: [],
   },
   name: "user",
   reducers: {

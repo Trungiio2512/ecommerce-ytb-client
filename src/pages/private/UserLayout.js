@@ -8,13 +8,12 @@ const { BsPencilSquare } = icons;
 
 const UserLayout = (props) => {
   const { userInfo } = useSelector((state) => state.user);
-  console.log(userInfo);
   return (
-    <div className="main-width h-auto">
-      <div className="flex ">
-        <div className="">
-          <div className="flex items-center py-4 gap-5">
-            <div className="rounded-full border border-gray-300 overflow-hidden bg-white">
+    <div className="main-width h-auto bg-white">
+      <div className="flex items-center gap-5">
+        <div className="w-[20%] hidden md:block">
+          <div className="flex lg:flex-row flex-col items-center py-4 gap-5  top-0 left-0">
+            <div className="rounded-full border border-gray-300 overflow-hidden bg-white ">
               <figure className="w-12 h-12">
                 <img
                   src={
@@ -32,10 +31,12 @@ const UserLayout = (props) => {
                 <span className="">Sửa hồ sơ</span>
               </Button>
             </div>
-            <div></div>
           </div>
         </div>
-        <Outlet />
+        <div className="flex-1 overflow-y-auto">
+          {" "}
+          <Outlet />
+        </div>
       </div>
     </div>
   );

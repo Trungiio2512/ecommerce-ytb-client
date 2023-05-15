@@ -6,8 +6,13 @@ const instance = axios.create({
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {
+    const token = JSON.parse(localStorage.getItem("persist:user"))?.token.slice(
+      1,
+      JSON.parse(localStorage.getItem("persist:user"))?.token.length - 1,
+    );
     // Do something before request is sent
     config.headers["Content-Type"] = "application/json";
+    config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   function (error) {

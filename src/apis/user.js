@@ -27,3 +27,8 @@ export const resetPass = async (payload, data) =>
     params: payload,
     data,
   });
+export const getWishList = async () =>
+  axiosConfig({
+    url: "user/get_wishlist",
+    method: "Get",
+  });
