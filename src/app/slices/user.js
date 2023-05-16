@@ -18,6 +18,13 @@ const userSlice = createSlice({
       // console.log(action);
       state.msg = "";
     },
+    wishlist: (state, action) => {
+      if (state.wishlist?.some((pd) => pd?._id === action.payload?._id)) {
+        state.wishlist = state.wishlist.filter((pd) => pd?._id !== action.payload?._id);
+      } else {
+        state.wishlist = [...state.wishlist, action.payload];
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(actions.login.pending, (state, action) => {
@@ -25,6 +32,7 @@ const userSlice = createSlice({
       state.error = null;
     });
     builder.addCase(actions.login.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.loading = false;
       state.isLoggedIn = action.payload?.sucess;
       state.error = !action.payload?.sucess;
@@ -36,8 +44,22 @@ const userSlice = createSlice({
       console.log(action);
       // state.
     });
+    builder.addCase(actions.getWishList.pending, (state, action) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(actions.getWishList.fulfilled, (state, action) => {
+      state.loading = false;
+      state.wishlist = action.payload;
+      state.msg = action.payload?.msg;
+      state.error = !action.payload?.sucess;
+    });
+    builder.addCase(actions.getWishList.rejected, (state, action) => {
+      console.log(action);
+      // state.
+    });
   },
 });
-export const { setUserMsg } = userSlice.actions;
+export const { setUserMsg, wishlist } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -18,6 +18,7 @@ import path from "./until/path";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as actions from "./app/actions/app";
+import * as actionsUser from "./app/actions/user";
 import { Cart, Profile, ProtectedRouter, UserLayout, WishList } from "./pages/private";
 import { Layout } from "./pages/Layout";
 function App() {
@@ -26,7 +27,10 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.get());
-  }, []);
+    if (userInfo) {
+      dispatch(actionsUser.getWishList());
+    }
+  }, [dispatch, userInfo]);
   // console.log(userInfo?.role);
   return (
     <div className="font-main h-auto overflow-hidden">

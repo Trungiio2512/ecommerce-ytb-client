@@ -6,3 +6,10 @@ export const login = createAsyncThunk("user/login", async (data, { rejectWithVal
   // console.log(rs);
   return rs;
 });
+export const getWishList = createAsyncThunk(
+  "user/getWishList",
+  async (data, { rejectWithValue }) => {
+    const rs = await api.getWishList();
+    return rs?.data?.list;
+  },
+);

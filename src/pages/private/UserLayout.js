@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -44,4 +44,4 @@ const UserLayout = (props) => {
 
 UserLayout.propTypes = {};
 
-export default UserLayout;
+export default memo(UserLayout);

@@ -60,6 +60,16 @@ module.exports = {
             "transform-origin": "100% 0%",
           },
         },
+        "slide-bck-left": {
+          "0%": {
+            "-webkit-transform": "translateZ(0) translateX(0)",
+            transform: "translateZ(0) translateX(0)",
+          },
+          "100%": {
+            "-webkit-transform": " translateZ(-400px) translateX(-100%)",
+            transform: " translateZ(-400px) translateX(-100%)",
+          },
+        },
       },
       animation: {
         "slide-top": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
@@ -68,6 +78,7 @@ module.exports = {
           "scale-down-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
         "rotate-center": "rotate-center 0.8s ease-out infinite forwards",
         "scale-up-tr": "scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both",
+        "slide-bck-left": "slide-bck-left .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",
       },
       height: {
         450: "450px",

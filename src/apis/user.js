@@ -32,3 +32,8 @@ export const getWishList = async () =>
     url: "user/get_wishlist",
     method: "Get",
   });
+export const wishlist = async (id) =>
+  axiosConfig({
+    url: `user/wishlist/${id}`,
+    method: "POST",
+  });

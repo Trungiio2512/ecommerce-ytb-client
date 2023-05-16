@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import ProductDetailContent from "./ProductDetailContent";
 import { formatVND, getStars } from "../until/fn";
@@ -10,12 +11,16 @@ import Button from "./Button";
 import path from "../until/path";
 import Modal from "./Modal";
 import { getOne } from "../apis/product";
-import { FaSadCry } from "react-icons/fa";
+import * as apiUsers from "../apis/user";
+import * as slicesUser from "../app/slices/user";
+import Swal from "sweetalert2";
 
 const { BsStarHalf, BsStarFill, AiOutlineMenu, AiOutlineEye, AiOutlineHeart } = icons;
 const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayout = false }) => {
   // const getStars = (rating) => {};
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { wishlist } = useSelector((state) => state.user);
   const [isShowModal, setShowModal] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
   const [productDetail, setProductDetail] = useState({});
@@ -34,6 +39,15 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
     }
   };
 
+  const handleRemoveProductWishList = async (product) => {
+    const rs = await apiUsers.wishlist(product?._id);
+    if (rs?.sucess) {
+      Swal.fire("Done...!", rs?.msg, "success");
+    } else {
+      Swal.fire("Opp...!", rs?.msg, "error");
+    }
+    dispatch(slicesUser.wishlist(product));
+  };
   return (
     <div
       className={`border border-gray-300 rounded-sm py-4 px-2 relative h-full ${
@@ -87,7 +101,15 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
           <Button circle onHanldeClick={() => getDetailProduct(data?._id)}>
             {<AiOutlineEye />}{" "}
           </Button>
-          <Button circle>{<AiOutlineHeart />}</Button>
+          <Button
+            circle
+            className={`${
+              wishlist.some((pd) => pd?._id === data?._id) ? "bg-pink-500 text-white" : ""
+            }`}
+            onHanldeClick={() => handleRemoveProductWishList(data)}
+          >
+            {<AiOutlineHeart />}
+          </Button>
         </div>
 
         <Link

@@ -28,7 +28,6 @@ const ProductDetail = (props) => {
   useEffect(() => {
     const fetchApi = async () => {
       const rs = await apiProduct.getOne(id);
-      console.log(rs);
       if (rs?.sucess) {
         setProduct(rs?.data);
       }
