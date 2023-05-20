@@ -54,7 +54,7 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    if (isLoggedIn && userInfo) {
+    if (isLoggedIn) {
       Swal.fire("Login Success", msg, "success").then(() => {
         dispatch(setUserMsg());
 

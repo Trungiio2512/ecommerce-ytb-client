@@ -31,6 +31,7 @@ import {
   AiFillCaretDown,
   AiOutlineLoading3Quarters,
   AiOutlineUser,
+  AiOutlineArrowRight,
 } from "react-icons/ai";
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
@@ -69,6 +70,7 @@ const icons = {
   BsPencilSquare,
   BsClipboardHeart,
   FaClipboardList,
+  AiOutlineArrowRight,
 };
 
 export default icons;

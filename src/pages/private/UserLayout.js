@@ -10,9 +10,9 @@ const UserLayout = (props) => {
   const { userInfo } = useSelector((state) => state.user);
   return (
     <div className="main-width h-auto bg-white">
-      <div className="flex items-center gap-5">
-        <div className="w-[20%] hidden md:block">
-          <div className="flex lg:flex-row flex-col items-center py-4 gap-5  top-0 left-0">
+      <div className="md:flex">
+        <div className="md:w-2/12 md:flex-shrink-0 md:block hidden ">
+          <div className="flex xl:flex-row flex-col items-center py-4 gap-5  top-0 left-0">
             <div className="rounded-full border border-gray-300 overflow-hidden bg-white ">
               <figure className="w-12 h-12">
                 <img
@@ -33,7 +33,7 @@ const UserLayout = (props) => {
             </div>
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto">
+        <div className="md:w-10/12 mt-4">
           {" "}
           <Outlet />
         </div>

@@ -20,7 +20,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
   // const getStars = (rating) => {};
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { wishlist } = useSelector((state) => state.user);
+  const { wishlist, token } = useSelector((state) => state.user);
   const [isShowModal, setShowModal] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
   const [productDetail, setProductDetail] = useState({});
@@ -104,7 +104,11 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
           <Button
             circle
             className={`${
-              wishlist.some((pd) => pd?._id === data?._id) ? "bg-pink-500 text-white" : ""
+              token
+                ? wishlist.some((pd) => pd?._id === data?._id)
+                  ? "bg-pink-500 text-white"
+                  : "bg-white text-third"
+                : "bg-white text-third"
             }`}
             onHanldeClick={() => handleRemoveProductWishList(data)}
           >

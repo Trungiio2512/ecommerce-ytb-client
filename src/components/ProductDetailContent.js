@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
+
+import * as apiUser from "../apis/user";
 import { formatVND, getStars } from "../until/fn";
 import Slider from "react-slick";
 import Button from "./Button";
 
 const ProductDetailContent = ({ product = {}, selectOption = false }) => {
+  const { userInfo, isLoggedIn } = useSelector((state) => state.user);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [internal, setInternal] = useState(null);
   const [ram, setRam] = useState(null);
   const [color, setColor] = useState(null);
+
   const handleDecrementQuantity = () => {
     if (quantity <= 0) {
       return;
@@ -26,6 +32,28 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
     }
   };
   // console.log(product);
+  const handleAddToCart = async () => {
+    if (!isLoggedIn) {
+      Swal.fire({ icon: "info", title: "Oops...!", text: "You must has logged in" });
+    } else {
+      if (!internal || !ram || !color || !quantity) {
+        Swal.fire({ icon: "warning", title: "Oops....!", text: "Please select information" });
+      } else {
+        const rs = await apiUser.addOrCreateCart({
+          pid: product?._id,
+          quantity,
+          color,
+          internal,
+          ram,
+        });
+        if (rs.sucess) {
+          Swal.fire({ icon: "success", title: "Done...!", text: rs?.msg });
+        } else {
+          Swal.fire({ icon: "error", title: "Oops...!", text: rs?.msg });
+        }
+      }
+    }
+  };
   return (
     <div className="grid-layout">
       <div className="row">
@@ -94,16 +122,16 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
                 return (
                   <div key={ele?._id}>
                     <input
-                      id={ele?.name}
+                      id={ele?._id}
                       type="radio"
                       value=""
                       checked={ele?._id === internal}
-                      name={ele?.name}
+                      name="internal"
                       className="hidden"
                       onChange={(e) => setInternal(ele?._id)}
                     />
                     <label
-                      htmlFor={ele?.name}
+                      htmlFor={ele?._id}
                       className={`"bg-white px-2 py-3 text-base font-medium uppercase border border-gray-400 text-gray-400 block ${
                         ele?._id === internal ? "text-main border-red-400 " : ""
                       }`}
@@ -122,7 +150,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
                 return (
                   <div key={ele?._id}>
                     <input
-                      id={ele?.name}
+                      id={ele?._id}
                       type="radio"
                       value=""
                       name="color"
@@ -131,7 +159,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
                       onChange={() => setColor(ele?._id)}
                     />
                     <label
-                      htmlFor={ele?.name}
+                      htmlFor={ele?._id}
                       className={`"bg-white px-2 py-3 text-base font-medium uppercase border border-gray-400 text-gray-400 block ${
                         ele?._id === color ? "text-main border-red-400 " : ""
                       }`}
@@ -148,16 +176,16 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
                 return (
                   <div key={ele?._id}>
                     <input
-                      id={ele?.name}
+                      id={ele?._id}
                       type="radio"
                       value=""
-                      name="color"
+                      name="ram"
                       className="hidden"
                       checked={ele?._id === ram}
                       onChange={() => setRam(ele?._id)}
                     />
                     <label
-                      htmlFor={ele?.name}
+                      htmlFor={ele?._id}
                       className={`"bg-white px-2 py-3 text-base font-medium uppercase border border-gray-400 text-gray-400 block ${
                         ele?._id === ram ? "text-main border-red-400 " : ""
                       }`}
@@ -199,6 +227,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
             </div>
             <Button
               className={"w-6/12 text-center py-2 uppercase bg-main text-white font-semibold"}
+              onHanldeClick={() => handleAddToCart()}
             >
               Add to cart
             </Button>

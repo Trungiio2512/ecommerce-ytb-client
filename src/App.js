@@ -22,15 +22,16 @@ import * as actionsUser from "./app/actions/user";
 import { Cart, Profile, ProtectedRouter, UserLayout, WishList } from "./pages/private";
 import { Layout } from "./pages/Layout";
 function App() {
-  const { userInfo } = useSelector((state) => state.user);
+  const { userInfo, isLoggedIn, token } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.get());
-    if (userInfo) {
-      dispatch(actionsUser.getWishList());
+
+    if (isLoggedIn && token) {
+      setTimeout(() => dispatch(actionsUser.getWishList()), 1000);
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, isLoggedIn, token]);
   // console.log(userInfo?.role);
   return (
     <div className="font-main h-auto overflow-hidden">
@@ -60,9 +61,9 @@ function App() {
             }
           >
             <Route path={path.USER} element={<UserLayout />}>
-              <Route path={path.PROFILES} element={<Profile />} />
               <Route path={path.CART} element={<Cart />} />
               <Route path={path.WISH_LIST} element={<WishList />} />
+              <Route path={path.PROFILES} element={<Profile />} />
             </Route>
           </Route>
         </Route>

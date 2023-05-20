@@ -37,3 +37,26 @@ export const wishlist = async (id) =>
     url: `user/wishlist/${id}`,
     method: "POST",
   });
+export const getCart = async () =>
+  axiosConfig({
+    method: "GET",
+    url: `user/get_cart`,
+  });
+export const addOrCreateCart = async (data) =>
+  axiosConfig({
+    method: "POST",
+    url: `user/add_create_cart`,
+    data,
+  });
+
+export const updateCart = async (id, data) =>
+  axiosConfig({
+    method: "PATCH",
+    url: `user/update_cart/${id}`,
+    data,
+  });
+export const deleteCart = async (id) =>
+  axiosConfig({
+    method: "DELETE",
+    url: `user/del_cart/${id}`,
+  });

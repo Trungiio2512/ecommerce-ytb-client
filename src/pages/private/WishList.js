@@ -34,27 +34,29 @@ const WishList = (props) => {
     );
   };
 
-  const handleRemove = (id) => {
+  const handleRemove = async (id) => {
     if (wishlist?.some((product) => product?._id === id)) {
-      const trProduct = document.querySelector(`.tr-${id}`);
+      const trProducts = document.querySelectorAll(`.product-${id}`);
+      for (let i of trProducts) {
+        i.classList.add("animate-slide-bck-left");
 
-      trProduct.classList.add("animate-slide-bck-left");
-
-      trProduct.addEventListener(
-        "animationend",
-        async () => {
-          // console.log(1);
-          trProduct.remove();
-          const rs = await apiUser.wishlist(id);
-          // console.log(rs);
-          if (rs?.sucess) {
-            Swal.fire("OK", rs?.msg, "success");
-          } else {
-            Swal.fire("Opp...!", rs?.msg, "error");
-          }
-        },
-        { once: true },
-      );
+        const rs = await apiUser.wishlist(id);
+        if (rs?.sucess) {
+          Swal.fire("OK", rs?.msg, "success").then(() => {
+            i.addEventListener(
+              "animationend",
+              async () => {
+                // console.log(1);
+                i.remove();
+                // console.log(rs);
+              },
+              { once: true },
+            );
+          });
+        } else {
+          Swal.fire("Opp...!", rs?.msg, "error");
+        }
+      }
     }
   };
   return (
@@ -62,9 +64,9 @@ const WishList = (props) => {
       <h2 className="text-2xl text-third font-medium mb-5">Your Wish List</h2>
       {!loading && wishlist.length > 0 ? (
         <>
-          <table className="hidden lg:block">
-            <thead>
-              <tr className="text-lg text-gray-400 capitalize">
+          <table className="hidden md:block overflow-x-auto">
+            <thead className="mb-2 border-b-1 border-gray-300 py-2">
+              <tr className="text-lg text-gray-400 capitalize ">
                 <th scope="col">image</th>
                 <th scope="col">name</th>
                 <th scope="col">price</th>
@@ -72,10 +74,10 @@ const WishList = (props) => {
                 <th scope="col">detail</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="space-y-5">
               {wishlist.map((product) => {
                 return (
-                  <tr className={`tr-${product?._id}`} key={product?._id}>
+                  <tr className={`product-${product?._id}`} key={product?._id}>
                     <td>
                       {" "}
                       <figure className="w-[228px] h-[228px]">
@@ -130,7 +132,7 @@ const WishList = (props) => {
               })}
             </tbody>
           </table>
-          <div className="grid grid-cols-1 lg:hidden ">
+          <div className="grid grid-cols-1 md:hidden ">
             {wishlist.map((product) => {
               return (
                 <div className="flex items-center gap-2 " key={product?._id}>

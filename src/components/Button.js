@@ -10,14 +10,8 @@ const Button = ({
 }) => {
   return (
     <button
-      className={`${
-        circle
-          ? "rounded-[50%] p-3 border border-gray-400 text-sm text-gray-800 bg-white hover:text-white hover:bg-gray-800"
-          : ""
-      } ${className}`}
-      onClick={(e) => {
-        onHanldeClick();
-      }}
+      className={`${circle ? "rounded-[50%] p-3 border border-gray-400 text-sm" : ""} ${className}`}
+      onClick={onHanldeClick}
     >
       {children}
     </button>

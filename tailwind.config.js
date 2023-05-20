@@ -115,6 +115,9 @@ module.exports = {
       square: "square",
       roman: "upper-roman",
     },
+    // screen: {
+    //   xs: "368px",
+    // },
   },
   variants: {
     extend: {
