@@ -14,13 +14,25 @@ import {
   Services,
   VerifyEmail,
 } from "./pages/public";
-import path from "./until/path";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import path from "./until/path";
 import * as actions from "./app/actions/app";
 import * as actionsUser from "./app/actions/user";
 import { Cart, Profile, ProtectedRouter, UserLayout, WishList } from "./pages/private";
 import { Layout } from "./pages/Layout";
+import {
+  Admin,
+  AdminLayout,
+  ManagerBanner,
+  ManagerBrand,
+  ManagerProduct,
+  ManagerUser,
+  ManagerCategory,
+} from "./pages/admin";
 function App() {
   const { userInfo, isLoggedIn, token } = useSelector((state) => state.user);
 
@@ -55,7 +67,7 @@ function App() {
           <Route
             element={
               <ProtectedRouter
-                isAllowed={!!userInfo && userInfo?.role?.includes("user")}
+                isAllowed={userInfo?.role?.includes("user") || userInfo?.role?.includes("admin")}
                 redirectPath={path.PUBLIC}
               />
             }
@@ -71,7 +83,25 @@ function App() {
         <Route path={path.VERIFY_EMAIL} element={<VerifyEmail />} />
         <Route path={path.LOGIN} element={<Login />} />
         <Route path={path.REGISTER} element={<Register />} />
+        <Route
+          element={
+            <ProtectedRouter
+              isAllowed={userInfo?.role?.includes("admin")}
+              redirectPath={path.PUBLIC}
+            />
+          }
+        >
+          <Route path={path.ADMIN} element={<AdminLayout />}>
+            <Route index element={<Admin />} />
+            <Route path={path.MANAGER_USER} element={<ManagerUser />} />
+            <Route path={path.MANAGER_PRODUCT} element={<ManagerProduct />} />
+            <Route path={path.MANAGER_BANNER} element={<ManagerBanner />} />
+            <Route path={path.MANAGER_CATEGORY} element={<ManagerCategory />} />
+            <Route path={path.MANAGER_BRAND} element={<ManagerBrand />} />
+          </Route>
+        </Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

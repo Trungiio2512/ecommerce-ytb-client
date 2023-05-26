@@ -1,13 +1,16 @@
 import React, { memo, useState } from "react";
-
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Tippy from "@tippyjs/react/headless";
+
+import * as apiUser from "../apis/user";
+import * as sliceUser from "../app/slices/user";
 import icons from "../until/icon";
 import path from "../until/path";
 import { Button } from "../components";
 import { menuUser } from "../until/menu";
+import Swal from "sweetalert2";
 const {
   AiOutlineGoogle,
   BsTwitter,
@@ -51,9 +54,22 @@ const linkRight = [
 ];
 const Header = (props) => {
   const navigate = useNavigate();
-  const { userInfo, token, isLoggedIn } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { userInfo, token, isLoggedIn, cart } = useSelector((state) => state.user);
 
   const [showMenu, setShowMenu] = useState(false);
+
+  const handleLogout = async () => {
+    const rs = await apiUser.logout();
+    if (rs.sucess) {
+      Swal.fire("Done....!", rs.msg, "success").then(() => {
+        dispatch(sliceUser.logout());
+        navigate(`/${path.HOME}`, { replace: true });
+      });
+    } else {
+      Swal.fire("Oops....!", rs.msg, "error");
+    }
+  };
   return (
     <div className="w-full flex flex-col">
       <div className="bg-main text-white text-xs py-[10px] md:block hidden ">
@@ -73,6 +89,11 @@ const Header = (props) => {
                   <Link to={`${path.LOGIN}`}>Sign in or create a new account</Link>
                 </li>
               )}
+              {isLoggedIn && userInfo.role === "admin" && (
+                <li className="px-2 hover:text-black">
+                  <Link to={`${path.ADMIN}`}>Admin</Link>
+                </li>
+              )}
               {linkRight.map((el, index) => {
                 return (
                   <li
@@ -90,7 +111,7 @@ const Header = (props) => {
           </div>
         </div>
       </div>
-      <div className="main-width m-auto lg:h-[110px] h-[80px]  flex items-center justify-between ">
+      <div className="main-width m-auto lg:h-[110px] h-[80px]  flex items-center justify-between border-b-1 border-gray-300">
         <button className="md:hidden text-2xl">
           <span>
             <AiOutlineMenu />
@@ -148,9 +169,9 @@ const Header = (props) => {
                 >
                   <BsFillBagHeartFill />
                 </span>
-                {userInfo?.cart?.length > 0 && (
+                {cart?.length > 0 && (
                   <span className="absolute -top-1 right-2 text-sm text-white rounded-full bg-red-600 px-1 py-[0.5] text-center">
-                    {userInfo?.cart?.length}
+                    {cart?.length}
                   </span>
                 )}
               </div>
@@ -162,7 +183,7 @@ const Header = (props) => {
                   visible={showMenu}
                   render={(attrs) => (
                     <div
-                      className="w-[300px] border border-gray-300 shadow-md bg-white animate-scale-up-tr"
+                      className="w-[300px] border border-gray-300 shadow-md bg-white animate-scale-up-tr z-0"
                       {...attrs}
                     >
                       <div className="flex flex-col text-sm ">
@@ -182,7 +203,7 @@ const Header = (props) => {
                           className={
                             "w-full text-right px-5 p-2 hover:text-blue-300 active:text-main"
                           }
-                          onHanldeClick={() => {}}
+                          onHanldeClick={() => handleLogout()}
                         >
                           Logout
                         </Button>

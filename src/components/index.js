@@ -1,7 +1,7 @@
 export { default as Header } from "./Header";
 export { default as Navigation } from "./Navigation";
 export { default as Banner } from "./Banner";
-export { default as Sidebar } from "./Sidebar";
+export { default as Sidebar } from "../pages/private/components/Sidebar";
 export { default as TabProduct } from "./TabProduct";
 export { default as ProductT1 } from "./ProductT1";
 export { default as Banner2 } from "./Banner2";

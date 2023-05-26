@@ -11,10 +11,10 @@ const UserLayout = (props) => {
   return (
     <div className="main-width h-auto bg-white">
       <div className="md:flex">
-        <div className="md:w-2/12 md:flex-shrink-0 md:block hidden ">
+        <div className="md:w-2/12 md:shrink-0 md:block hidden ">
           <div className="flex xl:flex-row flex-col items-center py-4 gap-5  top-0 left-0">
-            <div className="rounded-full border border-gray-300 overflow-hidden bg-white ">
-              <figure className="w-12 h-12">
+            <div className="rounded-full border shrink-0 border-gray-300 overflow-hidden bg-white ">
+              <figure className="w-[50px] h-[50px]">
                 <img
                   src={
                     userInfo?.avata ||
@@ -33,7 +33,7 @@ const UserLayout = (props) => {
             </div>
           </div>
         </div>
-        <div className="md:w-10/12 mt-4">
+        <div className="md:w-10/12 mt-4 ">
           {" "}
           <Outlet />
         </div>

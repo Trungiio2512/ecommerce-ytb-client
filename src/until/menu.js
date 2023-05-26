@@ -1,6 +1,6 @@
 import path from "./path";
 import icons from "./icon";
-const { AiOutlineUser, BsClipboardHeart, FaClipboardList } = icons;
+const { AiOutlineUser, BsClipboardHeart, FaClipboardList, AiOutlineOrderedList, ImHome } = icons;
 export const menuHome = [
   {
     id: 1,
@@ -42,4 +42,49 @@ export const menuUser = [
     icon: <FaClipboardList />,
   },
   { id: 2, title: "Wish list", path: `${path.USER}/${path.WISH_LIST}`, icon: <BsClipboardHeart /> },
+  {
+    id: 3,
+    title: "Purchase order",
+    path: `${path.USER}/${path.WISH_LIST}`,
+    icon: <AiOutlineOrderedList />,
+  },
+];
+
+export const menuAdmin = [
+  {
+    id: 5,
+    title: "Home",
+    path: `/${path.HOME}`,
+    icon: <ImHome />,
+  },
+  {
+    id: 0,
+    title: "ManaBanner",
+    path: `/${path.ADMIN}/${path.MANAGER_BANNER}`,
+    icon: <AiOutlineUser />,
+  },
+  {
+    id: 1,
+    title: "ManaBrand",
+    path: `/${path.ADMIN}/${path.MANAGER_BRAND}`,
+    icon: <AiOutlineUser />,
+  },
+  {
+    id: 2,
+    title: "ManaCategory",
+    path: `/${path.ADMIN}/${path.MANAGER_CATEGORY}`,
+    icon: <AiOutlineUser />,
+  },
+  {
+    id: 3,
+    title: "ManaUser",
+    path: `/${path.ADMIN}/${path.MANAGER_USER}`,
+    icon: <AiOutlineUser />,
+  },
+  {
+    id: 4,
+    title: "ManaProduct",
+    path: `/${path.ADMIN}/${path.MANAGER_PRODUCT}`,
+    icon: <AiOutlineUser />,
+  },
 ];

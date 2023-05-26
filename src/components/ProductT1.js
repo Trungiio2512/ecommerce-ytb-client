@@ -14,6 +14,7 @@ import { getOne } from "../apis/product";
 import * as apiUsers from "../apis/user";
 import * as slicesUser from "../app/slices/user";
 import Swal from "sweetalert2";
+import { toastMsg } from "../until/toast";
 
 const { BsStarHalf, BsStarFill, AiOutlineMenu, AiOutlineEye, AiOutlineHeart } = icons;
 const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayout = false }) => {
@@ -42,9 +43,12 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
   const handleRemoveProductWishList = async (product) => {
     const rs = await apiUsers.wishlist(product?._id);
     if (rs?.sucess) {
-      Swal.fire("Done...!", rs?.msg, "success");
+      // toast()
+      toastMsg(rs?.msg, "success");
+      // Swal.fire("Done...!", rs?.msg, "success");
     } else {
-      Swal.fire("Opp...!", rs?.msg, "error");
+      toastMsg(rs?.msg, "error");
+      // Swal.fire("Opp...!", rs?.msg, "error");
     }
     dispatch(slicesUser.wishlist(product));
   };

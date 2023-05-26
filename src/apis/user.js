@@ -7,6 +7,12 @@ export const login = async (payload) =>
     data: payload,
     withCredentials: true,
   });
+export const logout = async (payload) =>
+  axiosConfig({
+    url: "user/logout",
+    method: "POST",
+    withCredentials: true,
+  });
 export const register = async (payload) =>
   axiosConfig({
     url: "user/register",
@@ -27,6 +33,12 @@ export const resetPass = async (payload, data) =>
     params: payload,
     data,
   });
+
+export const getInfo = async (payload, data) =>
+  axiosConfig({
+    method: "GET",
+    url: "user/info",
+  });
 export const getWishList = async () =>
   axiosConfig({
     url: "user/get_wishlist",
@@ -37,6 +49,7 @@ export const wishlist = async (id) =>
     url: `user/wishlist/${id}`,
     method: "POST",
   });
+
 export const getCart = async () =>
   axiosConfig({
     method: "GET",

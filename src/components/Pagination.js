@@ -70,7 +70,7 @@ const Pagination = ({
     }
   }, [current, totalPage]);
   return (
-    <div className="flex bg-white rounded-lg font-[Poppins]">
+    <div className="flex mt-5 bg-white rounded-lg font-[Poppins]">
       {current > 3 && (
         <Button
           onHanldeClick={() => handleBackPage(+current)}

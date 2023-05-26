@@ -2,9 +2,9 @@ import React, { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { Link, createSearchParams } from "react-router-dom";
-import icons from "../until/icon";
-import path from "../until/path";
-import * as category from "../apis/category";
+import icons from "../../../until/icon";
+import path from "../../../until/path";
+import * as category from "../../../apis/category";
 
 const { FaList } = icons;
 

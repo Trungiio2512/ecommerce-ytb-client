@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-import { deleteCart, getCart, updateCart } from "../../apis/user";
+import { deleteCart, getCart, updateCart, logout } from "../../apis/user";
 import { formatVND } from "../../until/fn";
 import icons from "../../until/icon";
 import path from "../../until/path";
@@ -219,7 +219,7 @@ const Cart = (props) => {
             {carts.map((item) => {
               return (
                 <div
-                  className={`flex items-start gap-2 py-4 border-b-1 border-gray-400 product-${item?._id}`}
+                  className={`flex flex-col items-center sm:flex-row sm:items-start gap-2 py-4 border-b-1 border-gray-400 product-${item?._id}`}
                   key={item?.product?._id}
                 >
                   <Link
@@ -300,18 +300,18 @@ const Cart = (props) => {
               );
             })}
           </div>
-          <div className="flex items-center justify-end gap-5 mt-5">
-            <span className="text-base text-gray-600">Total payment:</span>
-            <strong className="text-lg">
-              {formatVND(
-                carts.reduce((acc, cur) => {
-                  return acc + (cur?.product?.priceSale || cur?.product?.price) * cur?.quantity;
-                }, 0),
-              )}
-            </strong>
-          </div>
-          <div className="flex flex-col items-end gap-3 mt-5">
-            <span className="text-sm text-gray-500 italic">
+          <div className="flex flex-col items-end gap-3 p-5 fixed sm:relative left-0 right-0 bottom-0 bg-white z-10 border-t-1 border-gray-800 shadow-inner">
+            <div className="flex items-center justify-end gap-5">
+              <span className="text-base text-gray-600">Total payment:</span>
+              <strong className="text-lg">
+                {formatVND(
+                  carts.reduce((acc, cur) => {
+                    return acc + (cur?.product?.priceSale || cur?.product?.price) * cur?.quantity;
+                  }, 0),
+                )}
+              </strong>
+            </div>
+            <span className="text-sm text-gray-500 italic hidden md:block">
               Shipping, taxes, and discounts calculated at checkout
             </span>
             <Button

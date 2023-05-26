@@ -77,20 +77,20 @@ const WishList = (props) => {
             <tbody className="space-y-5">
               {wishlist.map((product) => {
                 return (
-                  <tr className={`product-${product?._id}`} key={product?._id}>
-                    <td>
+                  <tr className={`product-${product?._id} `} key={product?._id}>
+                    <td className="px-2 py-5">
                       {" "}
-                      <figure className="w-[228px] h-[228px]">
+                      <figure className="w-[228px] h-[228px] shrink-0">
                         <img src={product?.thumb} alt={product?.title} />
                       </figure>{" "}
                     </td>
-                    <td>
+                    <td className="px-2 py-5">
                       <h3 className="px-2 text-lg font-normal text-third font-meidum">
                         {product?.title}
                       </h3>
                     </td>
-                    <td>
-                      <div className="flex items-baseline line-clamp-1 gap-2 px-2">
+                    <td className="px-2 py-5">
+                      <div className="flex flex-col items-start line-clamp-1 gap-2 px-2">
                         <span
                           className={` ${
                             product?.priceSale
@@ -107,7 +107,7 @@ const WishList = (props) => {
                         )}
                       </div>
                     </td>
-                    <td className="">
+                    <td className="px-2 py-5">
                       <Button
                         className={
                           "px-5 py-1 border border-gray-300 rounded-lg hover:border-blue-300 active:border-red-400 active:bg-red-200  active:text-white transition-colors text-sm "
@@ -117,7 +117,7 @@ const WishList = (props) => {
                         <AiOutlineClose />
                       </Button>
                     </td>
-                    <td>
+                    <td className="px-2 py-5">
                       <Button
                         className={
                           "px-5 py-1 border border-gray-300 rounded-lg hover:border-blue-300 hover:text-blue-300 capitalize text-sm transition-colors "
@@ -135,13 +135,13 @@ const WishList = (props) => {
           <div className="grid grid-cols-1 md:hidden ">
             {wishlist.map((product) => {
               return (
-                <div className="flex items-center gap-2 " key={product?._id}>
-                  <div className="w-[228px] h-[228px] ">
+                <div className="flex flex-col sm:flex-row items-center  gap-2 " key={product?._id}>
+                  <div className="w-[228px] h-[228px] shrink-0 ">
                     <figure className="w-full h-full">
                       <img src={product?.thumb} alt={product?.title} />
                     </figure>
                   </div>
-                  <div className="flex flex-col gap-4 flex-1">
+                  <div className="flex flex-col items-center gap-4 w-full flex-1">
                     <h2 className="text-third text-xl font-semibold">{product?.title}</h2>
                     <div className="flex items-baseline line-clamp-1 gap-2 px-2">
                       <span
@@ -161,14 +161,14 @@ const WishList = (props) => {
                     </div>
                     <Button
                       className={
-                        "px-5 py-2 border border-gray-300 rounded-lg hover:border-blue-300 active:border-red-400 active:bg-red-200 transition-colors text-lg flex items-center justify-center "
+                        "px-5 py-2 border border-gray-400 rounded-lg hover:border-blue-300 active:border-red-400 active:bg-red-200 transition-colors text-lg flex items-center justify-center w-full"
                       }
                     >
-                      <AiOutlineClose />
+                      Deleted
                     </Button>
                     <Button
                       className={
-                        "px-5 py-1 border border-gray-300 rounded-lg hover:border-blue-300 hover:text-blue-300 capitalize text-lg transition-colors "
+                        "px-5 py-2 border border-gray-400 rounded-lg hover:border-blue-300 hover:text-blue-300 capitalize text-lg transition-colors w-full"
                       }
                       onHanldeClick={() => handleToDetailProduct(product)}
                     >

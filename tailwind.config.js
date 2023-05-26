@@ -100,6 +100,7 @@ module.exports = {
         "theme-yellow": "#ffc727",
         "theme-yellow-dark": "#e6b323",
         "theme-dark": "#37474f",
+        "light-white": "rgba(255,255,255,0.17)",
       },
       borderColor: {
         main: "ebebeb",

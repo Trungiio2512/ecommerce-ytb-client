@@ -25,6 +25,16 @@ const userSlice = createSlice({
         state.wishlist = [...state.wishlist, action.payload];
       }
     },
+    logout: (state, action) => {
+      state.isLoggedIn = false;
+      state.loading = false;
+      state.userInfo = {}; // for user object
+      state.token = null; // for storing the JWT
+      state.error = null;
+      state.msg = "";
+      state.cart = [];
+      state.wishlist = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(actions.login.pending, (state, action) => {
@@ -60,6 +70,6 @@ const userSlice = createSlice({
     });
   },
 });
-export const { setUserMsg, wishlist } = userSlice.actions;
+export const { setUserMsg, wishlist, logout } = userSlice.actions;
 
 export default userSlice.reducer;

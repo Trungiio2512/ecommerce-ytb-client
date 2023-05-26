@@ -32,10 +32,13 @@ import {
   AiOutlineLoading3Quarters,
   AiOutlineUser,
   AiOutlineArrowRight,
+  AiOutlineOrderedList,
+  AiOutlineLeft,
+  AiOutlineRight,
 } from "react-icons/ai";
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
-import { ImLocation2, ImGooglePlus } from "react-icons/im";
+import { ImLocation2, ImGooglePlus, ImHome } from "react-icons/im";
 const icons = {
   AiOutlineMenuUnfold,
   AiOutlineEye,
@@ -71,6 +74,10 @@ const icons = {
   BsClipboardHeart,
   FaClipboardList,
   AiOutlineArrowRight,
+  AiOutlineOrderedList,
+  ImHome,
+  AiOutlineLeft,
+  AiOutlineRight,
 };
 
 export default icons;

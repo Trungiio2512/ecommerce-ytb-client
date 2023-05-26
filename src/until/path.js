@@ -22,6 +22,13 @@ const path = {
   PROFILES: "profile",
   CART: "cart",
   WISH_LIST: "wish_list",
+  //admin
+  ADMIN: "admin",
+  MANAGER_USER: "manager_user",
+  MANAGER_BRAND: "manager_brand",
+  MANAGER_CATEGORY: "manager_category",
+  MANAGER_BANNER: "manager_banner",
+  MANAGER_PRODUCT: "manager_product",
 };
 
 export default path;
