@@ -12,3 +12,23 @@ export const getOne = (id) =>
     url: `product/one/${id}`,
     method: "GET",
   });
+export const create = (data) =>
+  axiosConfig({
+    url: "product/create",
+    method: "POST",
+    data,
+  });
+export const uploadImage = (data) =>
+  axios(
+    {
+      method: "POST",
+      url: `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_NAME}/image/upload`,
+      data,
+    },
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    },
+  );
+export const deleteImage = (filename) => {};

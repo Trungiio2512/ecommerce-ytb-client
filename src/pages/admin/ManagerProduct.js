@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 import { FormInput, Pagination } from "../../components";
 import * as apiProduct from "../../apis/product";
 import { formatVND } from "../../until/fn";
 import { useDebounce } from "../../until/hook";
+import path from "../../until/path";
+
 const ManagerProduct = (props) => {
   const [loading, setLoading] = useState(true);
   const [products, setproducts] = useState([]);
@@ -34,15 +36,20 @@ const ManagerProduct = (props) => {
   }, [debounced, page]);
   return (
     <div className="w-full p-5">
-      <div className="flex flex-col sm:flex-row items-start justify-between sm:items-center mb-5">
+      <div className="flex flex-col sm:flex-row items-start sm:justify-between sm:items-center mb-5">
         <h2 className="text-xl text-third font-medium sm:mb-0 mb-5">Manager Product</h2>
         <FormInput
-          className="outline-none border border-gray-300 px-5 py-2 hover:border-blue-300"
+          className="outline-none border border-gray-300 px-5 py-2 hover:border-blue-300 w-full sm:w-[300px]"
           placeholder="Search..."
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
-
+      <Link
+        className="px-5 py-2 rounded-md bg-blue-300 "
+        to={`/${path.ADMIN}/${path.CREATE_PRODUCT}`}
+      >
+        Create new product
+      </Link>
       <div className="relative hidden xl:block shadow-md sm:rounded-lg mt-5">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -77,7 +84,7 @@ const ManagerProduct = (props) => {
                   >
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      className="px-6 py-4 font-medium text-gray-900  dark:text-white"
                     >
                       {product?.title}
                     </th>{" "}
@@ -92,7 +99,9 @@ const ManagerProduct = (props) => {
                       <div className="flex flex-col items-start gap-2">
                         <span
                           className={`${
-                            product?.priceSale ? "line-through text-gray-500" : "text-third text-lg"
+                            product?.priceSale
+                              ? "l ine-through text-gray-500"
+                              : "text-third text-lg"
                           } text-sm`}
                         >
                           {formatVND(product?.price)}
@@ -125,7 +134,7 @@ const ManagerProduct = (props) => {
           </tbody>
         </table>
       </div>
-      <div className="xl:hidden block">
+      <div className="xl:hidden block mt-5">
         <div className="grid-layout ">
           <div className="row">
             {products.length > 0 &&

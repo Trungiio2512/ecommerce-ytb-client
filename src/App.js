@@ -32,6 +32,7 @@ import {
   ManagerProduct,
   ManagerUser,
   ManagerCategory,
+  CreateProduct,
 } from "./pages/admin";
 function App() {
   const { userInfo, isLoggedIn, token } = useSelector((state) => state.user);
@@ -98,6 +99,7 @@ function App() {
             <Route path={path.MANAGER_BANNER} element={<ManagerBanner />} />
             <Route path={path.MANAGER_CATEGORY} element={<ManagerCategory />} />
             <Route path={path.MANAGER_BRAND} element={<ManagerBrand />} />
+            <Route path={path.CREATE_PRODUCT} element={<CreateProduct />} />
           </Route>
         </Route>
       </Routes>

@@ -29,6 +29,7 @@ const path = {
   MANAGER_CATEGORY: "manager_category",
   MANAGER_BANNER: "manager_banner",
   MANAGER_PRODUCT: "manager_product",
+  CREATE_PRODUCT: "create_product",
 };
 
 export default path;

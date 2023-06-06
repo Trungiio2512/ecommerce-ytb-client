@@ -1,4 +1,7 @@
 import icons from "./icon";
+import axios from "axios";
+import * as apiProduct from "../apis/product";
+
 const { BsStarFill, BsStarHalf } = icons;
 export function formatVND(string) {
   return string.toLocaleString("it-IT", { style: "currency", currency: "VND" });
@@ -21,3 +24,15 @@ export function getStars(rating) {
   // console.log(output);
   return output;
 }
+
+export const uploadImage = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_KEY);
+
+  const rs = await apiProduct.uploadImage(formData);
+  return {
+    filename: rs.data.public_id,
+    url: rs.data.url,
+  };
+};

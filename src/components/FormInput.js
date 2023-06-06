@@ -1,6 +1,15 @@
 import { useState } from "react";
 
-const FormInput = ({ label, errorMessage, onChange, id, classNameLabel, ...inputProps }) => {
+const FormInput = ({
+  label,
+  value,
+  errorMessage,
+  onChange,
+  name,
+  id,
+  classNameLabel,
+  ...inputProps
+}) => {
   const [focused, setFocused] = useState(false);
 
   const handleFocus = (e) => {
@@ -8,19 +17,20 @@ const FormInput = ({ label, errorMessage, onChange, id, classNameLabel, ...input
   };
   //   console.log(focused);
   return (
-    <div className="relative flex flex-col lg:flex-row gap-2 ">
+    <div className="relative flex w-full sm:w-auto flex-col lg:flex-row gap-2 ">
       {label && (
-        <label className={classNameLabel} htmlFor={inputProps && inputProps.name}>
+        <label className={classNameLabel} htmlFor={name}>
           {label}
         </label>
       )}
       <input
+        value={value}
         {...inputProps}
         onChange={onChange}
         onBlur={handleFocus}
         onFocus={() => setFocused(false)}
         focused={focused.toString()}
-        id={inputProps && inputProps.name}
+        id={name}
       />
       {/* <span>{errorMessage}</span> */}
     </div>

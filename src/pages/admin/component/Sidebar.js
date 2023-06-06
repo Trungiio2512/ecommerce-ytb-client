@@ -6,19 +6,18 @@ import { menuAdmin } from "../../../until/menu";
 import path from "../../../until/path";
 import icons from "../../../until/icon";
 const { AiOutlineLeft } = icons;
-const Sidebar = (props) => {
-  const [isShow, setIsShow] = useState(true);
+const Sidebar = ({ isShow, onhandleShow }) => {
   return (
     <div
-      className={`hidden lg:block ${
+      className={`hidden md:block fixed top-0 left-0 bottom-0 ${
         isShow ? "w-52" : "w-28"
-      } bg-blue-900  p-5  pt-8 relative duration-300 min-h-screen`}
+      } bg-blue-900  p-5  pt-8 duration-300 h-full`}
     >
       <button
         className={`absolute cursor-pointer -right-4 top-[70 px] border-blue-900 border-2 rounded-full duration-300 bg-white p-2 ${
           !isShow && "rotate-180"
         }`}
-        onClick={() => setIsShow(!isShow)}
+        onClick={onhandleShow}
       >
         <AiOutlineLeft />
       </button>
