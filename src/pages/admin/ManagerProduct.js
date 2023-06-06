@@ -6,8 +6,10 @@ import * as apiProduct from "../../apis/product";
 import { formatVND } from "../../until/fn";
 import { useDebounce } from "../../until/hook";
 import path from "../../until/path";
+import { toastMsg } from "../../until/toast";
 
 const ManagerProduct = (props) => {
+  const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
   const [products, setproducts] = useState([]);
   const [page, setPage] = useState(1);
@@ -33,7 +35,17 @@ const ManagerProduct = (props) => {
       }
     };
     fetchApi();
-  }, [debounced, page]);
+  }, [debounced, page, refresh]);
+
+  const hanldeDeleteProduct = async (pid) => {
+    const rs = await apiProduct.deleteProduct(pid);
+    if (rs.sucess) {
+      toastMsg(rs.msg, "success");
+      setRefresh(!refresh);
+    } else {
+      toastMsg(rs.msg, "error");
+    }
+  };
   return (
     <div className="w-full p-5">
       <div className="flex flex-col sm:flex-row items-start sm:justify-between sm:items-center mb-5">
@@ -91,7 +103,10 @@ const ManagerProduct = (props) => {
                     <td className="px-6 py-4">
                       <div className="w-[100px] h-[100px]">
                         <figure className="w-full h-full">
-                          <img src={product?.thumb} alt="" />
+                          <img
+                            src={product?.thumb?.url ? product?.thumb.url : product?.thumb}
+                            alt=""
+                          />
                         </figure>
                       </div>
                     </td>
@@ -99,14 +114,12 @@ const ManagerProduct = (props) => {
                       <div className="flex flex-col items-start gap-2">
                         <span
                           className={`${
-                            product?.priceSale
-                              ? "l ine-through text-gray-500"
-                              : "text-third text-lg"
+                            product?.priceSale ? "line-through text-gray-500" : "text-white text-lg"
                           } text-sm`}
                         >
                           {formatVND(product?.price)}
                         </span>
-                        {product?.priceSale && (
+                        {product?.priceSale > 0 && (
                           <span
                             className={`text-white text-base
                            `}
@@ -120,7 +133,10 @@ const ManagerProduct = (props) => {
                     <td className="px-6 py-4">{product?.brand?.title}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
-                        <button className="px-3 py-1 bg-white text-third rounded-md active:bg-red-300">
+                        <button
+                          className="px-3 py-1 bg-white text-third rounded-md active:bg-red-300"
+                          onClick={() => hanldeDeleteProduct(product?._id)}
+                        >
                           Delete
                         </button>
                         <button className={`bg-green-400  px-3 py-1 rounded-md text-white`}>
@@ -148,7 +164,10 @@ const ManagerProduct = (props) => {
                       <div className="flex flex-col sm:flex-row sm:items-start items-start gap-5">
                         <div className="w-[100px] h-[100px] shrink-0">
                           <figure className="w-full h-full">
-                            <img src={product?.thumb} alt="" />
+                            <img
+                              src={product?.thumb?.url ? product?.thumb.url : product?.thumb}
+                              alt=""
+                            />
                           </figure>
                         </div>
                         <div className="flex flex-col items-start w-full gap-2">
@@ -156,12 +175,12 @@ const ManagerProduct = (props) => {
                             className={`${
                               product?.priceSale
                                 ? "line-through text-gray-500"
-                                : "text-third text-lg"
+                                : "text-white text-lg"
                             } text-sm`}
                           >
                             {formatVND(product?.price)}
                           </span>
-                          {product?.priceSale && (
+                          {product?.priceSale > 0 && (
                             <span
                               className={`text-white text-lg
                                `}
@@ -172,7 +191,10 @@ const ManagerProduct = (props) => {
                           <span className="">Cartegory: {product?.category?.title}</span>
                           <span className="">Brand: {product?.brand?.title}</span>
                           <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
-                            <button className="px-3 w-full py-1 bg-white text-third rounded-md active:bg-red-300">
+                            <button
+                              className="px-3 w-full py-1 bg-white text-third rounded-md active:bg-red-300"
+                              onClick={() => hanldeDeleteProduct(product?._id)}
+                            >
                               Delete
                             </button>
                             <button

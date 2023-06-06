@@ -11,6 +11,7 @@ function Modal({
   isOpen = false,
   shouldCloseOverlayClick = true,
   children,
+  id,
   onRequestClose = defaultFn,
 }) {
   const [closesing, setClosing] = useState(false);
@@ -46,7 +47,7 @@ function Modal({
   if (!isOpen) return null;
 
   return (
-    <Portal containerId={"modal"}>
+    <Portal containerId={id}>
       <div className={`fixed w-full h-full top-0 left-0 z-10 flex`}>
         <div
           className="absolute top-0 left-0 right-0 bottom-0 bg-black-05"
@@ -55,12 +56,12 @@ function Modal({
         <div
           className={`${
             closesing ? "animate-scale-down-center" : "animate-scale-up-center"
-          } bg-white m-auto w-[800px] max-h-[80%] max-w-[80%] p-[30px] overflow-y-scroll`}
+          } bg-white m-auto max-w-[800px] w-full mx-5 p-[30px] overflow-y-auto relative`}
           ref={containerRef}
         >
           <Button
             onHanldeClick={handleRequestClose}
-            className="text-base float-right hover:text-main p-2 border border-gray-300 hover:border-red-500 rounded-md"
+            className="text-base float-right hover:text-main p-2 border border-gray-300 hover:border-red-500 rounded-md absolute top-2 right-2"
           >
             {/* <TimeIcon width={25} />} */}
             <AiOutlineClose />

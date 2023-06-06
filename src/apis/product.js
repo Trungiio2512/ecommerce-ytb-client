@@ -31,4 +31,8 @@ export const uploadImage = (data) =>
       },
     },
   );
-export const deleteImage = (filename) => {};
+export const deleteProduct = (pid) =>
+  axiosConfig({
+    method: "DELETE",
+    url: `product/delete/${pid}`,
+  });

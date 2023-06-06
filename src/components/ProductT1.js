@@ -25,7 +25,6 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
   const [isShowModal, setShowModal] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
   const [productDetail, setProductDetail] = useState({});
-
   const handleToProductDetail = () => {
     navigate(`/${path.DETAIL_PRODUCT}/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`, {
       state: { categoty_id: data?.category?._id, brand_id: data?.brand?._id, id: data?._id },
@@ -166,6 +165,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
           onRequestClose={() => setShowPortal(false)}
           isOpen={showPortal}
           shouldCloseOverlayClick
+          id={"modal"}
         >
           {Object.keys(productDetail).length > 0 && (
             <ProductDetailContent product={productDetail} />

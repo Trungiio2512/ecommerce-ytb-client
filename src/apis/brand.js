@@ -5,3 +5,10 @@ export const get = () =>
     method: "GET",
     url: "brand",
   });
+
+export const create = (data) =>
+  axiosConfig({
+    method: "POST",
+    url: "brand/create",
+    data,
+  });

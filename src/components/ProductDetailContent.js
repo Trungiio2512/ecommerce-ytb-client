@@ -16,6 +16,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
   const [internal, setInternal] = useState(null);
   const [ram, setRam] = useState(null);
   const [color, setColor] = useState(null);
+  console.log(product?.images);
 
   const handleDecrementQuantity = () => {
     if (quantity <= 0) {
