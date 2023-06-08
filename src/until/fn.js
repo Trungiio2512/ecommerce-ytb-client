@@ -1,6 +1,6 @@
 import icons from "./icon";
 import axios from "axios";
-import * as apiProduct from "../apis/product";
+import * as apiAdmin from "../apis/admin";
 
 const { BsStarFill, BsStarHalf } = icons;
 export function formatVND(string) {
@@ -30,7 +30,7 @@ export const uploadImage = async (file) => {
   formData.append("file", file);
   formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_KEY);
 
-  const rs = await apiProduct.uploadImage(formData);
+  const rs = await apiAdmin.uploadImage(formData);
   return {
     filename: rs.data.public_id,
     url: rs.data.url,

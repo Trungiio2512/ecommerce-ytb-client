@@ -12,3 +12,8 @@ export const create = (data) =>
     url: "brand/create",
     data,
   });
+export const deleteBrand = (bid) =>
+  axiosConfig({
+    method: "DELETE",
+    url: `brand/delete/${bid}`,
+  });
