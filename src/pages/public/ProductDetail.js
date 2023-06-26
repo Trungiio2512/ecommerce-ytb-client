@@ -30,6 +30,7 @@ const ProductDetail = (props) => {
       const rs = await apiProduct.getOne(id);
       if (rs?.sucess) {
         setProduct(rs?.data);
+        // console.log(rs.data);
       }
     };
     fetchApi();

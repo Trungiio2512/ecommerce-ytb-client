@@ -25,6 +25,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
   const [isShowModal, setShowModal] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
   const [productDetail, setProductDetail] = useState({});
+  console.log(token);
   const handleToProductDetail = () => {
     navigate(`/${path.DETAIL_PRODUCT}/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`, {
       state: { categoty_id: data?.category?._id, brand_id: data?.brand?._id, id: data?._id },
@@ -107,7 +108,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
           <Button
             circle
             className={`${
-              token
+              token && wishlist
                 ? wishlist.some((pd) => pd?._id === data?._id)
                   ? "bg-pink-500 text-white"
                   : "bg-white text-third"

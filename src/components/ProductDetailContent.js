@@ -16,7 +16,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
   const [internal, setInternal] = useState(null);
   const [ram, setRam] = useState(null);
   const [color, setColor] = useState(null);
-  console.log(product?.images);
+  console.log(Object.keys(product?.images[0]));
 
   const handleDecrementQuantity = () => {
     if (quantity <= 0) {
@@ -95,12 +95,20 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
         <div className="col l-6 s-6 c-12">
           <div className="space-y-5 pl-5">
             <div className="flex items-center gap-2">
-              <span className="text-xl text-gray-600 line-through font-normal">
+              <span
+                className={
+                  product?.priceSale > 0
+                    ? "text-xl text-gray-600 line-through font-normal"
+                    : "text-2xl text-third font-semibold"
+                }
+              >
                 {formatVND(product?.price)}
               </span>
-              <span className="text-2xl text-third font-semibold">
-                {formatVND(product?.priceSale)}
-              </span>
+              {product?.priceSale > 0 && (
+                <span className="text-2xl text-third font-semibold">
+                  {formatVND(product?.priceSale)}
+                </span>
+              )}
             </div>
             <div className="flex items-center gap-2">
               <span className="flex items-center text-xl"> {getStars(product?.totalRatings)}</span>

@@ -31,6 +31,7 @@ const FormInput = ({
         onFocus={() => setFocused(false)}
         focused={focused.toString()}
         id={name}
+        name={name}
       />
       {/* <span>{errorMessage}</span> */}
     </div>

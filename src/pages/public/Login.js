@@ -50,6 +50,7 @@ const Login = (props) => {
   };
 
   const onChange = (e) => {
+    console.log(e.target.name);
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
@@ -90,6 +91,7 @@ const Login = (props) => {
                 }
                 key={input.id}
                 {...input}
+                name={input.name}
                 value={values[input.name]}
                 onChange={onChange}
                 className="bg-yellow-200 text-lg placeholder:text-sm lg:bg-white border lg:border-2 border-gray-400 rounded-[12px] lg:border-gray-300 w-full p-3 outline-none focus:border-gray-400 active:border-gray-400"
