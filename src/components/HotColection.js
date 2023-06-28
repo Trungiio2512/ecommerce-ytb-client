@@ -18,9 +18,9 @@ const HotColection = (props) => {
             categories.map((ele) => {
               return (
                 ele?.brands?.length > 0 && (
-                  <div className="col l-4 s-6 c-12 mb-[24px]" key={ele?._id}>
-                    <div className="flex items-center gap-4 border border-gray-300 p-[15px] h-full w-full">
-                      <figure className="w-6/12 pl-5">
+                  <div className="col l-4 s-4 c-6 mb-[24px]" key={ele?._id}>
+                    <div className="flex sm:flex-row sm:items-center max-sm:flex-col gap-4 border border-gray-300 p-[15px] h-full w-full">
+                      <figure className="max-sm:w-[100px] sm:w-6/12 sm:pl-5">
                         <img src={ele?.image} alt={ele?.title} />
                       </figure>
                       <div className="flex-1">

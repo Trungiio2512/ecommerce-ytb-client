@@ -16,8 +16,9 @@ const Featured = (props) => {
       const res = await apiProduct.getAll({
         fields: "thumb title price priceSale totalRatings slug",
         features: true,
+        limit: 60,
       });
-      // console.log(res);
+      console.log(res);
       if (res?.sucess) {
         // setproducts(res?.data);
         const idSmartphone = categories.find((el) => el?.title === "Smartphone")?._id;
@@ -35,7 +36,7 @@ const Featured = (props) => {
     };
     fetchApi();
   }, [categories]);
-  // console.log(phones);
+  console.log(laptops);
   return (
     <section>
       <h2 className="uppercase text-xl font-semibold py-4 border-b-[3px] mb-5 border-red-400">

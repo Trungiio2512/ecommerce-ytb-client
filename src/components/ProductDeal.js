@@ -36,7 +36,7 @@ const ProductDeal = (props) => {
       </div>
       <Link to={`/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}>
         <figure className="">
-          <img src={product?.thumb} alt={product?.title} />
+          <img src={product?.thumb?.url} alt={product?.title} />
         </figure>
       </Link>
       <div className="flex flex-col gap-2 mb-3">

@@ -17,14 +17,21 @@ import { useDispatch, useSelector } from "react-redux";
 const Home = (props) => {
   return (
     <main>
-      <div className="flex">
-        {" "}
-        <div className="w-3/12">
+      {" "}
+      <div className="block sm:flex sm:flex-row sm:gap-4">
+        <div className="md:w-3/12 md:block hidden">
+          {" "}
           <Sidebar />
+        </div>
+        <div className="md:w-9/12">
+          <Banner />
+        </div>
+      </div>
+      <div className="flex md:flex-row flex-col gap-4">
+        <div className="md:w-3/12">
           <ProductDeal />
         </div>
-        <div className="w-9/12 pl-5">
-          <Banner />
+        <div className="md:w-9/12">
           <TabProduct />
           <Banner2 />
         </div>

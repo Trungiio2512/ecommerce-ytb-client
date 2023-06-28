@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Banner3 = (props) => {
   return (
-    <section className="mt-5 flex items-center h-[655px] gap-4 overflow-hidden">
+    <section className="mt-5 flex sm:items-center sm:h-[655px] flex-col sm:flex-row gap-4 overflow-hidden">
       <div className="flex-1 h-full">
         <Link
           to={""}

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import path from "../until/path";
 
 const ProductT2 = ({ product }) => {
-  // console.log(product);
   return (
     <div className="w-full flex items-center gap-4 py-5 border border-transparent hover:border-red-400 transition-all">
       <Link
@@ -17,7 +16,7 @@ const ProductT2 = ({ product }) => {
         <figure className="w-full h-full">
           <img
             src={
-              product?.thumb ||
+              product?.thumb?.url ||
               "https://www.tenforums.com/geek/gars/images/2/types/thumb_15995098370_amera_app.png"
             }
             alt={product?.title}

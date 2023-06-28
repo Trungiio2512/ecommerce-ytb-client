@@ -8,7 +8,7 @@ import { formatVND, getStars } from "../until/fn";
 import Slider from "react-slick";
 import Button from "./Button";
 
-const ProductDetailContent = ({ product = {}, selectOption = false }) => {
+const ProductDetailContent = ({ product = {}, selectOption = false, modal = false }) => {
   const { userInfo, isLoggedIn } = useSelector((state) => state.user);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
@@ -56,7 +56,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
     }
   };
   return (
-    <div className="grid-layout">
+    <div className={`grid-layout`}>
       <div className="row">
         <div className="col l-6 s-6 c-12">
           <div className="space-y-5">
@@ -64,9 +64,15 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
               {product?.images?.map((image, index) => {
                 return (
                   <div className="flex" key={index}>
-                    <div className="w-[458px] m-auto">
+                    <div className="lg:w-[458px] sm:w-full  m-auto">
                       <figure className="w-full h-full">
-                        <img src={image} alt="" />
+                        <img
+                          src={
+                            image?.url ||
+                            "https://www.tenforums.com/geek/gars/images/2/types/thumb_15995098370_amera_app.png"
+                          }
+                          alt=""
+                        />
                       </figure>
                     </div>
                   </div>
@@ -84,7 +90,13 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
                 return (
                   <div className="w-[153px]" key={index}>
                     <figure className="w-full h-full">
-                      <img src={image} alt="" />
+                      <img
+                        src={
+                          image?.url ||
+                          "https://www.tenforums.com/geek/gars/images/2/types/thumb_15995098370_amera_app.png"
+                        }
+                        alt=""
+                      />
                     </figure>
                   </div>
                 );
@@ -94,7 +106,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false }) => {
         </div>
         <div className="col l-6 s-6 c-12">
           <div className="space-y-5 pl-5">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 md:flex-row flex-col">
               <span
                 className={
                   product?.priceSale > 0

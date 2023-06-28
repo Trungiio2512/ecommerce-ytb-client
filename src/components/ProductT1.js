@@ -25,7 +25,6 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
   const [isShowModal, setShowModal] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
   const [productDetail, setProductDetail] = useState({});
-  console.log(token);
   const handleToProductDetail = () => {
     navigate(`/${path.DETAIL_PRODUCT}/${data?.category?.slug}/${data?.brand?.slug}/${data?.slug}`, {
       state: { categoty_id: data?.category?._id, brand_id: data?.brand?._id, id: data?._id },
@@ -129,10 +128,10 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
             id: data?._id,
           }}
         >
-          <figure className={`${!imgSmall ? "h-[485px]" : "h-[248px]"} w-full`}>
+          <figure className={`w-full h-full`}>
             <img
               src={
-                data?.thumb ||
+                data?.thumb?.url ||
                 "https://www.tenforums.com/geek/gars/images/2/types/thumb_15995098370_amera_app.png"
               }
               alt={data?.title}
@@ -158,8 +157,10 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
           {getStars(data?.totalRatings)}
           {/* {data?.totalRatings} */}
         </div>
-        <span className="text-gray-500 text-sm line-through mr-2">{formatVND(data?.price)}</span>
-        <span className="text-black text-base">{formatVND(data?.priceSale)}</span>
+        <div className="flex md:flex-row flex-col gap-2 items-baseline">
+          <span className="text-gray-500 text-sm line-through mr-2">{formatVND(data?.price)}</span>
+          <span className="text-black text-base">{formatVND(data?.priceSale)}</span>
+        </div>
       </div>
       {showPortal && (
         <Modal
@@ -169,7 +170,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
           id={"modal"}
         >
           {Object.keys(productDetail).length > 0 && (
-            <ProductDetailContent product={productDetail} />
+            <ProductDetailContent modal product={productDetail} />
           )}
         </Modal>
       )}

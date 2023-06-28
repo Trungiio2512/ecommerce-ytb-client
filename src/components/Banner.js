@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const Banner = (props) => {
   const { banners } = useSelector((state) => state.app);
   return (
-    <div className="h-450">
+    <div className="w-full">
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLQgAH898kfLohq9kxjsGwPOvfvrDj3DE6kg&usqp=CAU"
         alt="banner"

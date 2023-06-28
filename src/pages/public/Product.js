@@ -116,11 +116,11 @@ const Product = (props) => {
           </div>
         </div>
       )}
-      <div className="bg-white p-2 border flex items-center justify-between border-gray-300 space-y-2">
-        <div>
+      <div className="bg-white p-2 border flex max-md:items-start items-center justify-between border-gray-300 space-y-2 gap-5">
+        <div className="max-md:w-full">
           <h2 className="text-base font-semibold text-third capitalize">filter by</h2>
-          <div className="flex items-center gap-2 bg-">
-            <div>
+          <div className="flex md:flex-row items-center max-md:flex-col max-md:w-full gap-2 ">
+            <div className="w-full">
               <Tippy
                 placement="bottom-start"
                 // hideOnClick
@@ -205,7 +205,7 @@ const Product = (props) => {
                 </div>
               </Tippy>
             </div>
-            <div>
+            <div className="w-full">
               <Tippy
                 placement="bottom-start"
                 // hideOnClick
@@ -256,7 +256,7 @@ const Product = (props) => {
                 </div>
               </Tippy>
             </div>
-            <div>
+            <div className="w-full">
               <Tippy
                 placement="bottom-start"
                 // hideOnClick
@@ -307,7 +307,7 @@ const Product = (props) => {
                 </div>
               </Tippy>
             </div>
-            <div>
+            <div className="w-full">
               <Tippy
                 placement="bottom-start"
                 // hideOnClick
@@ -360,7 +360,7 @@ const Product = (props) => {
             </div>
             {resset && (
               <Button
-                className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none hover:border-blue-300 active:border-red-300"
+                className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none hover:border-blue-300 active:border-red-300 w-full"
                 onHanldeClick={() => {
                   setValues({
                     priceFrom: "",
@@ -402,7 +402,7 @@ const Product = (props) => {
             {products.length > 0 &&
               products?.map((product) => {
                 return (
-                  <div className="col l-3 s-4 c-12 mb-5" key={product?._id}>
+                  <div className="col l-3 s-4 c-6 mb-5" key={product?._id}>
                     <ProductT1 isShowDesModal imgSmall uiGridLayout data={product} />
                   </div>
                 );

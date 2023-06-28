@@ -22,7 +22,33 @@ const settings = {
   infinite: true,
   speed: 500,
   slidesToShow: 3,
-  slidesToScroll: 1,
+  slidesToScroll: 3,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
 };
 const NewArrivals = (props) => {
   const { categories, newProducts } = useSelector((state) => state.app);
@@ -31,6 +57,7 @@ const NewArrivals = (props) => {
   const [cams, setCams] = useState([]);
   const [speaker, setSpeaker] = useState([]);
   const [tabActive, settabActive] = useState(0);
+
   // console.log(newProducts);
   useEffect(() => {
     if (categories?.length > 0 && newProducts?.length > 0) {
@@ -38,6 +65,7 @@ const NewArrivals = (props) => {
         [el?.title]: newProducts?.filter((pd) => pd?.category?._id === el?._id),
       }));
       const productTvs = data.find((el) => el["Television"])?.Television;
+      console.log(data);
       const productCams = data.find((el) => el["Camera"])?.Camera;
       const productSpeaker = data.find((el) => el["Speaker"])?.Speaker;
       //   console.log(productCams);
@@ -50,8 +78,8 @@ const NewArrivals = (props) => {
   return (
     <section className="mt-4">
       <div className="flex items-center justify-between py-4 border-b-2 border-red-400 mb-4">
-        <h2 className="text-2xl text-gray-800 uppercase font-semibold">New Arrivals</h2>
-        <ul className="divide-x">
+        <h2 className="sm:text-2xl text-xl text-gray-800 uppercase font-semibold">New Arrivals</h2>
+        <ul className="divide-x sm:block hidden">
           {tabs.map((tab) => {
             return (
               <li
@@ -67,6 +95,11 @@ const NewArrivals = (props) => {
             );
           })}
         </ul>
+        <select className="px-4 py-2 outline-none">
+          {tabs.map((tab) => {
+            return <option value={tab.id}>{tab.title}</option>;
+          })}
+        </select>
       </div>
       <div className={`${tabActive === 0 ? "block" : "hidden"}`}>
         <Slider {...settings}>

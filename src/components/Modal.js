@@ -48,7 +48,9 @@ function Modal({
 
   return (
     <Portal containerId={id}>
-      <div className={`fixed w-full h-full top-0 left-0 z-10 flex`}>
+      <div
+        className={`fixed w-full h-full top-0 left-0 z-10 flex items-center justify-center overflow-y-auto`}
+      >
         <div
           className="absolute top-0 left-0 right-0 bottom-0 bg-black-05"
           onClick={shouldCloseOverlayClick ? handleRequestClose : defaultFn}
@@ -56,7 +58,7 @@ function Modal({
         <div
           className={`${
             closesing ? "animate-scale-down-center" : "animate-scale-up-center"
-          } bg-white m-auto max-w-[800px] w-full mx-5 p-[30px] overflow-y-auto relative`}
+          } bg-white m-auto max-w-[800px] w-full mx-5 p-[30px] relative`}
           ref={containerRef}
         >
           <Button

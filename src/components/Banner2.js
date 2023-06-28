@@ -6,7 +6,7 @@ const Banner2 = () => {
   return (
     <div className="grid-layout">
       <div className="row">
-        <div className="col l-6 s-12 c-12">
+        <div className="col l-6 s-12 c-12 mb-4">
           <Link
             to={""}
             className="shadow-box mb-4 lg:mb-0"
@@ -21,7 +21,7 @@ const Banner2 = () => {
             />
           </Link>
         </div>
-        <div className="col l-6 s-12 c-12">
+        <div className="col l-6 s-12 c-12 mb-4">
           <Link
             to={""}
             className="shadow-box"

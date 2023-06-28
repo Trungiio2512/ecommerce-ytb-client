@@ -24,6 +24,31 @@ const settings = {
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
 };
 const TabProduct = () => {
   const { categories, newProducts } = useSelector((state) => state.app);
@@ -52,22 +77,35 @@ const TabProduct = () => {
   // console.log(bestSeller);
   return (
     <div className="mt-8 mb-4">
-      <ul className="mb-5 divide-x border-b-2 border-red-500 pb-4">
-        {tabs.map((tab) => {
-          return (
-            <li
-              key={tab.id}
-              className={`uppercase ${
-                tabActive === tab.id ? "text-black" : "text-gray-400"
-              } font-medium inline text-2xl cursor-pointer  ${tab.id === 0 ? "" : "pl-5 ml-5"}`}
-              onClick={() => settabActive(tab.id)}
-            >
-              {" "}
-              {tab.title}
-            </li>
-          );
-        })}
-      </ul>
+      <div>
+        <ul className="mb-5 divide-x border-b-2 border-red-500 pb-4 sm:block hidden">
+          {tabs.map((tab) => {
+            return (
+              <li
+                key={tab.id}
+                className={`uppercase ${
+                  tabActive === tab.id ? "text-black" : "text-gray-400"
+                } font-medium inline text-2xl cursor-pointer  ${tab.id === 0 ? "" : "pl-5 ml-5"}`}
+                onClick={() => settabActive(tab.id)}
+              >
+                {" "}
+                {tab.title}
+              </li>
+            );
+          })}
+        </ul>
+        <div className="divide-x border-b-2 border-red-500 sm:hidden block mb-5">
+          <select className=" text-xl  uppercase outline-none font-medium ">
+            {tabs.map((tab) => {
+              return (
+                <option key={tab.id} className="text-base font-normal">
+                  {tab.title}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </div>
       <div className={`${tabActive === 0 ? "block" : "hidden"}`}>
         <Slider {...settings}>
           {bestSeller.map((el) => {

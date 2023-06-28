@@ -50,7 +50,7 @@ export const get = createAsyncThunk("app/get", async (data, { rejectWithValue })
     await apiProduct.getAll({
       news: true,
       fields: "thumb specifications title slug price totalRatings news priceSale description",
-      limit: 50,
+      limit: 60,
     }),
     await apiRam.get(),
     await apiColor.get(),
