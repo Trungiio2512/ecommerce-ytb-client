@@ -38,7 +38,6 @@ const settings = {
       settings: {
         slidesToShow: 2,
         slidesToScroll: 2,
-        initialSlide: 2,
       },
     },
     {
@@ -97,7 +96,11 @@ const NewArrivals = (props) => {
         </ul>
         <select className="px-4 py-2 outline-none">
           {tabs.map((tab) => {
-            return <option value={tab.id}>{tab.title}</option>;
+            return (
+              <option key={tab.id} value={tab.id}>
+                {tab.title}
+              </option>
+            );
           })}
         </select>
       </div>

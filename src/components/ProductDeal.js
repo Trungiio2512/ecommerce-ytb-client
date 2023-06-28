@@ -27,15 +27,20 @@ const ProductDeal = (props) => {
     fetchApi();
   }, []);
   return (
-    <div className="mt-8 border border-gray-300 p-5">
-      <div className="flex items-baseline ">
+    <div className="mt-8 border border-gray-300 p-5 max-lg:p-2">
+      <div className="flex items-baseline mb-4">
         <span className="text-main text-xl">
           <BsStarFill />
         </span>
-        <h2 className="uppercase font-semibold text-2xl flex-1 text-center">daily deals</h2>
+        <h2 className="uppercase font-semibold lg:text-2xl text-xl flex-1 text-center">
+          daily deals
+        </h2>
       </div>
-      <Link to={`/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}>
-        <figure className="">
+      <Link
+        to={`/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}
+        className="flex items-center justify-center"
+      >
+        <figure className="lg:w-[200px] lg:h-[200px] max-md:max-w-[400px] max-md:max-h-[400px] w-full h-full shrink">
           <img src={product?.thumb?.url} alt={product?.title} />
         </figure>
       </Link>

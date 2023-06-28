@@ -11,7 +11,7 @@ const ProductT2 = ({ product }) => {
         to={`/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}
         state={{ id: product?._id }}
         replace
-        className="w-[85px] h-[85px] p-2"
+        className="w-[85px] h-[85px] p-2 shrink-0"
       >
         <figure className="w-full h-full">
           <img
@@ -23,13 +23,13 @@ const ProductT2 = ({ product }) => {
           />
         </figure>
       </Link>
-      <div>
+      <div className="">
         <Link
           to={`/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`}
           state={{ id: product?._id }}
           replace
         >
-          <h3 className="text-[#2b3743] line-clamp-1 cursor-pointer hover:text-main">
+          <h3 className="text-[#2b3743] cursor-pointer hover:text-main line-clamp-2">
             {product?.title}
           </h3>
         </Link>
@@ -40,12 +40,12 @@ const ProductT2 = ({ product }) => {
           </div>
         )}
         {product?.price && (
-          <span className="text-gray-500 text-sm line-through mr-2">
+          <span className="text-gray-500 text-sm line-through mr-2 inline-block">
             {formatVND(product?.price)}
           </span>
         )}
         {product?.priceSale && (
-          <span className="text-black text-base">{formatVND(product?.priceSale)}</span>
+          <span className="text-black text-base inline-block">{formatVND(product?.priceSale)}</span>
         )}
       </div>
     </div>

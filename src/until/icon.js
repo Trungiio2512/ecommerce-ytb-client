@@ -35,6 +35,7 @@ import {
   AiOutlineOrderedList,
   AiOutlineLeft,
   AiOutlineRight,
+  AiOutlineLogin,
 } from "react-icons/ai";
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
@@ -78,6 +79,7 @@ const icons = {
   ImHome,
   AiOutlineLeft,
   AiOutlineRight,
+  AiOutlineLogin,
 };
 
 export default icons;

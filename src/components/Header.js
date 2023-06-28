@@ -24,6 +24,7 @@ const {
   HiShoppingCart,
   AiOutlineMenu,
   AiOutlineUser,
+  AiOutlineLogin,
 } = icons;
 const linkRight = [
   {
@@ -71,7 +72,7 @@ const Header = (props) => {
     }
   };
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col mb-5">
       <div className="bg-main text-white text-xs py-[10px] md:block hidden ">
         <div className="main-width m-auto ">
           <div className="float-left">
@@ -112,12 +113,12 @@ const Header = (props) => {
         </div>
       </div>
       <div className="main-width m-auto lg:h-[110px] h-[80px]  flex items-center justify-between border-b-1 border-gray-300">
-        <button className="md:hidden text-2xl">
+        <button className="min-w-[50px] md:hidden text-2xl py-3 mr-4 active:text-main">
           <span>
             <AiOutlineMenu />
           </span>
         </button>
-        <Link to={`/${path.HOME}`}>
+        <Link to={`/${path.HOME}`} className="shrink">
           <figure>
             <img
               src="	https://cdn.shopify.com/s/files/1/1903/4853/files/logo_digital_new_250x.png?v=1613166683"
@@ -237,6 +238,10 @@ const Header = (props) => {
             </span>
           </button>
         )}
+        <button className="min-w-[50px] text-third text-right pl-4 py-3 flex items-center justify-end max-md:block hidden ">
+          {" "}
+          <AiOutlineLogin size={25} />
+        </button>
       </div>
     </div>
   );

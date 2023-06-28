@@ -34,7 +34,7 @@ details > summary::marker {
   transition: all 0.2s ease;
 }
 .main-width {
-  @apply max-w-main w-full px-5  mx-auto overflow-hidden;
+  @apply max-w-main w-full mx-auto md:px-5 max-sm:px-2  mx-auto overflow-hidden;
 }
 
 .header-wishlist,

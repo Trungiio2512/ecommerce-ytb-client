@@ -95,7 +95,7 @@ const Product = (props) => {
   }, [values]);
 
   return (
-    <div className="space-y-5 ">
+    <div className="space-y-5 text-base max-md:text-sm">
       {searchParams.get("q") && (
         <div className="py-[15px]">
           <h3 className="text-xl font-semibold text-black uppercase mb-2 ">
@@ -116,22 +116,18 @@ const Product = (props) => {
           </div>
         </div>
       )}
-      <div className="bg-white p-2 border flex max-md:items-start items-center justify-between border-gray-300 space-y-2 gap-5">
+      <div className="bg-white p-2 border flex max-xs:flex-col max-md:items-start items-center justify-between border-gray-300 space-y-2 gap-5">
         <div className="max-md:w-full">
-          <h2 className="text-base font-semibold text-third capitalize">filter by</h2>
+          <h2 className="font-semibold text-third capitalize">filter by</h2>
           <div className="flex md:flex-row items-center max-md:flex-col max-md:w-full gap-2 ">
             <div className="w-full">
               <Tippy
                 placement="bottom-start"
-                // hideOnClick
-                // maxWidth={"330px"}
-                // visible
                 interactive
-                // hi
                 delay={[200, 300]}
                 render={(attrs) => (
                   <div
-                    className="w-[330px] h-screen-50 overflow-y-auto  border-gray-300 border bg-white relative text-base text-gray-400 "
+                    className="w-[330px] h-screen-50 overflow-y-auto  border-gray-300 border bg-white relative  text-gray-400 "
                     tabIndex="-1"
                     {...attrs}
                   >
@@ -199,7 +195,7 @@ const Product = (props) => {
                   </div>
                 )}
               >
-                <div className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none">
+                <div className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none">
                   <span>Price</span>
                   <AiFillCaretDown />
                 </div>
@@ -214,7 +210,7 @@ const Product = (props) => {
                 delay={[200, 300]}
                 render={(attrs) => (
                   <div
-                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative text-base text-gray-400"
+                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative  text-gray-400"
                     tabIndex="-1"
                     {...attrs}
                   >
@@ -250,7 +246,7 @@ const Product = (props) => {
                   </div>
                 )}
               >
-                <div className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none">
+                <div className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none">
                   <span>Color</span>
                   <AiFillCaretDown />
                 </div>
@@ -265,7 +261,7 @@ const Product = (props) => {
                 delay={[200, 300]}
                 render={(attrs) => (
                   <div
-                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative text-base text-gray-400"
+                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative  text-gray-400"
                     tabIndex="-1"
                     {...attrs}
                   >
@@ -301,7 +297,7 @@ const Product = (props) => {
                   </div>
                 )}
               >
-                <div className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none">
+                <div className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none">
                   <span>Ram</span>
                   <AiFillCaretDown />
                 </div>
@@ -316,7 +312,7 @@ const Product = (props) => {
                 delay={[200, 300]}
                 render={(attrs) => (
                   <div
-                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative text-base text-gray-400"
+                    className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative  text-gray-400"
                     tabIndex="-1"
                     {...attrs}
                   >
@@ -352,7 +348,7 @@ const Product = (props) => {
                   </div>
                 )}
               >
-                <div className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none">
+                <div className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none">
                   <span>Internal</span>
                   <AiFillCaretDown />
                 </div>
@@ -360,7 +356,7 @@ const Product = (props) => {
             </div>
             {resset && (
               <Button
-                className="flex items-center gap-2 px-5 py-4 border border-gray-400 text-base text-gray-400 appearance-none hover:border-blue-300 active:border-red-300 w-full"
+                className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none hover:border-blue-300 active:border-red-300 w-full"
                 onHanldeClick={() => {
                   setValues({
                     priceFrom: "",
@@ -379,7 +375,7 @@ const Product = (props) => {
         </div>
         <div>
           {" "}
-          <h2 className="text-base font-semibold text-third capitalize">sort by</h2>
+          <h2 className=" font-semibold text-third capitalize">sort by</h2>
           <select
             onChange={(e) => {
               setValues((prev) => ({ ...prev, sort: `${e.target.value}` }));

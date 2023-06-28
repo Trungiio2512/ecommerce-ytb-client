@@ -157,10 +157,10 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
           {getStars(data?.totalRatings)}
           {/* {data?.totalRatings} */}
         </div>
-        <div className="flex md:flex-row flex-col gap-2 items-baseline">
-          <span className="text-gray-500 text-sm line-through mr-2">{formatVND(data?.price)}</span>
-          <span className="text-black text-base">{formatVND(data?.priceSale)}</span>
-        </div>
+        <span className="text-gray-500 text-sm line-through mr-2 inline-block">
+          {formatVND(data?.price)}
+        </span>
+        <span className="text-black text-base inline-block">{formatVND(data?.priceSale)}</span>
       </div>
       {showPortal && (
         <Modal

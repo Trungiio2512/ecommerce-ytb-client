@@ -59,16 +59,20 @@ const Footer = (props) => {
         <div className="text-white main-width py-6">
           <div className="grid-layout">
             <div className="row">
-              <div className="l-6 s-6 c-12">
+              <div className="l-6 s-6 c-12 mb-4">
                 <div className="flex-col">
-                  <h2 className="uppercase font-medium text-2xl">SIGN UP TO NEWSLETTER</h2>
-                  <span className="text-sm">Subscribe now and receive weekly newsletter</span>
+                  <h2 className="uppercase font-medium text-2xl max-xs:text-lg">
+                    SIGN UP TO NEWSLETTER
+                  </h2>
+                  <span className="text-sm max-xs:text-xs">
+                    Subscribe now and receive weekly newsletter
+                  </span>
                 </div>
               </div>
               <div className="l-6 s-6 c-12">
                 <div className="w-full h-full relative">
                   <input
-                    className="w-full h-full p-5 bg-white-02 rounded-[30px] outline-none placeholder:text-sm placeholder:text-gray-400"
+                    className="w-full h-full p-5 max-xs:px-5 max-xs:py-2 bg-white-02 rounded-[30px] outline-none placeholder:text-sm placeholder:text-white"
                     placeholder="Email address"
                   />
                   <span className="absolute right-[30px] top-[50%] translate-y-[-50%] text-2xl">
@@ -86,21 +90,24 @@ const Footer = (props) => {
             <div className="row">
               {infor.map((ele) => {
                 return (
-                  <div className="col l-3 s-6 c-12" key={ele?.title}>
-                    <h2 className="pl-4 text-lg uppercase font-semibold border-l-4 border-red-500 text-left mb-5 text-white">
+                  <div className="col l-3 s-6 c-12 mb-4" key={ele?.title}>
+                    <h2 className="pl-4 text-lg max-xs:text-base uppercase font-semibold border-l-4 border-red-500 text-left mb-5 text-white">
                       {ele?.title}
                     </h2>
                     {ele?.children && (
                       <ul className="space-y-4">
                         {ele?.children.map((child, index) => {
                           return (
-                            <li className="flex items-center gap-2 text-base" key={index}>
+                            <li
+                              className="flex items-center gap-2 text-base max-xs:text-sm"
+                              key={index}
+                            >
                               {child?.title && (
                                 <span className="capitalize flex items-center gap-2 text-white">
                                   {child?.icon} {child?.title}
                                 </span>
                               )}
-                              <span className="text-gray-300 text-sm capitalize">
+                              <span className="text-gray-300 text-sm max-xs:text-xs  capitalize">
                                 {child?.content}
                               </span>
                             </li>
