@@ -19,7 +19,7 @@ import ProductT2 from "./ProductT2";
 import path from "../until/path";
 const { AiOutlineMenu, AiOutlineClose, AiOutlineLoading3Quarters } = icons;
 
-const Navigation = (props) => {
+const Navigation = ({ open, handleOpen }) => {
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(first)
@@ -66,7 +66,7 @@ const Navigation = (props) => {
           );
         })}
       </nav>
-      <button className="hidden md:block lg:hidden text-2xl">
+      <button className="hidden md:block lg:hidden text-2xl" onClick={() => handleOpen(!open)}>
         <span>
           <AiOutlineMenu />
         </span>

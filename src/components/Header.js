@@ -53,7 +53,7 @@ const linkRight = [
     path: "",
   },
 ];
-const Header = (props) => {
+const Header = ({ open, handleOpen }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userInfo, token, isLoggedIn, cart } = useSelector((state) => state.user);
@@ -113,7 +113,10 @@ const Header = (props) => {
         </div>
       </div>
       <div className="main-width m-auto lg:h-[110px] h-[80px]  flex items-center justify-between border-b-1 border-gray-300">
-        <button className="min-w-[50px] md:hidden text-2xl py-3 mr-4 active:text-main">
+        <button
+          className="min-w-[50px] md:hidden text-2xl py-3 mr-4 active:text-main"
+          onClick={() => handleOpen(!open)}
+        >
           <span>
             <AiOutlineMenu />
           </span>
@@ -238,10 +241,10 @@ const Header = (props) => {
             </span>
           </button>
         )}
-        <button className="min-w-[50px] text-third text-right pl-4 py-3 flex items-center justify-end max-md:block hidden ">
+        {/* <button className="min-w-[50px] text-third text-right pl-4 py-3 flex items-center justify-end max-md:block hidden ">
           {" "}
           <AiOutlineLogin size={25} />
-        </button>
+        </button> */}
       </div>
     </div>
   );

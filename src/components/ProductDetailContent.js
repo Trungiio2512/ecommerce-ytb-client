@@ -16,7 +16,6 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
   const [internal, setInternal] = useState(null);
   const [ram, setRam] = useState(null);
   const [color, setColor] = useState(null);
-  console.log(Object.keys(product?.images[0]));
 
   const handleDecrementQuantity = () => {
     if (quantity <= 0) {
@@ -64,7 +63,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
               {product?.images?.map((image, index) => {
                 return (
                   <div className="flex" key={index}>
-                    <div className="lg:w-[458px] sm:w-full  m-auto">
+                    <div className="max-w-[453px] max-h-[453px] shrink w-full h-full m-auto">
                       <figure className="w-full h-full">
                         <img
                           src={
@@ -88,7 +87,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
             >
               {product?.images.map((image, index) => {
                 return (
-                  <div className="w-[153px]" key={index}>
+                  <div className="max-w-[153px] w-full" key={index}>
                     <figure className="w-full h-full">
                       <img
                         src={
@@ -110,8 +109,8 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
               <span
                 className={
                   product?.priceSale > 0
-                    ? "text-xl text-gray-600 line-through font-normal"
-                    : "text-2xl text-third font-semibold"
+                    ? "text-lg text-gray-600 line-through font-normal"
+                    : "text-xl text-third font-semibold"
                 }
               >
                 {formatVND(product?.price)}
@@ -122,14 +121,14 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                 </span>
               )}
             </div>
-            <div className="flex items-center gap-2">
-              <span className="flex items-center text-xl"> {getStars(product?.totalRatings)}</span>
+            <div className="flex items-stretch gap-2">
+              <span className="flex items-center text-lg"> {getStars(product?.totalRatings)}</span>
               <span className="text-base text-gray-500"> 0 review</span>
             </div>
             <ul className="list-square text-base text-gray-500 space-y-2">
               {product?.specifications?.map((ele, index) => {
                 return (
-                  <li className="" key={index}>
+                  <li className="text-sm" key={index}>
                     {ele}
                   </li>
                 );
@@ -153,7 +152,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                     />
                     <label
                       htmlFor={ele?._id}
-                      className={`"bg-white px-2 py-3 text-base font-medium uppercase border border-gray-400 text-gray-400 block ${
+                      className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
                         ele?._id === internal ? "text-main border-red-400 " : ""
                       }`}
                     >
@@ -181,7 +180,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                     />
                     <label
                       htmlFor={ele?._id}
-                      className={`"bg-white px-2 py-3 text-base font-medium uppercase border border-gray-400 text-gray-400 block ${
+                      className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
                         ele?._id === color ? "text-main border-red-400 " : ""
                       }`}
                     >
@@ -207,7 +206,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                     />
                     <label
                       htmlFor={ele?._id}
-                      className={`"bg-white px-2 py-3 text-base font-medium uppercase border border-gray-400 text-gray-400 block ${
+                      className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
                         ele?._id === ram ? "text-main border-red-400 " : ""
                       }`}
                     >

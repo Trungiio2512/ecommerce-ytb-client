@@ -10,7 +10,6 @@ const fakeDelay = (promise) => {
 const Public = (props) => {
   return (
     <div className="w-full">
-      <Navigation />
       <div className="main-width h-auto ">
         {" "}
         <Outlet />

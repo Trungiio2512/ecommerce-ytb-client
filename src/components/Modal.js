@@ -25,7 +25,6 @@ function Modal({
         e.stopPropagation();
         setClosing(false);
         onRequestClose();
-        console.log(1);
       },
       { once: true },
     );
