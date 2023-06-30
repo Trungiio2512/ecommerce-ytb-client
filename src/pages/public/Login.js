@@ -50,7 +50,6 @@ const Login = (props) => {
   };
 
   const onChange = (e) => {
-    console.log(e.target.name);
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 

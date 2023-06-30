@@ -61,7 +61,7 @@ const Footer = (props) => {
             <div className="row">
               <div className="l-6 s-6 c-12 mb-4">
                 <div className="flex-col">
-                  <h2 className="uppercase font-medium text-2xl max-xs:text-lg">
+                  <h2 className="uppercase font-medium lg:text-2xl md:text-xl  max-xs:text-lg">
                     SIGN UP TO NEWSLETTER
                   </h2>
                   <span className="text-sm max-xs:text-xs">
@@ -72,7 +72,7 @@ const Footer = (props) => {
               <div className="l-6 s-6 c-12">
                 <div className="w-full h-full relative">
                   <input
-                    className="w-full h-full p-5 max-xs:px-5 max-xs:py-2 bg-white-02 rounded-[30px] outline-none placeholder:text-sm placeholder:text-white"
+                    className="w-full h-full md:p-5 xs:px-3 xs:py-2 max-xs:px-5 max-xs:py-2 bg-white-02 rounded-[30px] outline-none placeholder:text-sm placeholder:text-white"
                     placeholder="Email address"
                   />
                   <span className="absolute right-[30px] top-[50%] translate-y-[-50%] text-2xl">

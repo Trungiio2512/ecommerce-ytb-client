@@ -114,11 +114,11 @@ const Header = ({ open, handleOpen }) => {
       </div>
       <div className="main-width m-auto lg:h-[110px] h-[80px]  flex items-center justify-between border-b-1 border-gray-300">
         <button
-          className="min-w-[50px] md:hidden text-2xl py-3 mr-4 active:text-main"
+          className="min-w-[50px] md:hidden py-3 mr-4 active:text-main"
           onClick={() => handleOpen(!open)}
         >
           <span>
-            <AiOutlineMenu />
+            <AiOutlineMenu size={30} />
           </span>
         </button>
         <Link to={`/${path.HOME}`} className="shrink">
@@ -184,7 +184,9 @@ const Header = ({ open, handleOpen }) => {
                   placement="bottom-end"
                   delay={[200, 300]}
                   interactive
+                  // hideOnClick={true}
                   visible={showMenu}
+                  zIndex={1}
                   render={(attrs) => (
                     <div
                       className="w-[300px] border border-gray-300 shadow-md bg-white animate-scale-up-tr z-0"
@@ -235,9 +237,9 @@ const Header = ({ open, handleOpen }) => {
           )}
         </div>
         {token && isLoggedIn && (
-          <button className="text-4xl hover:text-main md:hidden ">
+          <button className="min-w-[50px] md:hidden flex items-center justify-end py-3 ml-4 active:text-main">
             <span>
-              <HiShoppingCart />
+              <HiShoppingCart size={30} />
             </span>
           </button>
         )}

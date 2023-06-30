@@ -86,6 +86,18 @@ module.exports = {
             transform: "translateX(0)",
           },
         },
+
+        "menu-bg": {
+          "0%": {
+            backgroundColor: "#ffffff4d",
+          },
+          "50%": {
+            backgroundColor: "#0000004d",
+          },
+          "100%": {
+            backgroundColor: "#ffffff4d",
+          },
+        },
       },
       animation: {
         "slide-top": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
@@ -96,6 +108,7 @@ module.exports = {
         "scale-up-tr": "scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both",
         "slide-left": "slide-left .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",
         "slide-right": "slide-right .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",
+        "menu-bg": "menu-bg .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",
       },
       height: {
         450: "450px",
@@ -108,6 +121,7 @@ module.exports = {
       backgroundColor: {
         main: "#ee3131",
         "black-05": "rgba(0,0,0,0.5)",
+        "black-03": "rgba(0,0,0,0.3)",
         "white-02": "rgba(255, 255, 255, 0.2)",
       },
       colors: {

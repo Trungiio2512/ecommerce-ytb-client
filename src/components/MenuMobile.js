@@ -1,13 +1,26 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import icons from "../until/icon";
-import { menuHome } from "../until/menu";
+import { menuHome, menuUser, menuAdmin } from "../until/menu";
+import path from "../until/path";
+import SubMenuMobile from "./SubMenuMobile";
+import MenuMobileItem from "./MenuMobileItem";
 const { AiOutlineClose, AiFillCaretDown } = icons;
 
 const MenuMobile = ({ open, handleClose = () => {}, shouldCloseOverlayClick }) => {
-  const menus = [...menuHome];
+  const { userInfo } = useSelector((state) => state.user);
+  // console.log(userInfo);
+  const [menus, setMenus] = useState(() => {
+    let menu = [...menuHome];
+    if (userInfo.role === "user") {
+      menu = [...menu, { title: "User Acctions", children: [...menuUser] }];
+    } else if (userInfo.role === "admin") {
+      menu = [...menu, { title: "Admin Acctions", children: [...menuAdmin] }];
+    }
+    return menu;
+  });
   const [closesing, setClosing] = useState(false);
   const containerRef = useRef();
 
@@ -39,13 +52,13 @@ const MenuMobile = ({ open, handleClose = () => {}, shouldCloseOverlayClick }) =
 
   if (!open) return null;
   return (
-    <div className="max-lg:fixed lg:hidden z-10 absolute top-0 left-0 h-screen">
+    <div className="max-lg:fixed lg:hidden z-10 absolute top-0 left-0 right-0 h-screen">
       <div
-        className="absolute top-0 left-0 right-0 bottom-0 bg-white-02"
+        className={`absolute top-0 left-0 right-0 bottom-0 duration-150 bg-black-03`}
         onClick={shouldCloseOverlayClick ? handleClose() : () => {}}
       ></div>
       <div
-        className={`max-xs:w-full relative xs:w-[350px] h-full bg-black text-white text-base duration-500  overflow-hidden ${
+        className={`relative w-full max-w-[350px] h-full bg-gray-700 text-white text-base duration-500  overflow-hidden ${
           closesing ? "animate-slide-left" : "animate-slide-right"
         }`}
         ref={containerRef}
@@ -59,23 +72,7 @@ const MenuMobile = ({ open, handleClose = () => {}, shouldCloseOverlayClick }) =
         <ul className="w-full h-full py-2 px-1">
           {menus.map((menu) => {
             return (
-              <li key={menu.id} className="w-full flex items-center">
-                <NavLink
-                  to={menu.path}
-                  className={({ isActive }) => {
-                    return `p-[10px] w-full uppercase flex-1 duration-300 ${
-                      isActive ? "bg-white text-main" : "hover:bg-white-02"
-                    } `;
-                  }}
-                >
-                  {menu.title}
-                </NavLink>
-                {menu?.children && (
-                  <span className="absolute top-[50%] right-5">
-                    <AiFillCaretDown size={20} />
-                  </span>
-                )}
-              </li>
+              <MenuMobileItem key={menu.id} data={menu} onCloseMenuParent={handleRequestClose} />
             );
           })}
         </ul>

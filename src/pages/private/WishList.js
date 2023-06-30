@@ -27,6 +27,7 @@ const WishList = (props) => {
   //   fetchApi();
   // }, []);
   const { loading, wishlist } = useSelector((state) => state.user);
+  console.log(wishlist);
   const handleToDetailProduct = (product) => {
     navigate(
       `/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`,

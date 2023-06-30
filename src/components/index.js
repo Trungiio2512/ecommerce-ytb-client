@@ -19,3 +19,5 @@ export { default as ProductDetailContent } from "./ProductDetailContent";
 export { default as Pagination } from "./Pagination";
 export { default as Modal } from "./Modal";
 export { default as MenuMobile } from "./MenuMobile";
+export { default as SubMenuMobile } from "./SubMenuMobile";
+export { default as MenuMobileItem } from "./MenuMobileItem";
