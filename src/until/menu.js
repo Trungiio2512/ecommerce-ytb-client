@@ -1,6 +1,14 @@
 import path from "./path";
 import icons from "./icon";
-const { AiOutlineUser, BsClipboardHeart, FaClipboardList, AiOutlineOrderedList, ImHome } = icons;
+const {
+  AiOutlineUser,
+  BsClipboardHeart,
+  FaClipboardList,
+  AiOutlineOrderedList,
+  ImHome,
+  GrUserAdmin,
+  RiAdminLine,
+} = icons;
 export const menuHome = [
   {
     id: 1,
@@ -53,16 +61,16 @@ export const menuUser = [
 export const menuAdmin = [
   {
     id: 5,
-    title: "Home",
-    path: `/${path.HOME}`,
-    icon: <ImHome />,
+    title: "Admin",
+    path: `/${path.ADMIN}`,
+    icon: <RiAdminLine />,
   },
-  {
-    id: 0,
-    title: "ManaBanner",
-    path: `/${path.ADMIN}/${path.MANAGER_BANNER}`,
-    icon: <AiOutlineUser />,
-  },
+  // {
+  //   id: 0,
+  //   title: "ManaBanner",
+  //   path: `/${path.ADMIN}/${path.MANAGER_BANNER}`,
+  //   icon: <AiOutlineUser />,
+  // },
   {
     id: 1,
     title: "ManaBrand",

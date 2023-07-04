@@ -24,8 +24,6 @@ const Cart = (props) => {
     fetchApi();
   }, []);
 
-  console.log(carts);
-
   const handleDecrementQuantity = async (id) => {
     const index = carts.findIndex((item) => item?._id === id);
     if (index > -1) {
@@ -129,7 +127,7 @@ const Cart = (props) => {
                     <td className="px-6 py-4">
                       {" "}
                       <figure className="w-[150px] h-[150px]">
-                        <img src={item?.product?.thumb} alt={item?.product?.title} />
+                        <img src={item?.product?.thumb?.url} alt={item?.product?.title} />
                       </figure>{" "}
                     </td>
 
@@ -229,7 +227,7 @@ const Cart = (props) => {
                     replace
                   >
                     <figure className="w-full h-full">
-                      <img src={item?.product?.thumb} alt={item?.product?.title} />
+                      <img src={item?.product?.thumb?.url} alt={item?.product?.title} />
                     </figure>
                   </Link>
                   <div className="flex flex-col gap-2 flex-1">
@@ -241,10 +239,10 @@ const Cart = (props) => {
                       {" "}
                       <h2 className="text-third text-xl font-semibold">{item?.product?.title}</h2>
                     </Link>
-                    <div className="flex gap-2 items-start">
-                      <span className="text-base text-gray-700">{`Ram: ${item?.ram?.name}`}</span>
-                      <span className="text-base text-gray-700">{`Intenal: ${item?.internal?.name}`}</span>
-                      <span className="text-base text-gray-700">{`Color: ${item?.color?.name}`}</span>
+                    <div className="flex gap-2 items-start text-base text-gray-700 max-xs:text-sm">
+                      <span>{`Ram: ${item?.ram?.name}`}</span>
+                      <span>{`Intenal: ${item?.internal?.name}`}</span>
+                      <span>{`Color: ${item?.color?.name}`}</span>
                     </div>
                     <div className="flex flex-col gap-2">
                       <span
@@ -273,7 +271,7 @@ const Cart = (props) => {
                       </Button>
                       <input
                         type="number"
-                        className="outline-none text-center border border-gray-400  focus:bg-red-200 focus:text-third transition-all duration-300 text-lg pl-[0.75] pr-1 py-2 rounded-lg w-full lg:max-w-[120px]"
+                        className="outline-none text-center border border-gray-400  focus:bg-red-200 focus:text-third transition-all duration-300 text-lg pl-[0.75] pr-1 py-2 rounded-lg w-full lg:max-w-[120px]  max-xs:text-sm base-xs:py-1"
                         value={item?.quantity}
                         readOnly
                         // onChange={(e) => handleChangeQuantity(e.target.value, item?._id)}
@@ -289,7 +287,7 @@ const Cart = (props) => {
                     </div>
                     <Button
                       className={
-                        "px-5 py-2 border border-gray-300 rounded-lg hover:border-blue-300 active:border-red-400 active:bg-red-200 transition-colors text-lg flex items-center justify-center "
+                        "px-5 py-2 border border-gray-300 rounded-lg hover:border-blue-300 active:border-red-400 active:bg-red-200 transition-colors text-lg flex items-center justify-center max-xs:text-base max-xs:py-1"
                       }
                       onHanldeClick={() => handleRemoveCartItem(item?._id)}
                     >
@@ -300,9 +298,9 @@ const Cart = (props) => {
               );
             })}
           </div>
-          <div className="flex flex-col items-end gap-3 p-5 fixed sm:relative left-0 right-0 bottom-0 bg-white z-10 border-t-1 border-gray-800 shadow-inner">
-            <div className="flex items-center justify-end gap-5">
-              <span className="text-base text-gray-600">Total payment:</span>
+          <div className="flex flex-col items-end gap-3 p-5 fixed sm:relative left-0 right-0 bottom-0 bg-white z-10 border-t-1 border-gray-800 shadow-inner max-xs:py-2">
+            <div className="flex items-center max-xs:justify-between w-full justify-end gap-5">
+              <span className="text-base text-gray-600 max-xs:text-sm">Total payment:</span>
               <strong className="text-lg">
                 {formatVND(
                   carts.reduce((acc, cur) => {
@@ -316,7 +314,7 @@ const Cart = (props) => {
             </span>
             <Button
               className={
-                "text-white flex items-center justify-start pl-4 gap-2 pr-5 py-3 text-lg uppercase bg-red-500"
+                "text-white flex items-center justify-start pl-4 gap-2 pr-5 py-3 text-lg uppercase bg-red-500 max-xs:text-xs"
               }
             >
               Check out <AiOutlineArrowRight />

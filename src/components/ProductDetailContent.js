@@ -7,15 +7,16 @@ import * as apiUser from "../apis/user";
 import { formatVND, getStars } from "../until/fn";
 import Slider from "react-slick";
 import Button from "./Button";
+import Selector from "./Selector";
 
 const ProductDetailContent = ({ product = {}, selectOption = false, modal = false }) => {
   const { userInfo, isLoggedIn } = useSelector((state) => state.user);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   const [quantity, setQuantity] = useState(0);
-  const [internal, setInternal] = useState(null);
-  const [ram, setRam] = useState(null);
-  const [color, setColor] = useState(null);
+  const [internal, setInternal] = useState({ _id: "", name: "" });
+  const [ram, setRam] = useState({ _id: "", name: "" });
+  const [color, setColor] = useState({ _id: "", name: "" });
 
   const handleDecrementQuantity = () => {
     if (quantity <= 0) {
@@ -36,15 +37,15 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
     if (!isLoggedIn) {
       Swal.fire({ icon: "info", title: "Oops...!", text: "You must has logged in" });
     } else {
-      if (!internal || !ram || !color || !quantity) {
+      if (!internal?._id || !ram?._id || !color?._id || !quantity) {
         Swal.fire({ icon: "warning", title: "Oops....!", text: "Please select information" });
       } else {
         const rs = await apiUser.addOrCreateCart({
           pid: product?._id,
-          quantity,
-          color,
-          internal,
-          ram,
+          quantity: quantity,
+          color: color?._id,
+          internal: internal?._id,
+          ram: ram?._id,
         });
         if (rs.sucess) {
           Swal.fire({ icon: "success", title: "Done...!", text: rs?.msg });
@@ -104,7 +105,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
           </div>
         </div>
         <div className="col l-6 s-6 c-12">
-          <div className="space-y-5 pl-5">
+          <div className="space-y-5 xs:pl-5">
             <div className="flex items-center gap-2 md:flex-row flex-col">
               <span
                 className={
@@ -125,7 +126,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
               <span className="flex items-center text-lg"> {getStars(product?.totalRatings)}</span>
               <span className="text-base text-gray-500"> 0 review</span>
             </div>
-            <ul className="list-square text-base text-gray-500 space-y-2">
+            <ul className="xs:list-square text-base text-gray-500 space-y-2">
               {product?.specifications?.map((ele, index) => {
                 return (
                   <li className="text-sm" key={index}>
@@ -134,89 +135,98 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                 );
               })}
             </ul>{" "}
-            <div className="flex items-center gap-2">
+            <div className="flex max-xs:flex-col xs:items-baseline gap-2">
               <span className="text-third text-sm font-semibold capitalize  min-w-[70px]">
                 internal
               </span>
-              {product?.internals?.map((ele) => {
-                return (
-                  <div key={ele?._id}>
-                    <input
-                      id={ele?._id}
-                      type="radio"
-                      value=""
-                      checked={ele?._id === internal}
-                      name="internal"
-                      className="hidden"
-                      onChange={(e) => setInternal(ele?._id)}
-                    />
-                    <label
-                      htmlFor={ele?._id}
-                      className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
-                        ele?._id === internal ? "text-main border-red-400 " : ""
-                      }`}
-                    >
-                      {ele?.name}
-                    </label>
-                  </div>
-                );
-              })}
+              <div className="max-md:hidden w-full flex items-center gap-1">
+                {product?.internals?.map((ele) => {
+                  return (
+                    <div key={ele?._id}>
+                      <input
+                        id={ele?._id}
+                        type="radio"
+                        value=""
+                        checked={ele?._id === internal?._id}
+                        name="internal"
+                        className="hidden"
+                        onChange={(e) => setInternal(ele)}
+                      />
+                      <label
+                        htmlFor={ele?._id}
+                        className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
+                          ele?._id === internal?._id ? "text-main border-red-400 " : ""
+                        }`}
+                      >
+                        {ele?.name}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+              <Selector data={product?.internals} value={internal} setValue={setInternal} />
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex max-xs:flex-col xs:items-baseline gap-2">
               <span className="text-third text-sm font-semibold capitalize  min-w-[70px]">
                 color
               </span>
-              {product?.colors?.map((ele) => {
-                return (
-                  <div key={ele?._id}>
-                    <input
-                      id={ele?._id}
-                      type="radio"
-                      value=""
-                      name="color"
-                      className="hidden"
-                      checked={ele?._id === color}
-                      onChange={() => setColor(ele?._id)}
-                    />
-                    <label
-                      htmlFor={ele?._id}
-                      className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
-                        ele?._id === color ? "text-main border-red-400 " : ""
-                      }`}
-                    >
-                      {ele?.name}
-                    </label>
-                  </div>
-                );
-              })}
+              <div className="max-md:hidden w-full flex items-center gap-1">
+                {product?.colors?.map((ele) => {
+                  return (
+                    <div key={ele?._id}>
+                      <input
+                        id={ele?._id}
+                        type="radio"
+                        value=""
+                        name="color"
+                        className="hidden"
+                        checked={ele?._id === color?._id}
+                        onChange={() => setColor(ele)}
+                      />
+                      <label
+                        htmlFor={ele?._id}
+                        className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
+                          ele?._id === color?._id ? "text-main border-red-400 " : ""
+                        }`}
+                      >
+                        {ele?.name}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+              <Selector data={product?.colors} value={color} setValue={setColor} />
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex max-xs:flex-col xs:items-baseline gap-2">
               <span className="text-third text-sm font-semibold capitalize  min-w-[70px]">ram</span>
-              {product?.rams?.map((ele) => {
-                return (
-                  <div key={ele?._id}>
-                    <input
-                      id={ele?._id}
-                      type="radio"
-                      value=""
-                      name="ram"
-                      className="hidden"
-                      checked={ele?._id === ram}
-                      onChange={() => setRam(ele?._id)}
-                    />
-                    <label
-                      htmlFor={ele?._id}
-                      className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
-                        ele?._id === ram ? "text-main border-red-400 " : ""
-                      }`}
-                    >
-                      {ele?.name}
-                    </label>
-                  </div>
-                );
-              })}
+              <div className="max-md:hidden w-full flex items-center gap-1">
+                {product?.rams?.map((ele) => {
+                  return (
+                    <div key={ele?._id}>
+                      <input
+                        id={ele?._id}
+                        type="radio"
+                        value=""
+                        name="ram"
+                        className="hidden"
+                        checked={ele?._id === ram?._id}
+                        onChange={() => setRam(ele)}
+                      />
+                      <label
+                        htmlFor={ele?._id}
+                        className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
+                          ele?._id === ram?._id ? "text-main border-red-400 " : ""
+                        }`}
+                      >
+                        {ele?.name}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+              <Selector data={product?.rams} value={ram} setValue={setRam} />
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex max-xs:flex-col xs:items-baseline gap-2">
               <span className="text-third text-sm font-semibold capitalize min-w-[70px]">
                 quantity
               </span>
@@ -231,7 +241,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                 </Button>
                 <input
                   type="number"
-                  className="outline-none text-center border border-gray-400 hover:border-red-300 focus:border-red-500 focus:bg-red-200 focus:text-third transition-all duration-300 text-lg px-1 py-2 rounded-lg w-full md:max-w-[200px]"
+                  className="outline-none text-center border border-gray-400 hover:border-red-300 focus:border-red-500 focus:bg-red-200 focus:text-third transition-all duration-300 text-lg p-1  rounded-lg w-full md:max-w-[200px]"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
@@ -246,7 +256,9 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
               </div>
             </div>
             <Button
-              className={"w-6/12 text-center py-2 uppercase bg-main text-white font-semibold"}
+              className={
+                "max-xs:w-full xs:w-6/12 block text-center py-2 uppercase bg-main text-white font-semibold"
+              }
               onHanldeClick={() => handleAddToCart()}
             >
               Add to cart

@@ -10,7 +10,9 @@ const Button = ({
 }) => {
   return (
     <button
-      className={`${circle ? "rounded-[50%] p-3 border border-gray-400 text-sm" : ""} ${className}`}
+      className={`${
+        circle ? "rounded-[50%] p-3 border border-gray-400 text-sm max-lg:p-2 max-lg:text-xs" : ""
+      } ${className}`}
       onClick={onHanldeClick}
     >
       {children}

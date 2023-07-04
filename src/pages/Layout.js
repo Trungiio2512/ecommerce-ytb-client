@@ -10,7 +10,9 @@ export const Layout = () => {
       <Navigation open={open} handleOpen={setOpen} />
       <Outlet />
       <Footer />
-      {open && <MenuMobile open={open} handleClose={() => setOpen(false)} />}
+      {open && (
+        <MenuMobile shouldCloseOverlayClick open={open} handleClose={() => setOpen(false)} />
+      )}
       <div id="modal"></div>
     </div>
   );

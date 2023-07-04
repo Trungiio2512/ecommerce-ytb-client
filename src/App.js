@@ -35,19 +35,20 @@ import {
   CreateProduct,
 } from "./pages/admin";
 function App() {
-  const { userInfo, isLoggedIn, token } = useSelector((state) => state.user);
+  const { userInfo, isLoggedIn } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.get());
 
-    if (isLoggedIn && token) {
-      setTimeout(() => dispatch(actionsUser.getWishList()), 1000);
+    if (isLoggedIn) {
+      // setTimeout(() => {
+      dispatch(actionsUser.getWishListCart());
+      // }, 1000);
     }
-  }, [dispatch, isLoggedIn, token]);
-  // console.log(userInfo?.role);
+  }, [dispatch, isLoggedIn]);
   return (
-    <div className="font-main h-auto overflow-hidden">
+    <div className="font-main h-full min-h-screen overflow-hidden">
       <Routes>
         <Route path={path.PUBLIC} element={<Layout />}>
           <Route element={<Public />}>
@@ -96,7 +97,7 @@ function App() {
             <Route index element={<Admin />} />
             <Route path={path.MANAGER_USER} element={<ManagerUser />} />
             <Route path={path.MANAGER_PRODUCT} element={<ManagerProduct />} />
-            <Route path={path.MANAGER_BANNER} element={<ManagerBanner />} />
+            {/* <Route path={path.MANAGER_BANNER} element={<ManagerBanner />} /> */}
             <Route path={path.MANAGER_CATEGORY} element={<ManagerCategory />} />
             <Route path={path.MANAGER_BRAND} element={<ManagerBrand />} />
             <Route path={path.CREATE_PRODUCT} element={<CreateProduct />} />

@@ -108,6 +108,7 @@ module.exports = {
         "scale-up-tr": "scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both",
         "slide-left": "slide-left .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",
         "slide-right": "slide-right .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",
+        "slide-bck-left": "slide-bck-left .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",
         "menu-bg": "menu-bg .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",
       },
       height: {

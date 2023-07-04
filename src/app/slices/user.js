@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "../actions/user";
+import { toastMsg } from "../../until/toast";
 
 const userSlice = createSlice({
   initialState: {
-    isLoggedIn: false,
+    isLoggedIn:
+      localStorage.getItem("user") !== "undefined" && localStorage.getItem("user") ? true : false,
     loading: false,
-    userInfo: {}, // for user object
-    token: null, // for storing the JWT
+    userInfo:
+      localStorage.getItem("user") !== "undefined" && localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user"))
+        : {}, // for user object
     error: null,
     msg: "",
-    cart: [],
+    cart: 0,
     wishlist: [],
   },
   name: "user",
@@ -18,22 +22,25 @@ const userSlice = createSlice({
       // console.log(action);
       state.msg = "";
     },
-    wishlist: (state, action) => {
-      if (state.wishlist?.some((pd) => pd?._id === action.payload?._id)) {
+    updatewishlist: (state, action) => {
+      if (state.wishlist.some((pd) => pd?._id === action.payload?._id)) {
         state.wishlist = state.wishlist.filter((pd) => pd?._id !== action.payload?._id);
       } else {
         state.wishlist = [...state.wishlist, action.payload];
       }
     },
+    refreshToken: (state, action) => {
+      state.token = action.payload;
+    },
     logout: (state, action) => {
       state.isLoggedIn = false;
       state.loading = false;
       state.userInfo = {}; // for user object
-      state.token = null; // for storing the JWT
       state.error = null;
       state.msg = "";
       state.cart = [];
       state.wishlist = [];
+      localStorage.setItem("user", JSON.stringify({}));
     },
   },
   extraReducers: (builder) => {
@@ -42,34 +49,34 @@ const userSlice = createSlice({
       state.error = null;
     });
     builder.addCase(actions.login.fulfilled, (state, action) => {
-      console.log(action.payload);
+      const { token, ...user } = action.payload;
       state.loading = false;
       state.isLoggedIn = action.payload?.sucess;
       state.error = !action.payload?.sucess;
       state.userInfo = action.payload?.data;
-      state.token = action.payload?.token;
+      localStorage.setItem("access_token", token);
+      localStorage.setItem("user", JSON.stringify(user.data));
       state.msg = action.payload?.msg;
     });
     builder.addCase(actions.login.rejected, (state, action) => {
-      console.log(action);
+      toastMsg("Has problem with sever", "error");
       // state.
     });
-    builder.addCase(actions.getWishList.pending, (state, action) => {
+    builder.addCase(actions.getWishListCart.pending, (state, action) => {
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(actions.getWishList.fulfilled, (state, action) => {
+    builder.addCase(actions.getWishListCart.fulfilled, (state, action) => {
       state.loading = false;
-      state.wishlist = action.payload;
-      state.msg = action.payload?.msg;
-      state.error = !action.payload?.sucess;
+      state.wishlist = action.payload.wishlist.data?.list || [];
+      state.cart = action.payload.cart.data?.list || [];
     });
-    builder.addCase(actions.getWishList.rejected, (state, action) => {
-      console.log(action);
+    builder.addCase(actions.getWishListCart.rejected, (state, action) => {
+      toastMsg("Has problem with sever", "error");
       // state.
     });
   },
 });
-export const { setUserMsg, wishlist, logout } = userSlice.actions;
+export const { setUserMsg, updatewishlist, logout, refreshToken } = userSlice.actions;
 
 export default userSlice.reducer;

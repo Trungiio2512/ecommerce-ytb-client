@@ -93,8 +93,8 @@ button.slick-next::before {
 
 button.slick-prev::before,
 button.slick-next::before {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   background-color: rgba(0, 0, 0, 0.3);
   color: gray;
   border: 1px solid #ccc;
@@ -103,16 +103,9 @@ button.slick-next::before {
   align-items: center;
   font-size: 2rem;
   position: absolute;
-  transform: translateY(-50%);
+  transform: translateY(50%);
 }
-@media (max-width: 479px) {
-  button.slick-prev::before,
-  button.slick-next::before {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-}
+
 .shadow-box {
   position: relative;
   display: block;

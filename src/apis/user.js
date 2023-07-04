@@ -33,6 +33,12 @@ export const resetPass = async (payload, data) =>
     params: payload,
     data,
   });
+export const resfreshToken = async (payload, data) =>
+  axiosConfig({
+    url: "user/refresh_token",
+    method: "POST",
+    withCredentials: true,
+  });
 
 export const getInfo = async (payload, data) =>
   axiosConfig({

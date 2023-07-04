@@ -56,7 +56,7 @@ const linkRight = [
 const Header = ({ open, handleOpen }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userInfo, token, isLoggedIn, cart } = useSelector((state) => state.user);
+  const { userInfo, isLoggedIn, cart, wishlist } = useSelector((state) => state.user);
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -90,7 +90,7 @@ const Header = ({ open, handleOpen }) => {
                   <Link to={`${path.LOGIN}`}>Sign in or create a new account</Link>
                 </li>
               )}
-              {isLoggedIn && userInfo.role === "admin" && (
+              {isLoggedIn && userInfo !== "undefined" && userInfo?.role === "admin" && (
                 <li className="px-2 hover:text-black">
                   <Link to={`${path.ADMIN}`}>Admin</Link>
                 </li>
@@ -114,11 +114,11 @@ const Header = ({ open, handleOpen }) => {
       </div>
       <div className="main-width m-auto lg:h-[110px] h-[80px]  flex items-center justify-between border-b-1 border-gray-300">
         <button
-          className="min-w-[50px] md:hidden py-3 mr-4 active:text-main"
+          className="min-w-[40px] md:hidden py-3 mr-4 max-xs:mr-2 active:text-main"
           onClick={() => handleOpen(!open)}
         >
           <span>
-            <AiOutlineMenu size={30} />
+            <AiOutlineMenu size={25} />
           </span>
         </button>
         <Link to={`/${path.HOME}`} className="shrink">
@@ -152,9 +152,9 @@ const Header = ({ open, handleOpen }) => {
             </div>
             <span className="text-xs text-gray-500 leading-4">Online Support 24/7</span>
           </div>
-          {token && isLoggedIn && (
+          {isLoggedIn && (
             <div className="header-wishlist">
-              <div className="header-wishlist--cart">
+              <div className="header-wishlist--cart relative">
                 <span
                   className="text-main "
                   onClick={() => {
@@ -163,6 +163,11 @@ const Header = ({ open, handleOpen }) => {
                 >
                   <AiOutlineHeart />
                 </span>
+                {wishlist?.length > 0 && (
+                  <span className="absolute -top-1 right-2 text-sm text-white rounded-full bg-red-600 px-1 py-[0.5] text-center">
+                    {wishlist?.length}
+                  </span>
+                )}
               </div>
               <div className="header-wishlist--cart relative">
                 <span
@@ -236,12 +241,15 @@ const Header = ({ open, handleOpen }) => {
             </div>
           )}
         </div>
-        {token && isLoggedIn && (
-          <button className="min-w-[50px] md:hidden flex items-center justify-end py-3 ml-4 active:text-main">
+        {isLoggedIn && (
+          <Link
+            to={`/${path.USER}/${path.CART}`}
+            className="min-w-[40px] md:hidden flex items-center justify-end py-3 ml-4 max-xs:ml-2 active:text-main"
+          >
             <span>
-              <HiShoppingCart size={30} />
+              <HiShoppingCart size={25} />
             </span>
-          </button>
+          </Link>
         )}
         {/* <button className="min-w-[50px] text-third text-right pl-4 py-3 flex items-center justify-end max-md:block hidden ">
           {" "}

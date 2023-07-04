@@ -21,3 +21,4 @@ export { default as Modal } from "./Modal";
 export { default as MenuMobile } from "./MenuMobile";
 export { default as SubMenuMobile } from "./SubMenuMobile";
 export { default as MenuMobileItem } from "./MenuMobileItem";
+export { default as Selector } from "./Selector";

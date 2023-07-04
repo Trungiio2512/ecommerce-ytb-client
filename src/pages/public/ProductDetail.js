@@ -132,7 +132,7 @@ const ProductDetail = (props) => {
         <div className="space-y-5">
           <ProductDetailContent product={product} />
           <div>
-            <ul className="flex items-center gap-1 relative">
+            <ul className="flex items-center gap-1 relative mb-5">
               {tabTitles.map((title, index) => {
                 return (
                   <li
@@ -148,28 +148,20 @@ const ProductDetail = (props) => {
               <div className="line"></div>
             </ul>
             <div
-              className={`tabContent active px-5 py-5 mt-5 text-sm border border-gray-300 text-gray-600 `}
+              className={`tabContent active p-5 text-sm border border-gray-300 text-gray-600 line-clamp-3`}
             >
               {product?.description}
             </div>{" "}
-            <div
-              className={`tabContent px-5 py-5 mt-5 text-sm border border-gray-300 text-gray-600 `}
-            >
+            <div className={`tabContent p-5 text-sm border border-gray-300 text-gray-600 `}>
               {product?.warranty}
             </div>
-            <div
-              className={`tabContent px-5 py-5 mt-5 text-sm border border-gray-300 text-gray-600 `}
-            >
+            <div className={`tabContent p-5 text-sm border border-gray-300 text-gray-600 `}>
               {product?.delivery}
             </div>
-            <div
-              className={`tabContent px-5 py-5 mt-5 text-sm border border-gray-300 text-gray-600 `}
-            >
+            <div className={`tabContent p-5 text-sm border border-gray-300 text-gray-600 `}>
               {product?.payment}
             </div>
-            <div
-              className={`tabContent px-5 py-5 mt-5 text-sm border border-gray-300 text-gray-600 `}
-            >
+            <div className={`tabContent p-5 text-sm border border-gray-300 text-gray-600 `}>
               custom review
             </div>
           </div>
@@ -177,7 +169,7 @@ const ProductDetail = (props) => {
       )}
       {ortherProducts.length > 0 && (
         <div className="mt-[30px]">
-          <h3 className="font-medium text-xl text-third uppercase py-1 border-b-1 border-red-400 mb-[50px]">
+          <h3 className="font-medium text-xl text-third uppercase py-1 border-b-1 border-red-400 mb-[50px] max-md:text-lg">
             OTHER CUSTOMERS ALSO BUY:
           </h3>
           <Slider {...settings}>

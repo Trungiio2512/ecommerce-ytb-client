@@ -64,7 +64,6 @@ const NewArrivals = (props) => {
         [el?.title]: newProducts?.filter((pd) => pd?.category?._id === el?._id),
       }));
       const productTvs = data.find((el) => el["Television"])?.Television;
-      console.log(data);
       const productCams = data.find((el) => el["Camera"])?.Camera;
       const productSpeaker = data.find((el) => el["Speaker"])?.Speaker;
       //   console.log(productCams);

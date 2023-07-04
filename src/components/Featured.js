@@ -18,7 +18,6 @@ const Featured = (props) => {
         features: true,
         limit: 60,
       });
-      console.log(res);
       if (res?.sucess) {
         // setproducts(res?.data);
         const idSmartphone = categories.find((el) => el?.title === "Smartphone")?._id;
@@ -36,7 +35,6 @@ const Featured = (props) => {
     };
     fetchApi();
   }, [categories]);
-  console.log(laptops);
   return (
     <section>
       <h2 className="uppercase text-xl font-semibold py-4 border-b-[3px] mb-5 border-red-400">

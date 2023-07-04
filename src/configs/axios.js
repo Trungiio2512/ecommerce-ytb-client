@@ -1,16 +1,23 @@
 import axios from "axios";
-const cancelAxios = axios.CancelToken;
+import * as apiUser from "../apis/user";
+import { useDispatch } from "react-redux";
+import * as sliceUser from "../app/slices/user";
+
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
 });
 // Add a request interceptor
 instance.interceptors.request.use(
-  function (config) {
-    const token = JSON.parse(localStorage.getItem("persist:user"))?.token.slice(
-      1,
-      JSON.parse(localStorage.getItem("persist:user"))?.token.length - 1,
-    );
+  async function (config) {
+    // const token = JSON.parse(localStorage.getItem("persist:user"))?.token.slice(
+    //   1,
+    //   JSON.parse(localStorage.getItem("persist:user"))?.token.length - 1,
+    // );
     // Do something before request is sent
+    // console.log(decoded);
+    // const response = await apiUser.resfreshToken();
+    // console.log(response);
+    const token = localStorage.getItem("access_token");
     config.headers["Content-Type"] = "application/json";
     config.headers.Authorization = `Bearer ${token}`;
     return config;
@@ -28,14 +35,18 @@ instance.interceptors.response.use(
     // Do something with response data
     return response.data;
   },
-  function (error) {
+  async function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    if (error.response.status !== 401) {
-      console.log(error);
-      return Promise.reject(error);
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const response = await apiUser.resfreshToken();
+      localStorage.setItem("access_token", response.token);
+      axios.defaults.headers.common["Authorization"] = "Bearer " + response.token;
+      return instance(originalRequest);
     }
-    return error.response.data;
+    return Promise.reject(error);
   },
 );
 

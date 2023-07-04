@@ -21,7 +21,7 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
   // const getStars = (rating) => {};
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { wishlist, token } = useSelector((state) => state.user);
+  const { wishlist, isLoggedIn } = useSelector((state) => state.user);
   const [isShowModal, setShowModal] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
   const [productDetail, setProductDetail] = useState({});
@@ -40,16 +40,21 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
   };
 
   const handleRemoveProductWishList = async (product) => {
-    const rs = await apiUsers.wishlist(product?._id);
-    if (rs?.sucess) {
-      // toast()
-      toastMsg(rs?.msg, "success");
-      // Swal.fire("Done...!", rs?.msg, "success");
+    if (isLoggedIn) {
+      const rs = await apiUsers.wishlist(product?._id);
+
+      if (rs?.sucess) {
+        // toast()
+        toastMsg(rs?.msg, "success");
+        // Swal.fire("Done...!", rs?.msg, "success");
+      } else {
+        toastMsg(rs?.msg, "error");
+        // Swal.fire("Opp...!", rs?.msg, "error");
+      }
+      dispatch(slicesUser.updatewishlist(product));
     } else {
-      toastMsg(rs?.msg, "error");
-      // Swal.fire("Opp...!", rs?.msg, "error");
+      toastMsg("You must has login to update");
     }
-    dispatch(slicesUser.wishlist(product));
   };
   return (
     <div
@@ -59,29 +64,6 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
       onMouseOver={(e) => setShowModal(true)}
       onMouseLeave={(e) => setShowModal(false)}
     >
-      {isShowDesModal && (
-        <div
-          className={`absolute bottom-0 left-0 right-0 bg-white  z-[5]  p-4   ease-out transition-all duration-500 ${
-            isShowModal ? "top-0 opacity-100 visible block" : "opacity-0 invisible hidden"
-          } overflow-y-auto`}
-        >
-          <div className="flex items-center justify-between pb-4 border-b-1 border-gray-500">
-            <h4 className={`${imgSmall ? "text-sm" : "text-lg"} text-third`}>{data?.title}</h4>
-            <span className={`${imgSmall ? "text-sm" : "text-lg"}`}> {formatVND(data?.price)}</span>
-          </div>
-          {/* <p className="text-gray-800 py-4">{data?.description}</p> */}
-          <ul className="list-none text-sm text-gray-500 space-y-2 mt-5 w-full h-full ">
-            {data?.specifications?.map((ele, index) => {
-              return (
-                <li className="" key={index}>
-                  {ele}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
-
       <div className="relative">
         {data?.news && (
           <div className="absolute top-[-10px] right-[-20px] z-[1]">
@@ -98,16 +80,24 @@ const ProductT1 = ({ data, isShowDesModal = false, imgSmall = false, uiGridLayou
               : "bottom-[-40px] invisible opacity-0"
           }`}
         >
-          <Button circle onHanldeClick={() => handleToProductDetail()}>
+          <Button
+            className={`bg-white text-third`}
+            circle
+            onHanldeClick={() => handleToProductDetail()}
+          >
             {<AiOutlineMenu />}
           </Button>
-          <Button circle onHanldeClick={() => getDetailProduct(data?._id)}>
+          <Button
+            className={`bg-white text-third`}
+            circle
+            onHanldeClick={() => getDetailProduct(data?._id)}
+          >
             {<AiOutlineEye />}{" "}
           </Button>
           <Button
             circle
             className={`${
-              token && wishlist
+              isLoggedIn && wishlist.length > 0
                 ? wishlist.some((pd) => pd?._id === data?._id)
                   ? "bg-pink-500 text-white"
                   : "bg-white text-third"

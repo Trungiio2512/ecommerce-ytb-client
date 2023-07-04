@@ -10,6 +10,7 @@ const appSlice = createSlice({
     rams: [],
     internals: [],
     isLoading: true,
+    brands: [],
   },
   name: "app",
   reducers: {},

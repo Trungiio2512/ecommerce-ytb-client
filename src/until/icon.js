@@ -40,6 +40,8 @@ import {
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
 import { ImLocation2, ImGooglePlus, ImHome } from "react-icons/im";
+import { GrUserAdmin } from "react-icons/gr";
+import { RiAdminLine } from "react-icons/ri";
 const icons = {
   AiOutlineMenuUnfold,
   AiOutlineEye,
@@ -80,6 +82,8 @@ const icons = {
   AiOutlineLeft,
   AiOutlineRight,
   AiOutlineLogin,
+  RiAdminLine,
+  GrUserAdmin,
 };
 
 export default icons;

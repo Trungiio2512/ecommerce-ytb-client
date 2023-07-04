@@ -23,8 +23,8 @@ const Sidebar = (props) => {
   return (
     <div className="w-full ">
       <aside className="border-1 border-main border-solid rounded-sm bg-white">
-        <div className="bg-main text-white px-5 py-4 flex items-center gap-3">
-          <span className="text-base">
+        <div className="bg-main text-base text-white px-5 py-4 flex items-center gap-3">
+          <span className="">
             <FaList />
           </span>
           <span className="uppercase font-semibold">all colections</span>
@@ -42,7 +42,7 @@ const Sidebar = (props) => {
                   state={{ idCategory: category?._id }}
                 >
                   <span className="">icon</span>
-                  <span className="text-sm ">{category?.title}</span>
+                  <span className="text-sm">{category?.title}</span>
                 </Link>
               </li>
             ))}
