@@ -22,6 +22,7 @@ const path = {
   PROFILES: "profile",
   CART: "cart",
   WISH_LIST: "wish_list",
+  ODER: "oder",
   //admin
   ADMIN: "admin",
   MANAGER_USER: "manager_user",

@@ -53,7 +53,7 @@ export const menuUser = [
   {
     id: 3,
     title: "Purchase order",
-    path: `${path.USER}/${path.WISH_LIST}`,
+    path: `/${path.ODER}`,
     icon: <AiOutlineOrderedList />,
   },
 ];

@@ -88,7 +88,7 @@ const ManagerBrand = (props) => {
     setIsOpen(true);
   };
   return (
-    <div className="w-full  xs:px-5 py-2 md:hidden max-xs:px-2">
+    <div className="w-full  xs:px-5 py-2  max-xs:px-2">
       <h2 className="text-xl text-third font-medium  mb-5">Manager Category</h2>
       <button
         className="text-base text-third bg-blue-200 border border-blue-400 rounded-lg px-5 py-2 sm:w-[200px] w-full mb-5"

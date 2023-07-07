@@ -1,14 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "../actions/user";
 import { toastMsg } from "../../until/toast";
-
 const userSlice = createSlice({
   initialState: {
-    isLoggedIn:
-      localStorage.getItem("user") !== "undefined" && localStorage.getItem("user") ? true : false,
+    isLoggedIn: Object.keys(JSON.parse(localStorage.getItem("user"))).length > 0 ? true : false,
     loading: false,
     userInfo:
-      localStorage.getItem("user") !== "undefined" && localStorage.getItem("user")
+      Object.keys(JSON.parse(localStorage.getItem("user"))).length > 0
         ? JSON.parse(localStorage.getItem("user"))
         : {}, // for user object
     error: null,
@@ -41,6 +39,7 @@ const userSlice = createSlice({
       state.cart = [];
       state.wishlist = [];
       localStorage.setItem("user", JSON.stringify({}));
+      localStorage.setItem("access_token", "");
     },
   },
   extraReducers: (builder) => {

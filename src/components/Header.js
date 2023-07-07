@@ -63,14 +63,15 @@ const Header = ({ open, handleOpen }) => {
   const handleLogout = async () => {
     const rs = await apiUser.logout();
     if (rs.sucess) {
+      dispatch(sliceUser.logout());
       Swal.fire("Done....!", rs.msg, "success").then(() => {
-        dispatch(sliceUser.logout());
         navigate(`/${path.HOME}`, { replace: true });
       });
     } else {
       Swal.fire("Oops....!", rs.msg, "error");
     }
   };
+  console.log(isLoggedIn);
   return (
     <div className="w-full flex flex-col mb-5">
       <div className="bg-main text-white text-xs py-[10px] md:block hidden ">

@@ -22,7 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 import path from "./until/path";
 import * as actions from "./app/actions/app";
 import * as actionsUser from "./app/actions/user";
-import { Cart, Profile, ProtectedRouter, UserLayout, WishList } from "./pages/private";
+import { Cart, Oder, Profile, ProtectedRouter, UserLayout, WishList } from "./pages/private";
 import { Layout } from "./pages/Layout";
 import {
   Admin,
@@ -85,6 +85,16 @@ function App() {
         <Route path={path.VERIFY_EMAIL} element={<VerifyEmail />} />
         <Route path={path.LOGIN} element={<Login />} />
         <Route path={path.REGISTER} element={<Register />} />
+        <Route
+          element={
+            <ProtectedRouter
+              isAllowed={userInfo?.role?.includes("user") || userInfo?.role?.includes("admin")}
+              redirectPath={path.PUBLIC}
+            />
+          }
+        >
+          <Route path={path.ODER} element={<Oder />} />
+        </Route>
         <Route
           element={
             <ProtectedRouter

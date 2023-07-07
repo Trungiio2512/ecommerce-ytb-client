@@ -36,7 +36,7 @@ const Selector = ({ data, value, setValue }) => {
             key={ele?._id}
             className={`p-2 text-sm hover:bg-sky-600 hover:text-white ${
               ele?.name?.toLowerCase() === selected?.toLowerCase() ? "bg-sky-600 text-white" : ""
-            } ${ele?.name?.toLowerCase().startsWith(value?.name) ? "block" : "hidden"}`}
+            }`}
             onClick={() => {
               if (ele?.name?.toLowerCase() !== selected.toLowerCase()) {
                 setSelected(ele?.name);

@@ -36,3 +36,15 @@ export const uploadImage = async (file) => {
     url: rs.data.url,
   };
 };
+function padTo2Digits(num) {
+  return num.toString().padStart(2, "0");
+}
+
+export const formatDate = (date) => {
+  const newdate = new Date(date);
+  return [
+    padTo2Digits(newdate.getDate()),
+    padTo2Digits(newdate.getMonth() + 1),
+    newdate.getFullYear(),
+  ].join(".");
+};

@@ -9,7 +9,7 @@ import path from "../../until/path";
 const { AiOutlineMenu } = icons;
 
 const AdminLayout = (props) => {
-  const [isShow, setIsShow] = useState(true);
+  const [isShow, setIsShow] = useState(false);
   return (
     <div className="w-full h-auto">
       <Sidebar
