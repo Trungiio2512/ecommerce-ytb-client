@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { deleteCart, getCart, updateCart, logout } from "../../apis/user";
 import { formatVND } from "../../until/fn";
@@ -10,6 +10,7 @@ import path from "../../until/path";
 import { Button } from "../../components";
 const { AiOutlineClose, AiOutlineArrowRight } = icons;
 const Cart = (props) => {
+  const navigate = useNavigate();
   const [carts, setCarts] = useState([]);
   const [loading, setLoading] = useState(true);
   // const [quantity, setQuantity] = useSt/ate({})
@@ -90,9 +91,23 @@ const Cart = (props) => {
       }
     }
   };
+
+  const handleSubmit = (e) => {
+    e.stopPropagation();
+    navigate(
+      {
+        pathname: `/${path.ODER}`,
+      },
+      {
+        state: {
+          active: true,
+        },
+      },
+    );
+  };
   return (
     <div className="w-full ">
-      <h2 className="text-2xl text-third font-medium pb-4">Your Cart</h2>
+      <h2 className="text-2xl text-third font-medium pb-4">Giỏ hàng của bạn</h2>
       {carts.length > 0 ? (
         <>
           <table className="hidden md:block overflow-x-auto">
@@ -291,7 +306,7 @@ const Cart = (props) => {
                       }
                       onHanldeClick={() => handleRemoveCartItem(item?._id)}
                     >
-                      Deleted
+                      Xoá
                     </Button>
                   </div>
                 </div>
@@ -300,7 +315,7 @@ const Cart = (props) => {
           </div>
           <div className="flex flex-col items-end gap-3 p-5 fixed sm:relative left-0 right-0 bottom-0 bg-white z-10 border-t-1 border-gray-800 shadow-inner max-xs:py-2">
             <div className="flex items-center max-xs:justify-between w-full justify-end gap-5">
-              <span className="text-base text-gray-600 max-xs:text-sm">Total payment:</span>
+              <span className="text-base text-gray-600 max-xs:text-sm">Thành tiền:</span>
               <strong className="text-lg">
                 {formatVND(
                   carts.reduce((acc, cur) => {
@@ -310,19 +325,20 @@ const Cart = (props) => {
               </strong>
             </div>
             <span className="text-sm text-gray-500 italic hidden md:block">
-              Shipping, taxes, and discounts calculated at checkout
+              Vận chuyển, thuế và giảm giá được tính khi thanh toán
             </span>
             <Button
               className={
                 "text-white flex items-center justify-start pl-4 gap-2 pr-5 py-3 text-lg uppercase bg-red-500 max-xs:text-xs"
               }
+              onHanldeClick={handleSubmit}
             >
-              Check out <AiOutlineArrowRight />
+              Đặt hàng <AiOutlineArrowRight />
             </Button>
           </div>
         </>
       ) : (
-        <p>Your cart has not product</p>
+        <p>Giỏ hàng không có sản phẩm</p>
       )}
     </div>
   );

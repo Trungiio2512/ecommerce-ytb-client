@@ -32,8 +32,8 @@ const ProductDeal = (props) => {
         <span className="text-main text-xl">
           <BsStarFill />
         </span>
-        <h2 className="uppercase font-semibold lg:text-2xl text-xl flex-1 text-center">
-          daily deals
+        <h2 className="uppercase font-semibold lg:text-xl text-base flex-1 text-center">
+          Ưu đãi hôm nay
         </h2>
       </div>
       <Link

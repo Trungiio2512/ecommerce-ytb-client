@@ -79,3 +79,16 @@ export const deleteCart = async (id) =>
     method: "DELETE",
     url: `user/del_cart/${id}`,
   });
+
+export const createOder = async (data) =>
+  axiosConfig({
+    method: "POST",
+    url: "/order/create",
+    data,
+  });
+export const getOders = async (type) =>
+  axiosConfig({
+    method: "GET",
+    url: `order/all/${type}`,
+    // data,
+  });

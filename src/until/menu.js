@@ -42,18 +42,28 @@ export const menuHome = [
   },
 ];
 export const menuUser = [
-  { id: 0, title: "User Profile", path: `${path.USER}/${path.PROFILES}`, icon: <AiOutlineUser /> },
+  {
+    id: 0,
+    title: "Thông tin cá nhân",
+    path: `/${path.USER}/${path.PROFILES}`,
+    icon: <AiOutlineUser />,
+  },
   {
     id: 1,
-    title: "My shopping cart",
-    path: `${path.USER}/${path.CART}`,
+    title: "Danh sách sản phẩm",
+    path: `/${path.USER}/${path.CART}`,
     icon: <FaClipboardList />,
   },
-  { id: 2, title: "Wish list", path: `${path.USER}/${path.WISH_LIST}`, icon: <BsClipboardHeart /> },
+  {
+    id: 2,
+    title: "Danh sách yêu thích",
+    path: `/${path.USER}/${path.WISH_LIST}`,
+    icon: <BsClipboardHeart />,
+  },
   {
     id: 3,
-    title: "Purchase order",
-    path: `/${path.ODER}`,
+    title: "Đơn hàng đã đặt",
+    path: `/${path.USER}/${path.PURCHASE}`,
     icon: <AiOutlineOrderedList />,
   },
 ];
@@ -61,7 +71,7 @@ export const menuUser = [
 export const menuAdmin = [
   {
     id: 5,
-    title: "Admin",
+    title: "Quản trị viên",
     path: `/${path.ADMIN}`,
     icon: <RiAdminLine />,
   },
@@ -73,25 +83,25 @@ export const menuAdmin = [
   // },
   {
     id: 1,
-    title: "ManaBrand",
+    title: "Quản lý nhãn hàng",
     path: `/${path.ADMIN}/${path.MANAGER_BRAND}`,
     icon: <AiOutlineUser />,
   },
   {
     id: 2,
-    title: "ManaCategory",
+    title: "Quản lý danh sách",
     path: `/${path.ADMIN}/${path.MANAGER_CATEGORY}`,
     icon: <AiOutlineUser />,
   },
   {
     id: 3,
-    title: "ManaUser",
+    title: "Quản lý người dùng",
     path: `/${path.ADMIN}/${path.MANAGER_USER}`,
     icon: <AiOutlineUser />,
   },
   {
     id: 4,
-    title: "ManaProduct",
+    title: "Quản lý sản phẩm",
     path: `/${path.ADMIN}/${path.MANAGER_PRODUCT}`,
     icon: <AiOutlineUser />,
   },

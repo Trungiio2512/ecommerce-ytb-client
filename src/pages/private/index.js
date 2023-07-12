@@ -4,3 +4,4 @@ export { default as WishList } from "./WishList";
 export { default as Cart } from "./Cart";
 export { default as Profile } from "./Profile";
 export { default as Oder } from "./Oder";
+export { default as PurchaseOrder } from "./PurchaseOrder";

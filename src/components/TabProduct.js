@@ -4,18 +4,19 @@ import PropTypes from "prop-types";
 import Slider from "react-slick";
 import ProductT1 from "./ProductT1";
 import { useSelector } from "react-redux";
+import TabActive from "./TabActive";
 const tabs = [
   {
     id: 0,
-    title: "best seller",
+    title: "Thịnh hành",
   },
   {
     id: 1,
-    title: "new arrivals",
+    title: "Laptop",
   },
   {
     id: 2,
-    title: "tablet",
+    title: "Máy tính bảng",
   },
 ];
 const settings = {
@@ -77,15 +78,15 @@ const TabProduct = () => {
   // console.log(bestSeller);
   return (
     <div className="mt-8 mb-4">
-      <div>
+      {/* <div>
         <ul className="mb-5 divide-x border-b-2 border-red-500 pb-4 sm:block hidden">
           {tabs.map((tab) => {
             return (
               <li
                 key={tab.id}
-                className={`uppercase ${
+                className={`capitalize ${
                   tabActive === tab.id ? "text-black" : "text-gray-400"
-                } font-medium inline text-2xl cursor-pointer  ${tab.id === 0 ? "" : "pl-5 ml-5"}`}
+                } font-medium inline text-xl cursor-pointer  ${tab.id === 0 ? "" : "pl-5 ml-5"}`}
                 onClick={() => settabActive(tab.id)}
               >
                 {" "}
@@ -95,7 +96,10 @@ const TabProduct = () => {
           })}
         </ul>
         <div className="divide-x border-b-2 border-red-500 sm:hidden block mb-5">
-          <select className=" text-xl  uppercase outline-none font-medium ">
+          <select
+            className=" text-xl  uppercase outline-none font-medium "
+            onChange={(e) => settabActive(+e.target.value)}
+          >
             {tabs.map((tab) => {
               return (
                 <option key={tab.id} className="text-base font-normal">
@@ -105,7 +109,8 @@ const TabProduct = () => {
             })}
           </select>
         </div>
-      </div>
+      </div> */}
+      <TabActive data={tabs} value={tabActive} setValue={settabActive} />
       <div className={`${tabActive === 0 ? "block" : "hidden"}`}>
         <Slider {...settings}>
           {bestSeller.map((el) => {

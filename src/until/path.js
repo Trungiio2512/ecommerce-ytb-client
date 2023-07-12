@@ -23,6 +23,9 @@ const path = {
   CART: "cart",
   WISH_LIST: "wish_list",
   ODER: "oder",
+  PROCESSING: "processing",
+  PURCHASE: "purchase",
+
   //admin
   ADMIN: "admin",
   MANAGER_USER: "manager_user",

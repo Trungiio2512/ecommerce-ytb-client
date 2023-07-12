@@ -23,17 +23,19 @@ const FormInput = ({
           {label}
         </label>
       )}
-      <input
-        value={value}
-        {...inputProps}
-        onChange={onChange}
-        onBlur={handleFocus}
-        onFocus={() => setFocused(false)}
-        focused={focused.toString()}
-        id={name}
-        name={name}
-      />
-      {/* <span>{errorMessage}</span> */}
+      <div className="flex flex-col gap-2">
+        <input
+          value={value}
+          {...inputProps}
+          onChange={onChange}
+          onBlur={handleFocus}
+          onFocus={() => setFocused(false)}
+          focused={focused.toString()}
+          id={name}
+          name={name}
+        />
+        {errorMessage && <span className="text-xs text-main">{errorMessage}</span>}
+      </div>
     </div>
   );
 };

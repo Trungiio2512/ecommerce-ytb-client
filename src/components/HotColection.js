@@ -10,7 +10,7 @@ const HotColection = (props) => {
   return (
     <div className="mt-4">
       <div className="border-b-2 border-red-400 py-4 mb-4">
-        <h2 className="uppercase text-2xl font-semibold ">Hot Colection</h2>
+        <h2 className="uppercase text-2xl max-sm:text-lg font-semibold ">Sản phẩm yêu thích</h2>
       </div>
       <div className="grid-layout">
         <div className="row ">

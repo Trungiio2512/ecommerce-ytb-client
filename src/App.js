@@ -22,7 +22,15 @@ import "react-toastify/dist/ReactToastify.css";
 import path from "./until/path";
 import * as actions from "./app/actions/app";
 import * as actionsUser from "./app/actions/user";
-import { Cart, Oder, Profile, ProtectedRouter, UserLayout, WishList } from "./pages/private";
+import {
+  Cart,
+  Oder,
+  Profile,
+  ProtectedRouter,
+  PurchaseOrder,
+  UserLayout,
+  WishList,
+} from "./pages/private";
 import { Layout } from "./pages/Layout";
 import {
   Admin,
@@ -78,6 +86,7 @@ function App() {
               <Route path={path.CART} element={<Cart />} />
               <Route path={path.WISH_LIST} element={<WishList />} />
               <Route path={path.PROFILES} element={<Profile />} />
+              <Route path={path.PURCHASE} element={<PurchaseOrder />} />
             </Route>
           </Route>
         </Route>

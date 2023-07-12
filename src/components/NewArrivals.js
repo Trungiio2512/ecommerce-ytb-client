@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import ProductT1 from "./ProductT1";
+import TabActive from "./TabActive";
 const tabs = [
   {
     id: 0,
@@ -72,36 +73,12 @@ const NewArrivals = (props) => {
       productSpeaker.length > 0 && setSpeaker(productSpeaker);
     }
   }, [categories, newProducts]);
-  //   console.log(newProducts);
+  console.log(tabActive);
   return (
     <section className="mt-4">
-      <div className="flex items-center justify-between py-4 border-b-2 border-red-400 mb-4">
-        <h2 className="sm:text-2xl text-xl text-gray-800 uppercase font-semibold">New Arrivals</h2>
-        <ul className="divide-x sm:block hidden">
-          {tabs.map((tab) => {
-            return (
-              <li
-                key={tab.id}
-                className={`${
-                  tabActive === tab.id ? "text-main" : "text-gray-400"
-                } font-normal inline text-base cursor-pointer  ${tab.id === 0 ? "" : "pl-5 ml-5"}`}
-                onClick={() => settabActive(tab.id)}
-              >
-                {" "}
-                {tab.title}
-              </li>
-            );
-          })}
-        </ul>
-        <select className="px-4 py-2 outline-none">
-          {tabs.map((tab) => {
-            return (
-              <option key={tab.id} value={tab.id}>
-                {tab.title}
-              </option>
-            );
-          })}
-        </select>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="sm:text-2xl text-xl text-gray-800 uppercase font-semibold">Sản phẩm khác</h2>
+        <TabActive data={tabs} value={tabActive} setValue={settabActive} />
       </div>
       <div className={`${tabActive === 0 ? "block" : "hidden"}`}>
         <Slider {...settings}>

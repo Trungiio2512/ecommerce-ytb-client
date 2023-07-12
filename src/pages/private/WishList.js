@@ -54,7 +54,7 @@ const WishList = (props) => {
         <>
           <table className="hidden md:block overflow-x-auto">
             <thead className="mb-2 border-b-1 border-gray-300 py-2">
-              <tr className="text-lg text-gray-400 capitalize ">
+              <tr className="text-base text-gray-400 capitalize ">
                 <th scope="col">image</th>
                 <th scope="col">name</th>
                 <th scope="col">price</th>
@@ -68,12 +68,12 @@ const WishList = (props) => {
                   <tr className={`product-${product?._id} `} key={product?._id}>
                     <td className="px-2 py-5">
                       {" "}
-                      <figure className="w-[228px] h-[228px] shrink-0">
+                      <figure className="w-[160px] h-[160px] shrink-0">
                         <img src={product?.thumb?.url} alt={product?.title} />
                       </figure>{" "}
                     </td>
                     <td className="px-2 py-5">
-                      <h3 className="px-2 text-lg font-normal text-third font-meidum">
+                      <h3 className="px-2 text-base font-normal text-third font-meidum">
                         {product?.title}
                       </h3>
                     </td>
@@ -83,13 +83,13 @@ const WishList = (props) => {
                           className={` ${
                             product?.priceSale
                               ? "text-sm line-through text-gray-500"
-                              : "text-lg font-normal text-third font-meidum"
+                              : "text-base font-normal text-third font-meidum"
                           }`}
                         >
                           {formatVND(product?.price)}
                         </span>
                         {product?.priceSale && (
-                          <span className="text-third text-lg font-medium">
+                          <span className="text-third text-base font-medium">
                             {formatVND(product?.priceSale)}
                           </span>
                         )}
