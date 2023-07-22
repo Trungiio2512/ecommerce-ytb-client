@@ -71,7 +71,6 @@ const Header = ({ open, handleOpen }) => {
       Swal.fire("Oops....!", rs.msg, "error");
     }
   };
-  console.log(isLoggedIn);
   return (
     <div className="w-full flex flex-col mb-5">
       <div className="bg-main text-white text-xs py-[10px] md:block hidden ">

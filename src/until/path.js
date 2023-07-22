@@ -33,6 +33,7 @@ const path = {
   MANAGER_CATEGORY: "manager_category",
   MANAGER_BANNER: "manager_banner",
   MANAGER_PRODUCT: "manager_product",
+  MANAGER_ORDER: "manager_order",
   CREATE_PRODUCT: "create_product",
 };
 

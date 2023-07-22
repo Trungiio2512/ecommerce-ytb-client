@@ -23,3 +23,4 @@ export { default as SubMenuMobile } from "./SubMenuMobile";
 export { default as MenuMobileItem } from "./MenuMobileItem";
 export { default as Selector } from "./Selector";
 export { default as TabActive } from "./TabActive";
+export { default as Votebar } from "./Votebar";

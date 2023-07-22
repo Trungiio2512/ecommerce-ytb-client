@@ -17,7 +17,7 @@ const Selector = ({ data, value, setValue }) => {
           ? selected?.length > 25
             ? selected?.substring(0, 25) + "..."
             : selected
-          : "Select value"}
+          : "Nhập thông tin cần tìm"}
         <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
       </div>
       <ul className={`bg-white mt-2 overflow-y-auto ${open ? "max-h-60" : "max-h-0"} `}>

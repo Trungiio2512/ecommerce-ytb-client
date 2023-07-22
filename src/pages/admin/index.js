@@ -6,3 +6,4 @@ export { default as ManagerCategory } from "./ManagerCategory";
 export { default as ManagerProduct } from "./ManagerProduct";
 export { default as ManagerUser } from "./ManagerUser";
 export { default as CreateProduct } from "./CreateProduct";
+export { default as ManagerOrder } from "./ManagerOrder";

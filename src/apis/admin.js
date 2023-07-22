@@ -30,3 +30,15 @@ export const uploadImage = (data) =>
       },
     },
   );
+export const getOrders = (params) =>
+  axiosConfig({
+    method: "GET",
+    url: `order/all_admin`,
+    params,
+  });
+export const updateOrder = (oid, data) =>
+  axiosConfig({
+    method: "PUT",
+    url: `order/update_status/${oid}`,
+    data,
+  });

@@ -11,7 +11,7 @@ const Sidebar = ({ isShow, onhandleShow }) => {
     <div
       className={`hidden md:block fixed top-0 left-0 bottom-0 ${
         isShow ? "w-52" : "w-28"
-      } bg-blue-900  p-5  pt-8 duration-300 h-full`}
+      } bg-blue-900  p-5  pt-8 duration-300 h-full `}
     >
       <button
         className={`absolute cursor-pointer -right-4 top-[70 px] border-blue-900 border-2 rounded-full duration-300 bg-white p-2 ${
@@ -21,7 +21,7 @@ const Sidebar = ({ isShow, onhandleShow }) => {
       >
         <AiOutlineLeft />
       </button>
-      <div className=" flex items-center gap-5 py-5 ">
+      <div className=" flex items-center gap-5 ">
         <Link
           to={`/${path.ADMIN}`}
           className="w-[70px] h-[70px] shrink-0 border border-gray-400 rounded-full overflow-hidden"
@@ -42,7 +42,7 @@ const Sidebar = ({ isShow, onhandleShow }) => {
           Admin
         </h1>
       </div>
-      <ul className="pt-6">
+      <ul className="pt-6 text-sm">
         <li>
           <NavLink
             className={({
@@ -71,11 +71,7 @@ const Sidebar = ({ isShow, onhandleShow }) => {
                 to={menu.path}
               >
                 <span className="text-2xl">{menu.icon}</span>
-                <span
-                  className={`${
-                    !isShow ? "scale-0" : ""
-                  } text-sm  scale-1 origin-left duration-300 `}
-                >
+                <span className={`${!isShow ? " hidden" : ""} text-sm origin-left duration-300 `}>
                   {menu.title}
                 </span>
               </NavLink>

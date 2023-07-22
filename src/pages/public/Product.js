@@ -381,14 +381,14 @@ const Product = (props) => {
               setValues((prev) => ({ ...prev, sort: `${e.target.value}` }));
             }}
           >
-            <option defaultChecked>--Choose option to sort--</option>
+            <option defaultChecked>--Bộ lọc--</option>
             <option value={"-features"}>Featured</option>
-            <option value={"title"}>Alphabetically, A-Z</option>
-            <option value="-title">Alphabetically, Z-A</option>
-            <option value="price">Price, low to high</option>
-            <option value="-price">Price, high to low</option>
-            <option value="created">Date, old to new</option>
-            <option value="-created">Date, new to old</option>
+            <option value={"title"}>Theo bảng chữ cái, A-Z</option>
+            <option value="-title">Theo bảng chữ cái, Z-A</option>
+            <option value="price">Giá từ thấp đến cao</option>
+            <option value="-price">Giá từ cao đến thấp</option>
+            <option value="created">Ngày cũ</option>
+            <option value="-created">Mới bán</option>
           </select>
         </div>
       </div>

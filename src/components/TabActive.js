@@ -8,9 +8,9 @@ const TabActive = ({ data, value, setValue, to = false }) => {
     Comp = NavLink;
     Comp.path = to;
   }
-  const className = `capitalize font-medium cursor-pointer inline text-base cursor-pointer py-2 px-3`;
+  const className = `capitalize font-medium cursor-pointer inline text-base cursor-pointer py-2 px-3 `;
   return (
-    <div className="border-b-2 border-red-500">
+    <div className="border-b-2 border-red-500 mb-5">
       <ul className="divide-x sm:flex items-center gap-2 hidden">
         {data.map((tab) => {
           return (
@@ -33,12 +33,14 @@ const TabActive = ({ data, value, setValue, to = false }) => {
       </ul>
       <div className="sm:hidden block ">
         <select
-          className=" text-xl  uppercase outline-none font-medium "
-          onChange={(e) => setValue(+e.target.value)}
+          className="text-base capitalize outline-none font-medium w-[150px]"
+          onChange={(e) => {
+            setValue(+e.target.value);
+          }}
         >
           {data.map((tab) => {
             return (
-              <option key={tab.id} className="text-base font-normal">
+              <option key={tab.id} value={tab.id} className="text-sm font-normal">
                 {tab.title}
               </option>
             );

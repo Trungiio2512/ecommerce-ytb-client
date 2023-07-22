@@ -11,11 +11,10 @@ const tabs = [
   {
     title: "Chờ xác nhận",
     id: "Processing",
-    to: `/${path.USER}/${path.PURCHASE}?type=Processing`,
   },
-  { title: "Đang giao", id: "Delivering", to: `/${path.USER}/${path.PURCHASE}` },
-  { title: "Hoàn thành", id: "Sucessed", to: `/${path.USER}/${path.PURCHASE}` },
-  { title: "Đã huỷ", id: "Cancelled", to: `/${path.USER}/${path.PURCHASE}` },
+  { title: "Đang giao", id: "Delivering" },
+  { title: "Hoàn thành", id: "Sucessed" },
+  { title: "Đã huỷ", id: "Cancelled" },
 ];
 const OrderLayout = (props) => {
   const [type, setType] = useState(tabs[0].id);

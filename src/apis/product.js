@@ -24,3 +24,15 @@ export const deleteProduct = (pid) =>
     method: "DELETE",
     url: `product/delete/${pid}`,
   });
+export const ratings = (pid) =>
+  axiosConfig({
+    method: "GET",
+    url: `product/ratings/${pid}`,
+  });
+export const comment = (pid, data) =>
+  axiosConfig({
+    method: "POST",
+    url: `product/comment/${pid}`,
+
+    data,
+  });

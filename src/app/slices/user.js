@@ -3,9 +3,14 @@ import * as actions from "../actions/user";
 import { toastMsg } from "../../until/toast";
 const userSlice = createSlice({
   initialState: {
-    isLoggedIn: Object.keys(JSON.parse(localStorage.getItem("user"))).length > 0 ? true : false,
+    isLoggedIn:
+      localStorage.getItem("user") &&
+      Object.keys(JSON.parse(localStorage.getItem("user"))).length > 0
+        ? true
+        : false,
     loading: false,
     userInfo:
+      localStorage.getItem("user") &&
       Object.keys(JSON.parse(localStorage.getItem("user"))).length > 0
         ? JSON.parse(localStorage.getItem("user"))
         : {}, // for user object

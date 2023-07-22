@@ -1,15 +1,6 @@
 import { useState } from "react";
 
-const FormInput = ({
-  label,
-  value,
-  errorMessage,
-  onChange,
-  name,
-  id,
-  classNameLabel,
-  ...inputProps
-}) => {
+const FormInput = ({ label, value, errorMessage, onChange, name, id, classNameLabel, ...inputProps }) => {
   const [focused, setFocused] = useState(false);
 
   const handleFocus = (e) => {
@@ -23,7 +14,7 @@ const FormInput = ({
           {label}
         </label>
       )}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 w-full">
         <input
           value={value}
           {...inputProps}
@@ -34,7 +25,7 @@ const FormInput = ({
           id={name}
           name={name}
         />
-        {errorMessage && <span className="text-xs text-main">{errorMessage}</span>}
+        {errorMessage && !focused && <span className="text-xs text-main">{errorMessage}</span>}
       </div>
     </div>
   );

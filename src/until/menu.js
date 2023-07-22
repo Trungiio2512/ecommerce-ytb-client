@@ -35,11 +35,6 @@ export const menuHome = [
     title: "faqs",
     path: `/${path.FAQS}`,
   },
-  {
-    id: 6,
-    title: "about us",
-    path: `/${path.ABOUT_US}`,
-  },
 ];
 export const menuUser = [
   {
@@ -91,6 +86,12 @@ export const menuAdmin = [
     id: 2,
     title: "Quản lý danh sách",
     path: `/${path.ADMIN}/${path.MANAGER_CATEGORY}`,
+    icon: <AiOutlineUser />,
+  },
+  {
+    id: 6,
+    title: "Quản lý đơn hàng",
+    path: `/${path.ADMIN}/${path.MANAGER_ORDER}`,
     icon: <AiOutlineUser />,
   },
   {

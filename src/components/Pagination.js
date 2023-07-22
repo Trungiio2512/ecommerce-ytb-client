@@ -15,7 +15,6 @@ const Pagination = ({
   const totalPage = Math.ceil(pageSize / defaultPageSize);
   const [searchParams, setSearchParams] = useSearchParams();
   const [pages, setPages] = useState([]);
-
   useEffect(() => {
     const page = [];
     const pageStart = current > 3 ? current - 3 : 1;

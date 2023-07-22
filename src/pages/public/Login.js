@@ -44,6 +44,7 @@ const Login = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (values.email && values.password) {
       dispatch(userActions.login(values));
     }
@@ -66,6 +67,7 @@ const Login = (props) => {
       });
     }
   }, [dispatch, error, isLoggedIn, navigate, userInfo]);
+
   return (
     <div className="bg-yellow-100 flex i h-screen ">
       <div className="w-full lg:w-2/5 md:w-3/5 m-auto lg:bg-white  lg:border border-gray-300 rounded-lg ">
@@ -93,7 +95,7 @@ const Login = (props) => {
                 name={input.name}
                 value={values[input.name]}
                 onChange={onChange}
-                className="bg-yellow-200 text-lg placeholder:text-sm lg:bg-white border lg:border-2 border-gray-400 rounded-[12px] lg:border-gray-300 w-full p-3 outline-none focus:border-gray-400 active:border-gray-400"
+                className="bg-yellow-200 text-base placeholder:text-sm lg:bg-white border lg:border-2 border-gray-400 rounded-[12px] lg:border-gray-300 w-full px-3 py-2 outline-none focus:border-gray-400 active:border-gray-400"
               />
             ))}
             <div className="w-full lg:w-4/5 mx-auto flex items-center justify-between">
