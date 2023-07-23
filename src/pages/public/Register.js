@@ -21,6 +21,13 @@ const Regiter = (props) => {
     firstName: "",
     lastName: "",
   });
+  const [errorMessages, setErrorMessages] = useState({
+    email: "",
+    password: "",
+    mobile: "",
+    firstName: "",
+    lastName: "",
+  });
 
   const inputs = [
     {
@@ -35,7 +42,7 @@ const Regiter = (props) => {
 
     {
       id: 4,
-      name: "password",
+      name: "passqword",
       type: "password",
       placeholder: "Password",
       errorMessage:
@@ -78,13 +85,42 @@ const Regiter = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const rs = await apiUser.register(values);
-    if (rs?.sucess) {
-      Swal.fire("Register Success", rs?.msg, "success").then(() => {
-        navigate(`/${path.LOGIN}`);
-      });
-    } else {
-      Swal.fire("Register Fail", rs?.msg, "error");
+    if (!values.email) {
+      setErrorMessages({ ...errorMessages, email: "Vui lòng nhập địa chỉ email" });
+    }
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!values.email.match(validRegex)) {
+      setErrorMessages({ ...errorMessages, email: "Email không hợp lệ" });
+    }
+    if (!values.firstName) {
+      setErrorMessages({ ...errorMessages, firstName: "Vui lòng nhập họ tên" });
+    }
+    if (!values.lastName) {
+      setErrorMessages({ ...errorMessages, lastName: "Vui lòng nhập họ tên" });
+    }
+    if (!values.mobile) {
+      setErrorMessages({ ...errorMessages, mobile: "Vui lòng nhập số điện thoại" });
+    }
+    if (
+      values.email &&
+      values.password &&
+      values.mobile &&
+      values.firstName &&
+      values.lastName &&
+      !errorMessages.email &&
+      !errorMessages.firstName &&
+      !errorMessages.lastName &&
+      !errorMessages.mobile &&
+      !errorMessages.password
+    ) {
+      const rs = await apiUser.register(values);
+      if (rs?.sucess) {
+        Swal.fire("Register Success", rs?.msg, "success").then(() => {
+          navigate(`/${path.LOGIN}`);
+        });
+      } else {
+        Swal.fire("Register Fail", rs?.msg, "error");
+      }
     }
   };
 
@@ -98,10 +134,7 @@ const Regiter = (props) => {
         <div className="flex items-center lg:h-full px-10 pt-16 lg:pt-0">
           <form onSubmit={handleSubmit} className="w-full space-y-8 relative">
             <div className="absolute top-0 left-0">
-              <Link
-                to={`/`}
-                className="capitalize text-lg text-gray-700 hover:text-main transition-all"
-              >
+              <Link to={`/`} className="capitalize text-lg text-gray-700 hover:text-main transition-all">
                 trang chủ
               </Link>
             </div>
@@ -118,6 +151,7 @@ const Regiter = (props) => {
                 {...input}
                 value={values[input.name]}
                 onChange={onChange}
+                errorMessage={errorMessages[input.name]}
                 className="bg-yellow-200 text-lg placeholder:text-sm lg:bg-white border lg:border-2 border-gray-400 rounded-[12px] lg:border-gray-300 w-full p-3 outline-none focus:border-gray-400 active:border-gray-400"
               />
             ))}
@@ -126,10 +160,7 @@ const Regiter = (props) => {
                 <input type="checkbox" name="" id="" />
                 <span className="block text-gray-800 tracking-wide">Remember me</span>
               </label>
-              <Link
-                to={`/${path.LOGIN}`}
-                className="text-gray-800 tracking-wide inline-block border-b border-gray-300"
-              >
+              <Link to={`/${path.LOGIN}`} className="text-gray-800 tracking-wide inline-block border-b border-gray-300">
                 You have account
               </Link>
             </div>

@@ -19,10 +19,10 @@ const WishList = (props) => {
   const dispatch = useDispatch();
   const { loading, wishlist } = useSelector((state) => state.user);
   const handleToDetailProduct = (product) => {
-    navigate(
-      `/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`,
-      { state: { id: product?._id }, replace: true },
-    );
+    navigate(`/${path.DETAIL_PRODUCT}/${product?.category?.slug}/${product?.brand?.slug}/${product?.slug}`, {
+      state: { id: product?._id },
+      replace: true,
+    });
   };
   const handleRemove = async (pd) => {
     if (wishlist?.some((product) => product?._id === pd?._id)) {
@@ -49,7 +49,7 @@ const WishList = (props) => {
   };
   return (
     <div className="w-full">
-      <h2 className="text-2xl text-third font-medium mb-5 ">Your Wish List</h2>
+      <h2 className="text-2xl text-third font-medium mb-5 ">Sản phẩm yêu thích của bạn</h2>
       {!loading && wishlist.length > 0 ? (
         <>
           <table className="hidden md:block overflow-x-auto">
@@ -73,9 +73,7 @@ const WishList = (props) => {
                       </figure>{" "}
                     </td>
                     <td className="px-2 py-5">
-                      <h3 className="px-2 text-base font-normal text-third font-meidum">
-                        {product?.title}
-                      </h3>
+                      <h3 className="px-2 text-base font-normal text-third font-meidum">{product?.title}</h3>
                     </td>
                     <td className="px-2 py-5">
                       <div className="flex flex-col items-start line-clamp-1 gap-2 px-2">
@@ -89,9 +87,7 @@ const WishList = (props) => {
                           {formatVND(product?.price)}
                         </span>
                         {product?.priceSale && (
-                          <span className="text-third text-base font-medium">
-                            {formatVND(product?.priceSale)}
-                          </span>
+                          <span className="text-third text-base font-medium">{formatVND(product?.priceSale)}</span>
                         )}
                       </div>
                     </td>
@@ -133,9 +129,7 @@ const WishList = (props) => {
                     </figure>
                   </div>
                   <div className="flex flex-col items-center gap-4 w-full flex-1">
-                    <h2 className="text-third text-xl font-semibold max-xs:text-base">
-                      {product?.title}
-                    </h2>
+                    <h2 className="text-third text-xl font-semibold max-xs:text-base">{product?.title}</h2>
                     <div className="flex items-baseline justify-center gap-2 max-xs:flex-col line-clamp-1 px-2">
                       <span
                         className={` ${

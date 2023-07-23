@@ -102,8 +102,7 @@ module.exports = {
       animation: {
         "slide-top": "slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
         "scale-up-center": "scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
-        "scale-down-center":
-          "scale-down-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
+        "scale-down-center": "scale-down-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards",
         "rotate-center": "rotate-center 0.8s ease-out infinite forwards",
         "scale-up-tr": "scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both",
         "slide-left": "slide-left .45s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards",

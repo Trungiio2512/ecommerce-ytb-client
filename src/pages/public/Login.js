@@ -17,6 +17,10 @@ const Login = (props) => {
     email: "",
     password: "",
   });
+  const [errorMessages, setErrorMessages] = useState({
+    email: "",
+    password: "",
+  });
 
   const inputs = [
     {
@@ -24,7 +28,7 @@ const Login = (props) => {
       name: "email",
       type: "email",
       placeholder: "Email",
-      errorMessage: "It should be a valid email address!",
+      // errorMessage: "It should be a valid email address!",
       label: "Email",
       required: true,
     },
@@ -34,8 +38,8 @@ const Login = (props) => {
       name: "password",
       type: "password",
       placeholder: "Password",
-      errorMessage:
-        "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      // errorMessage:
+      //   "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
       label: "Password",
       // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
@@ -44,8 +48,15 @@ const Login = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!values.email.match(validRegex) || !values.email) {
+      setErrorMessages({ ...errorMessages, email: "Địa chỉ email không hợp lệ" });
+    }
+    if (values.password.length <= 0) {
+      setErrorMessages({ ...errorMessages, password: "Vui lòng nhập mật khẩu" });
+    }
 
-    if (values.email && values.password) {
+    if (values.email && values.password && !errorMessages.email && !errorMessages.password) {
       dispatch(userActions.login(values));
     }
   };
@@ -74,10 +85,7 @@ const Login = (props) => {
         <div className="flex items-center px-10 py-4 md:h-screen-75">
           <form onSubmit={handleSubmit} className="w-full space-y-8 relative">
             <div className="absolute top-0 left-0">
-              <Link
-                to={`/`}
-                className="capitalize text-lg text-gray-700 hover:text-main transition-all"
-              >
+              <Link to={`/`} className="capitalize text-lg text-gray-700 hover:text-main transition-all">
                 trang chủ
               </Link>
             </div>
@@ -95,6 +103,7 @@ const Login = (props) => {
                 name={input.name}
                 value={values[input.name]}
                 onChange={onChange}
+                errorMessage={errorMessages[input.name]}
                 className="bg-yellow-200 text-base placeholder:text-sm lg:bg-white border lg:border-2 border-gray-400 rounded-[12px] lg:border-gray-300 w-full px-3 py-2 outline-none focus:border-gray-400 active:border-gray-400"
               />
             ))}

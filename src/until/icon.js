@@ -1,11 +1,4 @@
-import {
-  FaFacebookF,
-  FaInstagramSquare,
-  FaList,
-  FaPinterestP,
-  FaLinkedinIn,
-  FaClipboardList,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagramSquare, FaList, FaPinterestP, FaLinkedinIn, FaClipboardList } from "react-icons/fa";
 import {
   BsTwitter,
   BsPinterest,
@@ -36,12 +29,14 @@ import {
   AiOutlineLeft,
   AiOutlineRight,
   AiOutlineLogin,
+  AiOutlineTwitter,
 } from "react-icons/ai";
 import { IoIosMail } from "react-icons/io";
 import { HiMail, HiShoppingCart } from "react-icons/hi";
 import { ImLocation2, ImGooglePlus, ImHome } from "react-icons/im";
 import { GrUserAdmin } from "react-icons/gr";
 import { RiAdminLine } from "react-icons/ri";
+import { MdEmail } from "react-icons/md";
 const icons = {
   AiOutlineMenuUnfold,
   AiOutlineEye,
@@ -84,6 +79,8 @@ const icons = {
   AiOutlineLogin,
   RiAdminLine,
   GrUserAdmin,
+  AiOutlineTwitter,
+  MdEmail,
 };
 
 export default icons;

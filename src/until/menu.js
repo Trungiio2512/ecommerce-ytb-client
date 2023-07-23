@@ -1,39 +1,32 @@
 import path from "./path";
 import icons from "./icon";
-const {
-  AiOutlineUser,
-  BsClipboardHeart,
-  FaClipboardList,
-  AiOutlineOrderedList,
-  ImHome,
-  GrUserAdmin,
-  RiAdminLine,
-} = icons;
+const { AiOutlineUser, BsClipboardHeart, FaClipboardList, AiOutlineOrderedList, ImHome, GrUserAdmin, RiAdminLine } =
+  icons;
 export const menuHome = [
   {
     id: 1,
-    title: "home",
+    title: "Trang chủ",
     path: `/${path.HOME}`,
   },
   {
     id: 2,
-    title: "search",
+    title: "Tìm kiếm",
     path: `/${path.SEACH}`,
   },
   {
     id: 3,
-    title: "about us",
-    path: `/${path.OUR_SERVICES}`,
+    title: "Giới thiệu",
+    path: `/${path.ABOUT_US}`,
   },
   {
     id: 4,
-    title: "blogs",
+    title: "bài viết",
     path: `/${path.BLOGS}`,
   },
   {
     id: 5,
-    title: "faqs",
-    path: `/${path.FAQS}`,
+    title: "liên hệ",
+    path: `/${path.CONTACT}`,
   },
 ];
 export const menuUser = [

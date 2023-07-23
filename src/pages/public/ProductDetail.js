@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, createSearchParams, useLocation, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import { useSelector } from "react-redux";
 
@@ -112,7 +112,7 @@ const ProductDetail = (props) => {
       toastMsg(rs.msg, "error");
     }
   };
-
+  console.log(product);
   return (
     <div className="">
       <div className="mb-8">
@@ -126,11 +126,16 @@ const ProductDetail = (props) => {
             Home
           </Link>
           <Link
-            to={`/`}
+            to={{
+              pathname: `/${path.SEACH}`,
+              search: `${createSearchParams({ type: product?.category?.slug })}`,
+            }}
+            state={{ idCategory: product?.category?._id }}
             className="text-sm text-gray-500 
           hover:text-main px-2 "
           >
-            {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
+            {/* {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()} */}
+            {product?.category?.title}
           </Link>
           <Link
             to={`/`}

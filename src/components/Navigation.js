@@ -1,14 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import {
-  Link,
-  NavLink,
-  createSearchParams,
-  useLocation,
-  useMatches,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { Link, NavLink, createSearchParams, useLocation, useMatches, useNavigate, useParams } from "react-router-dom";
 import Tippy from "@tippyjs/react/headless";
 import { menuHome } from "../until/menu";
 import { useDebounce } from "../until/hook";
@@ -96,7 +88,7 @@ const Navigation = ({ open, handleOpen }) => {
             <input
               ref={inputRef}
               className="w-[250px] outline-none py-2 pl-3 pr-5 bg-gray-200"
-              placeholder="Search something"
+              placeholder="Tìm kiếm"
               onChange={(e) => {
                 if (e.target.value.startsWith(" ")) {
                   return;

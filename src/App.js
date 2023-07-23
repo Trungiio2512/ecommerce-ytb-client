@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import {
   AS,
   Blog,
+  BlogDetail,
+  Contact,
   FAQ,
   ForgotPass,
   ForgotPassword,
@@ -22,15 +24,7 @@ import "react-toastify/dist/ReactToastify.css";
 import path from "./until/path";
 import * as actions from "./app/actions/app";
 import * as actionsUser from "./app/actions/user";
-import {
-  Cart,
-  Oder,
-  Profile,
-  ProtectedRouter,
-  PurchaseOrder,
-  UserLayout,
-  WishList,
-} from "./pages/private";
+import { Cart, Oder, Profile, ProtectedRouter, PurchaseOrder, UserLayout, WishList } from "./pages/private";
 import { Layout } from "./pages/Layout";
 import {
   Admin,
@@ -66,14 +60,13 @@ function App() {
             {/* <Route path={path.SEACH_TITLE} element={<Product />}></Route> */}
             <Route path={path.PRODUCTS_CATEGORY} element={<Product />}></Route>
             <Route path={path.PRODUCTS_CATEGORY_BRAND} element={<Product />}></Route>
-            <Route
-              path={path.DETAIL_PRODUCT_CATEGORY_BRAND_TITLE}
-              element={<ProductDetail />}
-            ></Route>
+            <Route path={path.DETAIL_PRODUCT_CATEGORY_BRAND_TITLE} element={<ProductDetail />}></Route>
             <Route path={path.FAQS} element={<FAQ />}></Route>
-            <Route path={path.OUR_SERVICES} element={<Services />}></Route>
+            {/* <Route path={path.OUR_SERVICES} element={<Services />}></Route> */}
             <Route path={path.BLOGS} element={<Blog />}></Route>
+            <Route path={path.BLOGS_DETAIL} element={<BlogDetail />}></Route>
             <Route path={path.ABOUT_US} element={<AS />}></Route>
+            <Route path={path.CONTACT} element={<Contact />}></Route>
           </Route>
           <Route
             element={
@@ -105,14 +98,7 @@ function App() {
         >
           <Route path={path.ODER} element={<Oder />} />
         </Route>
-        <Route
-          element={
-            <ProtectedRouter
-              isAllowed={userInfo?.role?.includes("admin")}
-              redirectPath={path.PUBLIC}
-            />
-          }
-        >
+        <Route element={<ProtectedRouter isAllowed={userInfo?.role?.includes("admin")} redirectPath={path.PUBLIC} />}>
           <Route path={path.ADMIN} element={<AdminLayout />}>
             {/* <Route index element={<Admin />} /> */}
             <Route path={path.MANAGER_USER} element={<ManagerUser />} />

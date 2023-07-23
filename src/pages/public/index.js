@@ -10,3 +10,5 @@ export { default as ProductDetail } from "./ProductDetail";
 export { default as Register } from "./Register";
 export { default as VerifyEmail } from "./VerifyEmail";
 export { default as ForgotPassword } from "./ForgotPassword";
+export { default as BlogDetail } from "./BlogDetail";
+export { default as Contact } from "./Contact";

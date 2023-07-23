@@ -73,7 +73,6 @@ const NewArrivals = (props) => {
       productSpeaker.length > 0 && setSpeaker(productSpeaker);
     }
   }, [categories, newProducts]);
-  console.log(tabActive);
   return (
     <section className="mt-4">
       <div className="flex items-center justify-between mb-4">

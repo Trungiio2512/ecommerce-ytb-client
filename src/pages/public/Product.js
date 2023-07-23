@@ -1,13 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import {
-  Link,
-  createSearchParams,
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { Link, createSearchParams, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import * as apiProduct from "../../apis/product";
 import path from "../../until/path";
@@ -98,9 +91,7 @@ const Product = (props) => {
     <div className="space-y-5 text-base max-md:text-sm">
       {searchParams.get("q") && (
         <div className="py-[15px]">
-          <h3 className="text-xl font-semibold text-black uppercase mb-2 ">
-            {searchParams.get("q")}
-          </h3>
+          <h3 className="text-xl font-semibold text-black uppercase mb-2 ">{searchParams.get("q")}</h3>
           <div className="flex divide-x-2 divide-gray-500">
             <Link
               to={`/${path.HOME}`}
@@ -110,8 +101,7 @@ const Product = (props) => {
               Home
             </Link>
             <span className="text-sm text-gray-500 px-2 ">
-              {searchParams.get("q").charAt(0).toUpperCase() +
-                searchParams.get("q").slice(1).toLowerCase()}
+              {searchParams.get("q").charAt(0).toUpperCase() + searchParams.get("q").slice(1).toLowerCase()}
             </span>
           </div>
         </div>

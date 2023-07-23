@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const FormInput = ({ label, value, errorMessage, onChange, name, id, classNameLabel, ...inputProps }) => {
   const [focused, setFocused] = useState(false);
@@ -7,8 +7,13 @@ const FormInput = ({ label, value, errorMessage, onChange, name, id, classNameLa
     setFocused(true);
   };
   //   console.log(focused);
+  useEffect(() => {
+    if (errorMessage) {
+      handleFocus();
+    }
+  }, [errorMessage]);
   return (
-    <div className="relative flex w-full sm:w-auto flex-col lg:flex-row gap-2 ">
+    <div className="relative flex flex-1 w-full sm:w-auto flex-col lg:flex-row gap-2 ">
       {label && (
         <label className={classNameLabel} htmlFor={name}>
           {label}

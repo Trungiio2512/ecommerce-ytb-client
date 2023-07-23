@@ -40,7 +40,6 @@ const ManagerOrder = (props) => {
     }
     if (status === "Delivering") {
       response = await apiAdmin.updateOrder(oid, { status: "Sucessed" });
-      console.log(response);
     }
     if (response?.sucess) {
       toastMsg("Thay đổi thành công", "success");

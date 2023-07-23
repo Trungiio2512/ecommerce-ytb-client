@@ -9,15 +9,6 @@ import * as category from "../apis/category";
 const { FaList } = icons;
 
 const Sidebar = (props) => {
-  // // const [categories, setcategories] = useState([]);
-  // useEffect(() => {
-  //   const api = async () => {
-  //     const res = await category.getAll();
-  //     // console.log(res);
-  //     setcategories(res.data);
-  //   };
-  //   api();
-  // }, []);
   const { isLoading, categories } = useSelector((state) => state.app);
   // console.log(categories);
   return (
