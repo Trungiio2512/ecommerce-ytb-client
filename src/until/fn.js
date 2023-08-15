@@ -12,15 +12,13 @@ export function getStars(rating) {
   let output = [];
 
   // Append all the filled whole stars
-  for (var i = rating; i >= 1; i--)
-    output.push(<BsStarFill key={Math.random() * i} className="text-yellow-500" />);
+  for (var i = rating; i >= 1; i--) output.push(<BsStarFill key={Math.random() * i} className="text-yellow-500" />);
 
   // If there is a half a star, append it
   if (i === 0.5) output.push(<BsStarHalf className="text-gray-400" key={Math.random() * i} />);
 
   // Fill the empty stars
-  for (let i = 5 - rating; i >= 1; i--)
-    output.push(<BsStarFill className="text-gray-400" key={Math.random() * i} />);
+  for (let i = 5 - rating; i >= 1; i--) output.push(<BsStarFill className="text-gray-400" key={Math.random() * i} />);
   // console.log(output);
   return output;
 }
@@ -36,15 +34,12 @@ export const uploadImage = async (file) => {
     url: rs.data.url,
   };
 };
+
 function padTo2Digits(num) {
   return num.toString().padStart(2, "0");
 }
 
 export const formatDate = (date) => {
   const newdate = new Date(date);
-  return [
-    padTo2Digits(newdate.getDate()),
-    padTo2Digits(newdate.getMonth() + 1),
-    newdate.getFullYear(),
-  ].join(".");
+  return [padTo2Digits(newdate.getDate()), padTo2Digits(newdate.getMonth() + 1), newdate.getFullYear()].join(".");
 };

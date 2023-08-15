@@ -39,7 +39,6 @@ import {
 } from "./pages/admin";
 function App() {
   const { userInfo, isLoggedIn } = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.get());
@@ -74,8 +73,7 @@ function App() {
                 isAllowed={userInfo?.role?.includes("user") || userInfo?.role?.includes("admin")}
                 redirectPath={path.PUBLIC}
               />
-            }
-          >
+            }>
             <Route path={path.USER} element={<UserLayout />}>
               <Route path={path.CART} element={<Cart />} />
               <Route path={path.WISH_LIST} element={<WishList />} />
@@ -94,8 +92,7 @@ function App() {
               isAllowed={userInfo?.role?.includes("user") || userInfo?.role?.includes("admin")}
               redirectPath={path.PUBLIC}
             />
-          }
-        >
+          }>
           <Route path={path.ODER} element={<Oder />} />
         </Route>
         <Route element={<ProtectedRouter isAllowed={userInfo?.role?.includes("admin")} redirectPath={path.PUBLIC} />}>

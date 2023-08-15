@@ -9,7 +9,7 @@ import * as category from "../apis/category";
 const { FaList } = icons;
 
 const Sidebar = (props) => {
-  const { isLoading, categories } = useSelector((state) => state.app);
+  const { categories } = useSelector((state) => state.app);
   // console.log(categories);
   return (
     <div className="w-full ">

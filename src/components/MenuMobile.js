@@ -27,6 +27,8 @@ const MenuMobile = ({
         { title: "User Acctions", children: [...menuUser] },
         { title: "Admin Acctions", children: [...menuAdmin] },
       ];
+    } else {
+      menu = [...menu, { title: "Đăng nhập", path: `/${path.LOGIN}` },{ title: "Đăng ký", path: `/${path.REGISTER}` }];
     }
     return menu;
   });

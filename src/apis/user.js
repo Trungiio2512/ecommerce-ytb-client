@@ -45,6 +45,12 @@ export const getInfo = async (payload, data) =>
     method: "GET",
     url: "user/info",
   });
+export const upInfo = async (payload) =>
+  axiosConfig({
+    method: "Put",
+    url: "user/up_info",
+    data: payload,
+  });
 export const getWishList = async () =>
   axiosConfig({
     url: "user/get_wishlist",

@@ -23,7 +23,7 @@ const Home = (props) => {
           {" "}
           <Sidebar />
         </div>
-        <div className="lg:w-9/12 w-full">
+        <div className="md:w-9/12 w-full">
           <Banner />
         </div>
       </div>

@@ -35,6 +35,7 @@ const Featured = (props) => {
     };
     fetchApi();
   }, [categories]);
+  console.log(accessories)
   return (
     <section>
       <h2 className="uppercase text-xl font-semibold py-4 border-b-[3px] mb-5 border-red-400">

@@ -7,17 +7,14 @@ import * as apiColor from "../../apis/color";
 import * as apiInternal from "../../apis/internal";
 import * as apiBrand from "../../apis/brand";
 
-export const getAllCategories = createAsyncThunk(
-  "app/getAllCategories",
-  async (data, { rejectWithValue }) => {
-    const res = await apiCategories.getAll();
-    //   console.log(res);
-    if (!res?.sucess) {
-      return rejectWithValue(res);
-    }
-    return res?.data;
-  },
-);
+export const getAllCategories = createAsyncThunk("app/getAllCategories", async (data, { rejectWithValue }) => {
+  const res = await apiCategories.getAll();
+  //   console.log(res);
+  if (!res?.sucess) {
+    return rejectWithValue(res);
+  }
+  return res?.data;
+});
 export const getBanner = createAsyncThunk("app/getBanner", async (data, { rejectWithValue }) => {
   const res = await apiBanner.get();
   //   console.log(res);
@@ -27,21 +24,18 @@ export const getBanner = createAsyncThunk("app/getBanner", async (data, { reject
   return res?.data;
 });
 
-export const getNewProducts = createAsyncThunk(
-  "app/getNewProducts",
-  async (data, { rejectWithValue }) => {
-    const res = await apiProduct.getAll({
-      news: true,
-      fields: "thumb specifications title slug price totalRatings news priceSale description",
-      limit: 50,
-    });
-    // console.log(res);
-    if (!res?.sucess) {
-      return rejectWithValue(res);
-    }
-    return res?.data;
-  },
-);
+export const getNewProducts = createAsyncThunk("app/getNewProducts", async (data, { rejectWithValue }) => {
+  const res = await apiProduct.getAll({
+    news: true,
+    fields: "thumb specifications title slug price totalRatings news priceSale description",
+    limit: 50,
+  });
+  // console.log(res);
+  if (!res?.sucess) {
+    return rejectWithValue(res);
+  }
+  return res?.data;
+});
 
 export const get = createAsyncThunk("app/get", async (data, { rejectWithValue }) => {
   const [categories, banners, newProducts, rams, colors, internals, brands] = await Promise.all([
@@ -57,7 +51,6 @@ export const get = createAsyncThunk("app/get", async (data, { rejectWithValue })
     await apiInternal.get(),
     await apiBrand.get(),
   ]);
-
   return {
     categories: categories?.data,
     banners: banners?.data,

@@ -42,7 +42,7 @@ const Regiter = (props) => {
 
     {
       id: 4,
-      name: "passqword",
+      name: "password",
       type: "password",
       placeholder: "Password",
       errorMessage:
@@ -106,13 +106,9 @@ const Regiter = (props) => {
       values.password &&
       values.mobile &&
       values.firstName &&
-      values.lastName &&
-      !errorMessages.email &&
-      !errorMessages.firstName &&
-      !errorMessages.lastName &&
-      !errorMessages.mobile &&
-      !errorMessages.password
-    ) {
+      values.lastName 
+      ) {
+      console.log(1)
       const rs = await apiUser.register(values);
       if (rs?.sucess) {
         Swal.fire("Register Success", rs?.msg, "success").then(() => {
@@ -122,6 +118,8 @@ const Regiter = (props) => {
         Swal.fire("Register Fail", rs?.msg, "error");
       }
     }
+    console.log(values)
+    console.log(errorMessages)
   };
 
   const onChange = (e) => {
@@ -149,6 +147,7 @@ const Regiter = (props) => {
                 }
                 key={input.id}
                 {...input}
+                name={input.name}
                 value={values[input.name]}
                 onChange={onChange}
                 errorMessage={errorMessages[input.name]}
