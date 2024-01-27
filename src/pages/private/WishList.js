@@ -40,7 +40,7 @@ const WishList = (props) => {
             dispatch(sliceUser.updatewishlist(pd));
             // console.log(rs);
           },
-          { once: true },
+          { once: true }
         );
       } else {
         toastMsg(rs.msg, "error");
@@ -82,8 +82,7 @@ const WishList = (props) => {
                             product?.priceSale
                               ? "text-sm line-through text-gray-500"
                               : "text-base font-normal text-third font-meidum"
-                          }`}
-                        >
+                          }`}>
                           {formatVND(product?.price)}
                         </span>
                         {product?.priceSale && (
@@ -96,8 +95,7 @@ const WishList = (props) => {
                         className={
                           "px-5 py-1 border border-gray-300 rounded-lg hover:border-blue-300 active:border-red-400 active:bg-red-200  active:text-white transition-colors text-sm "
                         }
-                        onHanldeClick={() => handleRemove(product)}
-                      >
+                        onHanldeClick={() => handleRemove(product)}>
                         <AiOutlineClose />
                       </Button>
                     </td>
@@ -106,8 +104,7 @@ const WishList = (props) => {
                         className={
                           "px-5 py-1 border border-gray-300 rounded-lg hover:border-blue-300 hover:text-blue-300 capitalize text-sm transition-colors "
                         }
-                        onHanldeClick={() => handleToDetailProduct(product)}
-                      >
+                        onHanldeClick={() => handleToDetailProduct(product)}>
                         View detail
                       </Button>
                     </td>
@@ -121,8 +118,7 @@ const WishList = (props) => {
               return (
                 <div
                   className={`flex flex-col sm:flex-row items-center  gap-2 border border-gray-300 rounded-md p-5 product-${product?._id}`}
-                  key={product?._id}
-                >
+                  key={product?._id}>
                   <div className="max-w-[228px] max-h-[228px] w-full shrink-0 ">
                     <figure className="w-full h-full">
                       <img src={product?.thumb?.url} alt={product?.title} />
@@ -136,8 +132,7 @@ const WishList = (props) => {
                           product?.priceSale
                             ? "text-sm max-xs:text-xs line-through text-gray-500"
                             : "text-lg max-xs:text-sm font-normal text-third font-meidum"
-                        }`}
-                      >
+                        }`}>
                         {formatVND(product?.price)}
                       </span>
                       {product?.priceSale && (
@@ -149,16 +144,14 @@ const WishList = (props) => {
                     <Button
                       className={
                         "px-5 py-2 border border-gray-400 rounded-lg hover:border-blue-300 active:border-red-400 active:bg-red-200 transition-colors text-lg flex items-center justify-center w-full max-md:text-sm"
-                      }
-                    >
+                      }>
                       Deleted
                     </Button>
                     <Button
                       className={
                         "px-5 py-2 border border-gray-400 rounded-lg hover:border-blue-300 hover:text-blue-300 capitalize text-lg max-md:text-sm transition-colors w-full"
                       }
-                      onHanldeClick={() => handleToDetailProduct(product)}
-                    >
+                      onHanldeClick={() => handleToDetailProduct(product)}>
                       View detail
                     </Button>
                   </div>
@@ -168,7 +161,7 @@ const WishList = (props) => {
           </div>
         </>
       ) : (
-        <h5 className="text-xl text-gray-500">You have not product</h5>
+        <h5 className="text-xl text-gray-500">Bạn chưa có sản phẩm nào</h5>
       )}
     </div>
   );

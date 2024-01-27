@@ -30,9 +30,8 @@ const Sidebar = (props) => {
                     search: `${createSearchParams({ type: category?.slug })}`,
                   }}
                   className="flex items-center gap-2 hover:text-main text-second"
-                  state={{ idCategory: category?._id }}
-                >
-                  <span className="">icon</span>
+                  state={{ idCategory: category?._id }}>
+                  {/* <span className="">icon</span> */}
                   <span className="text-sm">{category?.title}</span>
                 </Link>
               </li>
