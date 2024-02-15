@@ -14,8 +14,8 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const { isLoggedIn, loading, userInfo, token, error, msg } = useSelector((state) => state.user);
   const [values, setValues] = useState({
-    email: "",
-    password: "",
+    email: "midiio2512@gmail.com",
+    password: "trungiio",
   });
   const [errorMessages, setErrorMessages] = useState({
     email: "",
