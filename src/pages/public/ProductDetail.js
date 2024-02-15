@@ -112,7 +112,6 @@ const ProductDetail = (props) => {
       toastMsg(rs.msg, "error");
     }
   };
-  console.log(product);
   return (
     <div className="">
       <div className="mb-8">
@@ -121,8 +120,7 @@ const ProductDetail = (props) => {
           <Link
             to={`/${path.HOME}`}
             className="text-sm text-gray-500 
-          hover:text-main capitalize pr-2"
-          >
+          hover:text-main capitalize pr-2">
             Home
           </Link>
           <Link
@@ -132,16 +130,14 @@ const ProductDetail = (props) => {
             }}
             state={{ idCategory: product?.category?._id }}
             className="text-sm text-gray-500 
-          hover:text-main px-2 "
-          >
+          hover:text-main px-2 ">
             {/* {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()} */}
             {product?.category?.title}
           </Link>
           <Link
             to={`/`}
             className="text-sm text-gray-500 
-          hover:text-main px-2"
-          >
+          hover:text-main px-2">
             {brand}
           </Link>
           <span className="text-sm text-gray-500 px-2">{title}</span>
@@ -155,28 +151,23 @@ const ProductDetail = (props) => {
             <div
               className={`${
                 tabActive === 0 ? "block" : "hidden"
-              } active p-5 text-sm border border-gray-300 text-gray-600 line-clamp-3`}
-            >
+              } active p-5 text-sm border border-gray-300 text-gray-600 line-clamp-3`}>
               {product?.description}
             </div>{" "}
             <div
-              className={`${tabActive === 1 ? "block" : "hidden"} p-5 text-sm border border-gray-300 text-gray-600 `}
-            >
+              className={`${tabActive === 1 ? "block" : "hidden"} p-5 text-sm border border-gray-300 text-gray-600 `}>
               {product?.warranty}
             </div>
             <div
-              className={`${tabActive === 2 ? "block" : "hidden"} p-5 text-sm border border-gray-300 text-gray-600 `}
-            >
+              className={`${tabActive === 2 ? "block" : "hidden"} p-5 text-sm border border-gray-300 text-gray-600 `}>
               {product?.delivery}
             </div>
             <div
-              className={`${tabActive === 3 ? "block" : "hidden"} p-5 text-sm border border-gray-300 text-gray-600 `}
-            >
+              className={`${tabActive === 3 ? "block" : "hidden"} p-5 text-sm border border-gray-300 text-gray-600 `}>
               {product?.payment}
             </div>
             <div
-              className={`${tabActive === 4 ? "block" : "hidden"} p-5 text-sm border border-gray-300 text-gray-600 `}
-            >
+              className={`${tabActive === 4 ? "block" : "hidden"} p-5 text-sm border border-gray-300 text-gray-600 `}>
               <div className="flex max-sm:flex-col sm:flex-row  sm:items-baseline">
                 <div className="flex-1 flex flex-col gap-2 items-center">
                   <span className="text-lg max-xs:text-base text-third font-medium">{`${product?.totalRatings}/5`}</span>
@@ -197,8 +188,7 @@ const ProductDetail = (props) => {
                       <span className="text-base">Bạn đánh giá sao sản phẩm này</span>
                       <button
                         className="rounded-lg bg-main text-white text-sm w-full max-w-[300px] px-5 py-2"
-                        onClick={() => setIsShowModal(true)}
-                      >
+                        onClick={() => setIsShowModal(true)}>
                         Đánh giá ngay
                       </button>
                     </>
@@ -263,25 +253,31 @@ const ProductDetail = (props) => {
             </div>
             <button
               className="max-w-[100px] w-full bg-main rounded-lg px-5 py-1 text-sm float-right text-white"
-              onClick={() => handleRatings()}
-            >
+              onClick={() => handleRatings()}>
               Gửi
             </button>
           </div>
         </Modal>
       )}
-      {ortherProducts.length > 0 && (
-        <div className="mt-[30px]">
-          <h3 className="font-medium text-xl text-third uppercase py-1 border-b-1 border-red-400 mb-[50px] max-md:text-lg">
-            Các sản phẩm tương tự:
-          </h3>
+
+      <div className="mt-[30px]">
+        <h3 className="font-medium text-xl text-third uppercase py-1 border-b-1 border-red-400 mb-[50px] max-md:text-lg">
+          Các sản phẩm tương tự:
+        </h3>
+        {ortherProducts.length > 0 ? (
           <Slider {...settings}>
             {ortherProducts.map((el) => {
               return <ProductT1 imgSmall isShowDesModal key={el?._id} data={el} />;
             })}
           </Slider>
-        </div>
-      )}
+        ) : (
+          <Slider {...settings}>
+            {[1, 2, 3].map((el) => {
+              return <ProductT1 loading key={el} />;
+            })}
+          </Slider>
+        )}
+      </div>
     </div>
   );
 };

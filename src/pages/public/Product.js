@@ -33,6 +33,9 @@ const Product = (props) => {
   const [resset, setResset] = useState(false);
 
   const handleValue = (id, name) => {
+    if (products.length <= 0) {
+      return;
+    }
     const isChecked = values[name].includes(id);
     if (isChecked) {
       setValues((prev) => ({
@@ -44,6 +47,7 @@ const Product = (props) => {
     }
   };
   const debounceValue = useDebounce(values, 1200);
+
   useEffect(() => {
     let queryObj = {};
     if (idCategory) {
@@ -96,8 +100,7 @@ const Product = (props) => {
             <Link
               to={`/${path.HOME}`}
               className="text-sm text-gray-500 
-              hover:text-main capitalize pr-2"
-            >
+              hover:text-main capitalize pr-2">
               Home
             </Link>
             <span className="text-sm text-gray-500 px-2 ">
@@ -119,8 +122,7 @@ const Product = (props) => {
                   <div
                     className="w-[330px] h-screen-50 overflow-y-auto  border-gray-300 border bg-white relative  text-gray-400 "
                     tabIndex="-1"
-                    {...attrs}
-                  >
+                    {...attrs}>
                     {" "}
                     <div className="fixed bg-white top-0 left-0 w-full h-[76px] border boder-gray-400  z-10 justify-center items-center flex flex-col">
                       <span>Default price VND </span>
@@ -146,8 +148,7 @@ const Product = (props) => {
                             values.priceFrom > 0
                               ? "-top-5"
                               : "top-[50%] -translate-y-[50%] peer-focus:-top-2 peer-focus:text-sm transition-all"
-                          }  `}
-                        >
+                          }  `}>
                           From
                         </label>
                         <span className="absolute right-2 top-[50%] -translate-y-[50%] text-gray-600 cursor-text ">
@@ -173,8 +174,7 @@ const Product = (props) => {
                             values.priceTo > 0
                               ? "-top-5"
                               : "top-[50%] -translate-y-[50%] peer-focus:-top-2 peer-focus:text-sm transition-all"
-                          }  `}
-                        >
+                          }  `}>
                           To
                         </label>
                         <span className="absolute right-2 top-[50%] -translate-y-[50%] text-gray-600 cursor-text ">
@@ -183,8 +183,7 @@ const Product = (props) => {
                       </div>
                     </div>
                   </div>
-                )}
-              >
+                )}>
                 <div className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none">
                   <span>Price</span>
                   <AiFillCaretDown />
@@ -202,8 +201,7 @@ const Product = (props) => {
                   <div
                     className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative  text-gray-400"
                     tabIndex="-1"
-                    {...attrs}
-                  >
+                    {...attrs}>
                     <div className="fixed bg-white top-0 left-0 w-full h-[76px] border boder-gray-400 flex items-center justify-center z-10">
                       <span>0 selected</span>
                     </div>
@@ -212,8 +210,7 @@ const Product = (props) => {
                         return (
                           <li
                             key={color?._id}
-                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative"
-                          >
+                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative">
                             <input
                               type="checkbox"
                               id={color?.name}
@@ -225,8 +222,7 @@ const Product = (props) => {
                               htmlFor={color?.name}
                               className={`w-full cursor-pointer font-medium text-gray-600 ${
                                 values.colors.includes(color?._id) ? "text-main" : ""
-                              }`}
-                            >
+                              }`}>
                               {color?.name}
                             </label>
                           </li>
@@ -234,8 +230,7 @@ const Product = (props) => {
                       })}
                     </ul>
                   </div>
-                )}
-              >
+                )}>
                 <div className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none">
                   <span>Color</span>
                   <AiFillCaretDown />
@@ -253,8 +248,7 @@ const Product = (props) => {
                   <div
                     className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative  text-gray-400"
                     tabIndex="-1"
-                    {...attrs}
-                  >
+                    {...attrs}>
                     <div className="fixed bg-white top-0 left-0 w-full h-[76px] border boder-gray-400 flex items-center justify-center z-10">
                       <span>0 selected</span>
                     </div>
@@ -263,8 +257,7 @@ const Product = (props) => {
                         return (
                           <li
                             key={ram?._id}
-                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative"
-                          >
+                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative">
                             <input
                               type="checkbox"
                               id={ram?.name}
@@ -276,8 +269,7 @@ const Product = (props) => {
                               htmlFor={ram?.name}
                               className={`w-full cursor-pointer font-medium text-gray-600 ${
                                 values.rams.includes(ram?._id) ? "text-main" : ""
-                              }`}
-                            >
+                              }`}>
                               {ram?.name}
                             </label>
                           </li>
@@ -285,8 +277,7 @@ const Product = (props) => {
                       })}
                     </ul>
                   </div>
-                )}
-              >
+                )}>
                 <div className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none">
                   <span>Ram</span>
                   <AiFillCaretDown />
@@ -304,8 +295,7 @@ const Product = (props) => {
                   <div
                     className="w-[330px] h-screen-50 overflow-y-auto border border-gray-300 bg-white relative  text-gray-400"
                     tabIndex="-1"
-                    {...attrs}
-                  >
+                    {...attrs}>
                     <div className="fixed bg-white top-0 left-0 w-full h-[76px] border boder-gray-400 flex items-center justify-center z-10">
                       <span>0 selected</span>
                     </div>
@@ -314,8 +304,7 @@ const Product = (props) => {
                         return (
                           <li
                             key={internal?._id}
-                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative"
-                          >
+                            className="w-full px-5 py-2 border-b-2 hover:border-gray-400 flex items-center justify-center gap-2 relative">
                             <input
                               type="checkbox"
                               id={internal?.name}
@@ -327,8 +316,7 @@ const Product = (props) => {
                               htmlFor={internal?.name}
                               className={`w-full cursor-pointer font-medium text-gray-600 ${
                                 values.internals.includes(internal?._id) ? "text-main" : ""
-                              }`}
-                            >
+                              }`}>
                               {internal?.name}
                             </label>
                           </li>
@@ -336,8 +324,7 @@ const Product = (props) => {
                       })}
                     </ul>
                   </div>
-                )}
-              >
+                )}>
                 <div className="flex items-center gap-2 px-5 py-4 max-md:py-2 border border-gray-400  text-gray-400 appearance-none">
                   <span>Internal</span>
                   <AiFillCaretDown />
@@ -356,8 +343,7 @@ const Product = (props) => {
                     internals: [],
                   });
                   setResset(false);
-                }}
-              >
+                }}>
                 Reset
               </Button>
             )}
@@ -369,8 +355,7 @@ const Product = (props) => {
           <select
             onChange={(e) => {
               setValues((prev) => ({ ...prev, sort: `${e.target.value}` }));
-            }}
-          >
+            }}>
             <option defaultChecked>--Bộ lọc--</option>
             <option value={"-features"}>Featured</option>
             <option value={"title"}>Theo bảng chữ cái, A-Z</option>
@@ -385,14 +370,21 @@ const Product = (props) => {
       <div className="mt-5">
         <div className="grid-layout">
           <div className="row">
-            {products.length > 0 &&
-              products?.map((product) => {
-                return (
-                  <div className="col l-3 s-4 c-6 mb-5" key={product?._id}>
-                    <ProductT1 isShowDesModal imgSmall uiGridLayout data={product} />
-                  </div>
-                );
-              })}
+            {products.length > 0
+              ? products?.map((product) => {
+                  return (
+                    <div className="col l-3 s-4 c-6 mb-5" key={product?._id}>
+                      <ProductT1 isShowDesModal imgSmall uiGridLayout data={product} />
+                    </div>
+                  );
+                })
+              : [1, 2, 3, 4, 5, 6]?.map((product) => {
+                  return (
+                    <div className="col l-3 s-4 c-6 mb-5" key={product}>
+                      <ProductT1 loading />
+                    </div>
+                  );
+                })}
           </div>
         </div>
       </div>

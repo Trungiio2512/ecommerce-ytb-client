@@ -29,7 +29,7 @@ const Banner = (props) => {
           })}
         </Slider>
       ) : (
-        <div className="w-full h-[200px] bg-gray-200"></div>
+        <div className="w-full h-[480px] bg-gray-400 animate-pulse"></div>
       )}
     </div>
   );

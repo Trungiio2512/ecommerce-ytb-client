@@ -84,8 +84,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
               ref={(slider2) => setNav2(slider2)}
               slidesToShow={3}
               swipeToSlide={true}
-              focusOnSelect={true}
-            >
+              focusOnSelect={true}>
               {product?.images.map((image, index) => {
                 return (
                   <div className="max-w-[153px] w-full" key={index}>
@@ -112,14 +111,11 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                   product?.priceSale > 0
                     ? "text-lg text-gray-600 line-through font-normal"
                     : "text-xl text-third font-semibold"
-                }
-              >
+                }>
                 {formatVND(product?.price)}
               </span>
               {product?.priceSale > 0 && (
-                <span className="text-2xl text-third font-semibold">
-                  {formatVND(product?.priceSale)}
-                </span>
+                <span className="text-2xl text-third font-semibold">{formatVND(product?.priceSale)}</span>
               )}
             </div>
             <div className="flex items-stretch gap-2">
@@ -136,9 +132,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
               })}
             </ul>{" "}
             <div className="flex max-xs:flex-col xs:items-baseline gap-2">
-              <span className="text-third text-sm font-semibold capitalize  min-w-[70px]">
-                internal
-              </span>
+              <span className="text-third text-sm font-semibold capitalize  min-w-[70px]">internal</span>
               <div className="max-md:hidden w-full flex items-center gap-1">
                 {product?.internals?.map((ele) => {
                   return (
@@ -156,8 +150,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                         htmlFor={ele?._id}
                         className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
                           ele?._id === internal?._id ? "text-main border-red-400 " : ""
-                        }`}
-                      >
+                        }`}>
                         {ele?.name}
                       </label>
                     </div>
@@ -167,9 +160,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
               <Selector data={product?.internals} value={internal} setValue={setInternal} />
             </div>
             <div className="flex max-xs:flex-col xs:items-baseline gap-2">
-              <span className="text-third text-sm font-semibold capitalize  min-w-[70px]">
-                color
-              </span>
+              <span className="text-third text-sm font-semibold capitalize  min-w-[70px]">color</span>
               <div className="max-md:hidden w-full flex items-center gap-1">
                 {product?.colors?.map((ele) => {
                   return (
@@ -187,8 +178,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                         htmlFor={ele?._id}
                         className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
                           ele?._id === color?._id ? "text-main border-red-400 " : ""
-                        }`}
-                      >
+                        }`}>
                         {ele?.name}
                       </label>
                     </div>
@@ -216,8 +206,7 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                         htmlFor={ele?._id}
                         className={`"bg-white px-2 py-1 text-sm font-medium uppercase border border-gray-400 text-gray-400 block ${
                           ele?._id === ram?._id ? "text-main border-red-400 " : ""
-                        }`}
-                      >
+                        }`}>
                         {ele?.name}
                       </label>
                     </div>
@@ -227,16 +216,13 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
               <Selector data={product?.rams} value={ram} setValue={setRam} />
             </div>
             <div className="flex max-xs:flex-col xs:items-baseline gap-2">
-              <span className="text-third text-sm font-semibold capitalize min-w-[70px]">
-                quantity
-              </span>
+              <span className="text-third text-sm font-semibold capitalize min-w-[70px]">quantity</span>
               <div className="relative inline-block">
                 <Button
                   className={
                     "text-lg bg-white hover:bg-gray-800 hover:text-white transition-all duration-300 absolute top-0 left-0 h-full px-3 border border-gray-400 rounded-l-md hover:border-red-300 focus:border-red-500"
                   }
-                  onHanldeClick={() => handleDecrementQuantity()}
-                >
+                  onHanldeClick={() => handleDecrementQuantity()}>
                   -
                 </Button>
                 <input
@@ -249,18 +235,14 @@ const ProductDetailContent = ({ product = {}, selectOption = false, modal = fals
                   className={
                     "text-lg bg-white hover:bg-gray-800 hover:text-white transition-all duration-300 absolute top-0 right-0 h-full px-3 border border-gray-400 rounded-r-md"
                   }
-                  onHanldeClick={() => handleIncrementQuantity()}
-                >
+                  onHanldeClick={() => handleIncrementQuantity()}>
                   +
                 </Button>
               </div>
             </div>
             <Button
-              className={
-                "max-xs:w-full xs:w-6/12 block text-center py-2 uppercase bg-main text-white font-semibold"
-              }
-              onHanldeClick={() => handleAddToCart()}
-            >
+              className={"max-xs:w-full xs:w-6/12 block text-center py-2 uppercase bg-main text-white font-semibold"}
+              onHanldeClick={() => handleAddToCart()}>
               Add to cart
             </Button>
           </div>

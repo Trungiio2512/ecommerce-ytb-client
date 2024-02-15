@@ -21,13 +21,12 @@ const Blog = (props) => {
     <div className="w-full p-5">
       <div className="md:w-3/12 max-md:hidden"></div>
       <div className="md:w-9/12 w-full">
-        {blogs.length > 0 &&
+        {blogs.length > 0 ? (
           blogs.map((blog) => {
             return (
               <div
                 key={blog?._id}
-                className="flex max-xs:flex-col flex-row items-start p-3 border border-gray-300 rounded-sm gap-2 mb-5"
-              >
+                className="flex max-xs:flex-col flex-row items-start p-3 border border-gray-300 rounded-sm gap-2 mb-5">
                 <Link to={`/${path.BLOGS}/${blog?._id}`} className="xs:w-6/12 max-xs:w-full">
                   <figure className="w-full h-full">
                     <img src={blog?.image?.url} alt={blog?.title} />
@@ -43,14 +42,16 @@ const Blog = (props) => {
                   <p className="text-sm text-gray-600 line-clamp-6">{blog?.subdes}</p>
                   <Link
                     to={`/${path.BLOGS}/${blog?._id}`}
-                    className="border border-gray-300 hover:border-red-300 text-sm text-center rounded-md px-5 py-1 max-w-[200px] w-full"
-                  >
+                    className="border border-gray-300 hover:border-red-300 text-sm text-center rounded-md px-5 py-1 max-w-[200px] w-full">
                     Chi tiết
                   </Link>
                 </div>
               </div>
             );
-          })}
+          })
+        ) : (
+          <h1 className="text-xl text-gray-500 ">Hiện tại chưa có bài post nào</h1>
+        )}
       </div>
     </div>
   );

@@ -9,12 +9,7 @@ import SubMenuMobile from "./SubMenuMobile";
 import MenuMobileItem from "./MenuMobileItem";
 const { AiOutlineClose, AiFillCaretDown } = icons;
 
-const MenuMobile = ({
-  open,
-  handleClose = () => {},
-  shouldCloseOverlayClick,
-  forAdmin = false,
-}) => {
+const MenuMobile = ({ open, handleClose = () => {}, shouldCloseOverlayClick, forAdmin = false }) => {
   const { userInfo } = useSelector((state) => state.user);
   // console.log(userInfo);
   const [menus, setMenus] = useState(() => {
@@ -28,7 +23,7 @@ const MenuMobile = ({
         { title: "Admin Acctions", children: [...menuAdmin] },
       ];
     } else {
-      menu = [...menu, { title: "Đăng nhập", path: `/${path.LOGIN}` },{ title: "Đăng ký", path: `/${path.REGISTER}` }];
+      menu = [...menu, { title: "Đăng nhập", path: `/${path.LOGIN}` }, { title: "Đăng ký", path: `/${path.REGISTER}` }];
     }
     return menu;
   });
@@ -44,7 +39,7 @@ const MenuMobile = ({
         setClosing(false);
         handleClose();
       },
-      { once: true },
+      { once: true }
     );
   }, [handleClose]);
 
@@ -66,8 +61,7 @@ const MenuMobile = ({
     <div
       className={`z-10 top-0 left-0 right-0  max-h-screen h-full ${
         forAdmin ? "max-md:fixed md:hidden" : "lg:hidden max-lg:fixed "
-      }`}
-    >
+      }`}>
       <div
         className={`absolute top-0 left-0 right-0 bottom-0 duration-150 bg-black-03`}
         onClick={
@@ -77,25 +71,18 @@ const MenuMobile = ({
                 handleRequestClose();
               }
             : () => {}
-        }
-      ></div>
+        }></div>
       <div
         className={`relative w-full max-w-[350px] h-full bg-gray-700 text-white text-base duration-500  overflow-y-auto ${
           closesing ? "animate-slide-left" : "animate-slide-right"
         }`}
-        ref={containerRef}
-      >
-        <button
-          className="right-0 p-2 active:text-main duration-200"
-          onClick={() => handleRequestClose()}
-        >
+        ref={containerRef}>
+        <button className="right-0 p-2 active:text-main duration-200" onClick={() => handleRequestClose()}>
           <AiOutlineClose size={25} />
         </button>
         <ul className="w-full h-full py-2 px-1">
-          {menus.map((menu) => {
-            return (
-              <MenuMobileItem key={menu.id} data={menu} onCloseMenuParent={handleRequestClose} />
-            );
+          {menus.map((menu, i) => {
+            return <MenuMobileItem key={i} data={menu} onCloseMenuParent={handleRequestClose} />;
           })}
         </ul>
       </div>

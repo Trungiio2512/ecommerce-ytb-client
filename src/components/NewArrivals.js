@@ -80,25 +80,49 @@ const NewArrivals = (props) => {
         <TabActive data={tabs} value={tabActive} setValue={settabActive} />
       </div>
       <div className={`${tabActive === 0 ? "block" : "hidden"}`}>
-        <Slider {...settings}>
-          {tvs.map((el) => {
-            return <ProductT1 isShowDesModal key={el?._id} data={el} />;
-          })}
-        </Slider>
+        {tvs?.length > 0 ? (
+          <Slider {...settings}>
+            {tvs.map((el) => {
+              return <ProductT1 isShowDesModal key={el?._id} data={el} />;
+            })}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {[1, 2, 3].map((el) => {
+              return <ProductT1 loading key={el} />;
+            })}
+          </Slider>
+        )}
       </div>{" "}
       <div className={`${tabActive === 1 ? "block" : "hidden"}`}>
-        <Slider {...settings}>
-          {cams.map((el) => {
-            return <ProductT1 isShowDesModal key={el?._id} data={el} />;
-          })}
-        </Slider>
+        {cams.length > 0 ? (
+          <Slider {...settings}>
+            {cams.map((el) => {
+              return <ProductT1 isShowDesModal key={el?._id} data={el} />;
+            })}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {[1, 2, 3].map((el) => {
+              return <ProductT1 loading key={el} />;
+            })}
+          </Slider>
+        )}
       </div>{" "}
       <div className={`${tabActive === 2 ? "block" : "hidden"}`}>
-        <Slider {...settings}>
-          {speaker.map((el) => {
-            return <ProductT1 isShowDesModal key={el?._id} data={el} />;
-          })}
-        </Slider>
+        {speaker.length > 0 ? (
+          <Slider {...settings}>
+            {speaker.map((el) => {
+              return <ProductT1 isShowDesModal key={el?._id} data={el} />;
+            })}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {[1, 2, 3].map((el) => {
+              return <ProductT1 loading key={el} />;
+            })}
+          </Slider>
+        )}
       </div>
     </section>
   );

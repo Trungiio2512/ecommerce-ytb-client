@@ -112,25 +112,49 @@ const TabProduct = () => {
       </div> */}
       <TabActive data={tabs} value={tabActive} setValue={settabActive} />
       <div className={`${tabActive === 0 ? "block" : "hidden"}`}>
-        <Slider {...settings}>
-          {bestSeller.map((el) => {
-            return <ProductT1 imgSmall key={el?._id} data={el} />;
-          })}
-        </Slider>
+        {bestSeller?.length > 0 ? (
+          <Slider {...settings}>
+            {bestSeller.map((el) => {
+              return <ProductT1 imgSmall key={el?._id} data={el} />;
+            })}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {[1, 2, 3].map((el) => {
+              return <ProductT1 key={el} loading={true} />;
+            })}
+          </Slider>
+        )}
       </div>{" "}
       <div className={`${tabActive === 1 ? "block" : "hidden"}`}>
-        <Slider {...settings}>
-          {newarrivals.map((el) => {
-            return <ProductT1 imgSmall key={el?._id} data={el} />;
-          })}
-        </Slider>
+        {newarrivals.length > 0 ? (
+          <Slider {...settings}>
+            {newarrivals.map((el) => {
+              return <ProductT1 imgSmall key={el?._id} data={el} />;
+            })}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {[1, 2, 3].map((el) => {
+              return <ProductT1 key={el} loading={true} />;
+            })}
+          </Slider>
+        )}
       </div>{" "}
       <div className={`${tabActive === 2 ? "block" : "hidden"}`}>
-        <Slider {...settings}>
-          {tablet.map((el) => {
-            return <ProductT1 imgSmall key={el?._id} data={el} />;
-          })}
-        </Slider>
+        {tablet.length > 0 ? (
+          <Slider {...settings}>
+            {tablet.map((el) => {
+              return <ProductT1 imgSmall key={el?._id} data={el} />;
+            })}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {[1, 2, 3].map((el) => {
+              return <ProductT1 key={el} loading={true} />;
+            })}
+          </Slider>
+        )}
       </div>
     </div>
   );

@@ -35,31 +35,38 @@ const Featured = (props) => {
     };
     fetchApi();
   }, [categories]);
-  console.log(accessories)
+  console.log(accessories);
   return (
     <section>
-      <h2 className="uppercase text-xl font-semibold py-4 border-b-[3px] mb-5 border-red-400">
-        Gợi ý sản phẩm
-      </h2>
+      <h2 className="uppercase text-xl font-semibold py-4 border-b-[3px] mb-5 border-red-400">Gợi ý sản phẩm</h2>
       <div className="grid-layout">
         <div className="row">
           <div className="col l-4 s-6 c-12">
-            {phones.length > 0 &&
-              phones.map((phone, index) => {
-                return <ProductT2 product={phone} key={index} />;
-              })}
+            {phones.length > 0
+              ? phones.map((phone, index) => {
+                  return <ProductT2 product={phone} key={index} />;
+                })
+              : [1, 2, 3].map((phone, index) => {
+                  return <ProductT2 loading key={index} />;
+                })}
           </div>
           <div className="col l-4 s-6 c-12">
-            {laptops.length > 0 &&
-              laptops.map((laptop, index) => {
-                return <ProductT2 product={laptop} key={index} />;
-              })}
+            {laptops.length > 0
+              ? laptops.map((laptop, index) => {
+                  return <ProductT2 product={laptop} key={index} />;
+                })
+              : [1, 2, 3].map((phone, index) => {
+                  return <ProductT2 loading key={index} />;
+                })}
           </div>
           <div className="col l-4 s-6 c-12">
-            {accessories.length > 0 &&
-              accessories.map((accessoriy, index) => {
-                return <ProductT2 product={accessoriy} key={index} />;
-              })}
+            {accessories.length > 0
+              ? accessories.map((accessoriy, index) => {
+                  return <ProductT2 product={accessoriy} key={index} />;
+                })
+              : [1, 2, 3].map((phone, index) => {
+                  return <ProductT2 loading key={index} />;
+                })}
           </div>
         </div>
       </div>

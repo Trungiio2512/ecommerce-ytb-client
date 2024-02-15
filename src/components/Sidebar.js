@@ -14,16 +14,18 @@ const Sidebar = (props) => {
   return (
     <div className="w-full ">
       <aside className="border-1 border-main border-solid rounded-sm bg-white">
-        <div className="bg-main text-base text-white px-5 py-4 flex items-center gap-3">
+        <div className="bg-main text-base text-white px-5 py-4 flex items-center gap-3 mb-2">
           <span className="">
             <FaList />
           </span>
           <span className="uppercase font-semibold">all colections</span>
         </div>
-        <ul>
-          {categories.length > 0 &&
-            categories.map((category) => (
-              <li className="px-5 py-3" key={category?._id}>
+
+        {categories.length > 0 ? (
+          <ul className="">
+            {" "}
+            {categories.map((category) => (
+              <li className="px-5 py-3 h-11" key={category?._id}>
                 <Link
                   to={{
                     pathname: `${path.SEACH}`,
@@ -36,7 +38,14 @@ const Sidebar = (props) => {
                 </Link>
               </li>
             ))}
-        </ul>
+          </ul>
+        ) : (
+          <div className="animate-pulse flex flex-col gap-2">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((item, i) => (
+              <div key={i} className="h-11 bg-gray-400  max-w-[360px]"></div>
+            ))}
+          </div>
+        )}
       </aside>
     </div>
   );
